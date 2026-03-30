@@ -1,0 +1,31 @@
+/* ── Design tokens ─────────────────────────────────────────── */
+:root {
+  --accent:   #0a69d6;
+  --accent-light: #e8f1fc;
+  --text:     #1a1a2e;
+  --text-muted: #5a6275;
+  --bg:       #f8f9fb;
+  --card-bg:  #ffffff;
+  --border:   #dde1ea;
+  --shadow:   0 2px 12px rgba(10, 105, 214, 0.08);
+  --radius:   10px;
+  --font:     'Segoe UI', system-ui, sans-serif;
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul { list-style: none; }
