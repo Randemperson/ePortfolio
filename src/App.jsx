@@ -1,30 +1,29 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Education from './components/Education';
-import Projects from './components/Projects';
-import Experience from './components/Experience';
-import Responsibilities from './components/Responsibilities';
-import Skills from './components/Skills';
-import Achievements from './components/Achievements';
+import Home from './pages/Home';
+import About from './pages/About';
+import Resume from './pages/Resume';
+import CareerGoals from './pages/CareerGoals';
+import ProjectsPage from './pages/Projects';
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Navbar />
-      <main className="main-content">
-        <Hero />
-        <Education />
-        <Projects />
-        <Experience />
-        <Responsibilities />
-        <Skills />
-        <Achievements />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/resume" element={<Resume />} />
+          <Route path="/career-goals" element={<CareerGoals />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+        </Routes>
       </main>
       <footer className="footer">
         <p>© {new Date().getFullYear()} Alfred Tang · Built with React</p>
       </footer>
-    </>
+    </BrowserRouter>
   );
 }
 
