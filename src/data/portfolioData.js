@@ -22,37 +22,37 @@ export const biography = {
 export const careerGoals = {
   headline: "Career Goals",
   longTerm:
-    "My long-term aspiration is to work at the frontier of embedded AI — developing the low-level firmware and silicon architectures that let intelligent algorithms run on resource-constrained devices, whether that's a medical implant, an autonomous rover, or next-generation consumer hardware.",
+    "My long-term goal is to build AI systems that can actually see and understand the world — working on computer vision and ML infrastructure at the scale that companies like Google, Meta, or OpenAI operate at. I want to be the engineer who ships the model, not just studies it.",
   steps: [
     {
       phase: "Short-term (1–2 years)",
       actions: [
-        "Complete core ECE coursework (Digital Design, Computer Architecture, Circuits) with strong grades to build a rigorous technical foundation.",
-        "Secure a research position or internship in embedded systems or computer vision to gain industry-adjacent experience.",
-        "Contribute to two additional hands-on projects — one hardware-centric, one software/ML-centric — to broaden my portfolio.",
-        "Pursue relevant certifications or workshops (e.g., FPGA design, ROS, CUDA) to accelerate skill growth outside the classroom.",
+        "Build a strong foundation in ML through coursework and self-study — linear algebra, probability, deep learning fundamentals — so I can contribute meaningfully, not just run existing code.",
+        "Ship at least one serious personal project in computer vision or ML (object detection, image segmentation, or a generative model) with a real write-up and clean code.",
+        "Land a research position or internship where I'm working alongside engineers on real AI/ML problems.",
+        "Get comfortable with the full ML stack: PyTorch or JAX, experiment tracking, evaluation pipelines, and deployment basics.",
       ],
     },
     {
-      phase: "Mid-term (3–4 years)",
+      phase: "Mid-term (2–3 years)",
       actions: [
-        "Complete an ECE co-op or internship at a company working on embedded AI, autonomous systems, or semiconductor design (target: NVIDIA, Apple Silicon, SpaceX, or a high-impact startup).",
-        "Potentially pursue a 5-year BS/MS program at Georgia Tech to deepen expertise in VLSI or machine learning systems.",
-        "Develop a capstone project that integrates hardware design with on-device machine learning inference.",
-        "Build a professional network through IEEE, hackathons, and campus research labs (e.g., GT's CRNCH or ML@GT).",
+        "Secure an internship at a company doing meaningful AI work — ideally in computer vision, multimodal models, or ML infrastructure.",
+        "Evaluate whether an MS makes sense: if there's a research question I'm burning to answer, I'll pursue it — otherwise, strong industry experience matters more.",
+        "Build a portfolio of projects and contributions that speak for themselves, not just a GPA.",
+        "Engage with the broader ML community through papers, open source, or writing about what I'm learning.",
       ],
     },
     {
-      phase: "Long-term (5+ years)",
+      phase: "Long-term (4+ years)",
       actions: [
-        "Join a team designing next-generation embedded AI chips or firmware stacks — contributing to hardware-software co-design.",
-        "Consider graduate study (PhD) if a specific research question demands it, focused on energy-efficient neural network accelerators.",
-        "Eventually mentor the next generation of engineers, giving back to the same kind of collaborative learning environment that shaped me.",
+        "Work as a software or AI engineer at a company pushing the frontier — contributing to the models and systems people actually use.",
+        "Specialize deeply in computer vision or ML systems, with enough breadth to understand the full stack around my work.",
+        "Eventually take on technical leadership — not to manage, but to help teams build better AI faster.",
       ],
     },
   ],
   roadmapNote:
-    "This roadmap is intentionally iterative — each phase feeds the next, and I revisit it every semester as new opportunities, courses, and projects reshape my understanding of where I want to go.",
+    "This isn't set in stone — I update it every semester as I learn more about what I actually like building. The constant is the direction: shipping real AI, at scale, with great engineers.",
 };
 
 export const resumeInfo = {
