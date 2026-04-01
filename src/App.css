@@ -41,6 +41,13 @@
   text-decoration: none;
 }
 
+.navbar-links li a.nav-active {
+  background: var(--accent-light);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+
 /* ── Hero ──────────────────────────────────────────────────── */
 .hero {
   background: linear-gradient(135deg, var(--accent) 0%, #1a47b8 100%);
