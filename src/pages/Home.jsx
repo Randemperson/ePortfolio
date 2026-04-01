@@ -40,7 +40,7 @@ export default function Home() {
       <div className="home-hero-wrapper">
         <div className="home-hero-bg" />
         <div className="home-hero-content" ref={heroRef}>
-          <p className="home-hero-eyebrow">👋 Welcome</p>
+          <p className="home-hero-eyebrow">Welcome</p>
           <h1 className="home-hero-name">{personalInfo.name}</h1>
           <p className="home-hero-tagline">{summary.tagline}</p>
           <div className="home-hero-contacts">
