@@ -1,81 +1,75 @@
-/* ── Resume page ────────────────────────────────────────────── */
-
 .resume-download-btn {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  background: rgba(255, 255, 255, 0.2);
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  color: #fff;
-  padding: 0.55rem 1.4rem;
+  justify-content: center;
+  min-height: 48px;
+  margin-top: 24px;
+  padding: 0 18px;
   border-radius: 999px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background 0.15s, border-color 0.15s;
+  background: rgba(255, 248, 238, 0.14);
+  color: #fff8ee;
+  border: 1px solid rgba(255, 248, 238, 0.22);
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
 }
 
-.resume-download-btn:hover {
-  background: rgba(255, 255, 255, 0.35);
-  border-color: #fff;
-  text-decoration: none;
+.resume-download-btn:hover,
+.resume-download-btn:focus-visible {
+  transform: translateY(-1px);
+  background: rgba(255, 248, 238, 0.22);
+  border-color: rgba(255, 248, 238, 0.4);
 }
 
-/* ── Inline resume sheet ───────────────────────────────────── */
 .resume-sheet {
-  font-size: 0.9rem;
-  line-height: 1.55;
-  margin-bottom: 2.5rem;
+  margin-bottom: 28px;
 }
 
 .resume-header {
+  padding-bottom: 18px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--line-strong);
   text-align: center;
-  margin-bottom: 1.2rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid var(--accent);
 }
 
 .resume-name {
-  font-size: 1.8rem;
-  font-weight: 900;
-  color: var(--text);
-  margin-bottom: 0.3rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  line-height: 1;
 }
 
 .resume-contacts {
+  margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.2rem 0.6rem;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-.resume-contacts a {
-  color: var(--accent);
+  gap: 8px 10px;
+  color: var(--text-soft);
 }
 
 .resume-sep {
-  color: var(--border);
+  color: var(--line-strong);
 }
 
 .resume-section {
-  margin-bottom: 1.2rem;
+  margin-bottom: 18px;
+}
+
+.resume-section:last-child {
+  margin-bottom: 0;
 }
 
 .resume-section-title {
-  font-size: 0.85rem;
+  margin-bottom: 12px;
+  font-size: 0.82rem;
   font-weight: 800;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--accent);
-  border-bottom: 1.5px solid var(--accent);
-  padding-bottom: 0.2rem;
-  margin-bottom: 0.7rem;
+  color: var(--text-soft);
 }
 
 .resume-entry {
-  margin-bottom: 0.8rem;
+  margin-bottom: 14px;
 }
 
 .resume-entry:last-child {
@@ -85,108 +79,98 @@
 .resume-entry-header {
   display: flex;
   justify-content: space-between;
+  gap: 12px;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 0.3rem;
-  margin-bottom: 0.3rem;
 }
 
-.resume-entry-sub {
+.resume-entry-sub,
+.resume-coursework,
+.resume-skills-row,
+.resume-bullets li {
   color: var(--text-muted);
-  font-weight: 400;
 }
 
 .resume-entry-meta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 1px;
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  white-space: nowrap;
+  display: grid;
+  gap: 2px;
+  text-align: right;
+  color: var(--text-soft);
+  font-size: 0.92rem;
 }
 
 .resume-badge {
-  display: inline-block;
-  background: var(--accent-light);
-  color: var(--accent);
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 1px 7px;
-  border-radius: 20px;
-  margin-left: 6px;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  margin-left: 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  font-weight: 700;
 }
 
 .resume-coursework {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-top: 0.2rem;
+  margin-top: 8px;
 }
 
 .resume-bullets {
+  margin-top: 8px;
+  padding-left: 18px;
   list-style: disc;
-  padding-left: 1.3rem;
-  margin-top: 0.2rem;
-}
-
-.resume-bullets li {
-  margin-bottom: 0.25rem;
-  font-size: 0.87rem;
-  color: var(--text);
 }
 
 .resume-skills-row {
-  font-size: 0.88rem;
-  color: var(--text);
-  margin-bottom: 0.3rem;
+  margin-bottom: 8px;
 }
 
 .resume-achievement {
   display: flex;
   justify-content: space-between;
+  gap: 12px;
   align-items: center;
-  padding: 0.3rem 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 0.88rem;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
 }
 
 .resume-achievement:last-child {
   border-bottom: none;
+  padding-bottom: 0;
 }
 
-/* ── PDF section ───────────────────────────────────────────── */
 .resume-pdf-section {
-  margin-top: 2rem;
+  margin-top: 26px;
 }
 
 .resume-pdf-wrapper {
-  position: relative;
   padding: 0;
   overflow: hidden;
 }
 
 .resume-pdf-iframe {
   width: 100%;
-  height: 80vh;
-  min-height: 600px;
+  min-height: 70vh;
   border: none;
   display: block;
 }
 
 .resume-pdf-fallback {
+  padding: 14px 18px;
   text-align: center;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  padding: 0.75rem;
-  background: var(--bg);
-  border-top: 1px solid var(--border);
+  color: var(--text-soft);
+  border-top: 1px solid var(--line);
+  background: rgba(255, 248, 238, 0.78);
 }
 
-@media (max-width: 640px) {
-  .resume-entry-header {
+@media (max-width: 760px) {
+  .resume-entry-header,
+  .resume-achievement {
     flex-direction: column;
-  }
-  .resume-entry-meta {
     align-items: flex-start;
+  }
+
+  .resume-entry-meta {
+    text-align: left;
   }
 }

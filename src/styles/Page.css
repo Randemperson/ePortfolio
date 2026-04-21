@@ -1,65 +1,318 @@
-/* ── Shared page layout ─────────────────────────────────────── */
-
 .page-wrapper {
-  min-height: calc(100vh - 56px); /* account for navbar */
+  display: grid;
+  gap: 24px;
+}
+
+.page-hero,
+.page-content {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
 }
 
 .page-hero {
-  padding: 4rem 2rem 3rem;
-  text-align: center;
-  color: #fff;
+  position: relative;
+  overflow: hidden;
+  padding: 54px 34px 42px;
+  color: #fff8ee;
 }
 
-/* Default page hero gradient */
-.page-hero {
-  background: linear-gradient(135deg, var(--accent) 0%, #1a47b8 100%);
+.page-hero::before,
+.page-hero::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
 }
 
-/* Per-page accent colours */
+.page-hero::before {
+  width: 300px;
+  height: 300px;
+  right: -40px;
+  top: -100px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.page-hero::after {
+  width: 220px;
+  height: 220px;
+  left: -60px;
+  bottom: -90px;
+  background: rgba(255, 248, 238, 0.12);
+}
+
 .about-hero {
-  background: linear-gradient(135deg, #0a69d6 0%, #0e3a8c 100%);
+  background: linear-gradient(135deg, #1f4d4f 0%, #0f766e 48%, #183133 100%);
 }
 
 .resume-hero {
-  background: linear-gradient(135deg, #0e8c6e 0%, #0a5c48 100%);
+  background: linear-gradient(135deg, #7c5122 0%, #c9721b 48%, #4f3220 100%);
 }
 
 .goals-hero {
-  background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%);
+  background: linear-gradient(135deg, #403569 0%, #6554a7 48%, #201f37 100%);
 }
 
 .projects-hero {
-  background: linear-gradient(135deg, #d97706 0%, #92400e 100%);
+  background: linear-gradient(135deg, #25333a 0%, #435c69 48%, #141b1f 100%);
 }
 
 .page-hero-title {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 900;
-  letter-spacing: -1px;
-  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: clamp(2.7rem, 7vw, 5rem);
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+  max-width: 12ch;
 }
 
 .page-hero-subtitle {
-  font-size: 1.05rem;
-  opacity: 0.85;
-  margin-bottom: 1.2rem;
+  position: relative;
+  z-index: 1;
+  margin-top: 16px;
+  max-width: 720px;
+  font-size: 1.06rem;
+  line-height: 1.72;
+  color: rgba(255, 248, 238, 0.78);
 }
 
 .page-content {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 2.5rem 1.5rem 5rem;
+  padding: 34px;
+  background: rgba(255, 250, 240, 0.74);
+  backdrop-filter: blur(14px);
 }
 
-/* ── Biography ─────────────────────────────────────────────── */
-.biography-card {
+.section {
+  margin-bottom: 30px;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.section-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.section-title::after {
+  content: '';
+  width: 48px;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+.card {
+  padding: 24px;
+  margin-bottom: 16px;
+  border-radius: var(--radius-lg);
+  background: var(--surface-strong);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-md);
+}
+
+.card:last-child {
+  margin-bottom: 0;
+}
+
+.card-header {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  line-height: 1.05;
+}
+
+.card-subtitle,
+.card-coursework,
+.bio-paragraph,
+.projects-intro-text,
+.goals-vision-text {
+  color: var(--text-muted);
+}
+
+.card-subtitle {
+  margin-top: 6px;
+}
+
+.card-meta {
+  display: grid;
+  gap: 2px;
+  text-align: right;
+}
+
+.card-date,
+.card-location {
+  font-size: 0.92rem;
+  color: var(--text-soft);
+}
+
+.label {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  margin-left: 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.bullet-list {
+  padding-left: 18px;
+  list-style: disc;
+}
+
+.bullet-list li {
+  margin-bottom: 8px;
+  color: var(--text-muted);
+}
+
+.bullet-list li:last-child {
+  margin-bottom: 0;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.tech-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 248, 238, 0.88);
+  border: 1px solid rgba(15, 118, 110, 0.16);
+  color: var(--accent-strong);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.biography-card {
+  display: grid;
+  gap: 14px;
 }
 
 .bio-paragraph {
-  font-size: 0.97rem;
-  line-height: 1.75;
+  line-height: 1.8;
+}
+
+.skill-row {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 10px 16px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+
+.skill-row:last-child {
+  margin-bottom: 0;
+}
+
+.skill-category {
+  font-weight: 700;
   color: var(--text);
+}
+
+.achievement-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.achievement-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.achievement-title {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.achievement-year {
+  flex-shrink: 0;
+}
+
+.demo-placeholder {
+  min-height: 170px;
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  text-align: center;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.08), rgba(201, 114, 27, 0.08));
+  border: 1px dashed rgba(15, 118, 110, 0.24);
+}
+
+.demo-placeholder-icon {
+  font-size: 2rem;
+}
+
+.demo-placeholder-text {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.demo-placeholder-hint {
+  color: var(--text-soft);
+  font-size: 0.85rem;
+}
+
+.demo-container,
+.demo-image,
+.demo-video {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+@media (max-width: 760px) {
+  .page-hero,
+  .page-content {
+    padding: 24px;
+  }
+
+  .card-header,
+  .achievement-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .card-meta {
+    text-align: left;
+  }
+
+  .skill-row {
+    grid-template-columns: 1fr;
+  }
 }

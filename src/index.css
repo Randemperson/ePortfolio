@@ -1,31 +1,81 @@
-/* ── Design tokens ─────────────────────────────────────────── */
 :root {
-  --accent:   #0a69d6;
-  --accent-light: #e8f1fc;
-  --text:     #1a1a2e;
-  --text-muted: #5a6275;
-  --bg:       #f8f9fb;
-  --card-bg:  #ffffff;
-  --border:   #dde1ea;
-  --shadow:   0 2px 12px rgba(10, 105, 214, 0.08);
-  --radius:   10px;
-  --font:     'Segoe UI', system-ui, sans-serif;
+  --bg: #f6f0e3;
+  --bg-deep: #e6dbc4;
+  --surface: rgba(255, 250, 240, 0.76);
+  --surface-strong: rgba(255, 252, 246, 0.92);
+  --surface-dark: #1d2427;
+  --text: #1f2529;
+  --text-muted: #5a635f;
+  --text-soft: #7b867f;
+  --line: rgba(31, 37, 41, 0.12);
+  --line-strong: rgba(31, 37, 41, 0.18);
+  --accent: #0f766e;
+  --accent-strong: #0a4f4a;
+  --accent-soft: rgba(15, 118, 110, 0.12);
+  --warm: #c9721b;
+  --highlight: #f3e4bf;
+  --shadow-lg: 0 28px 70px rgba(67, 48, 20, 0.14);
+  --shadow-md: 0 18px 44px rgba(67, 48, 20, 0.1);
+  --radius-xl: 32px;
+  --radius-lg: 24px;
+  --radius-md: 18px;
+  --font-display: 'Georgia', 'Times New Roman', serif;
+  --font-body: 'Segoe UI', system-ui, sans-serif;
 }
 
-/* ── Reset ─────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  font-family: var(--font);
-  background: var(--bg);
+  font-family: var(--font-body);
+  background:
+    radial-gradient(circle at top left, rgba(201, 114, 27, 0.16), transparent 28%),
+    radial-gradient(circle at top right, rgba(15, 118, 110, 0.16), transparent 22%),
+    linear-gradient(180deg, var(--bg) 0%, #f9f3e7 100%);
   color: var(--text);
   line-height: 1.6;
-  font-size: 16px;
+  min-width: 320px;
 }
 
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(31, 37, 41, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 37, 41, 0.03) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.72), transparent 82%);
+}
 
-ul { list-style: none; }
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: var(--accent-strong);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
