@@ -69,6 +69,33 @@ function ProjectMediaGallery({ projectTitle, media = [] }) {
   );
 }
 
+function OverviewBlock({ block }) {
+  const lines = block.split('\n');
+
+  if (lines[0]?.startsWith('**') && lines[0]?.endsWith('**')) {
+    const heading = lines[0].replace(/\*\*/g, '');
+    const contentLines = lines.slice(1).filter(Boolean);
+    const listItems = contentLines.filter((line) => line.startsWith('- '));
+
+    return (
+      <div>
+        <h4 className="project-overview-heading">{heading}</h4>
+        {listItems.length === contentLines.length ? (
+          <ul className="bullet-list project-overview-list">
+            {listItems.map((item) => (
+              <li key={item}>{item.replace(/^- /, '')}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>{contentLines.join('\n')}</p>
+        )}
+      </div>
+    );
+  }
+
+  return <p>{block}</p>;
+}
+
 function ProjectDetail({ project, onClose }) {
   return (
     <div className="project-detail-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-label={project.title}>
@@ -83,31 +110,28 @@ function ProjectDetail({ project, onClose }) {
           <span className="card-date">{project.date}</span>
         </div>
 
-        <DemoMedia projectId={project.id} demoType={project.demoType} demoSrc={project.demoSrc} />
-        <ProjectMediaGallery projectTitle={project.title} media={project.media} />
+        <div className="project-detail-body">
+          <aside className="project-detail-media-column">
+            <DemoMedia projectId={project.id} demoType={project.demoType} demoSrc={project.demoSrc} />
+            <ProjectMediaGallery projectTitle={project.title} media={project.media} />
+          </aside>
 
-        {project.overview && (
-          <div className="project-overview">
-            {project.overview.split('\n\n').map((para, i) => {
-              if (para.startsWith('**') && para.includes('**\n')) {
-                const [heading, ...rest] = para.split('\n');
-                return (
-                  <div key={i}>
-                    <h4 className="project-overview-heading">{heading.replace(/\*\*/g, '')}</h4>
-                    <p>{rest.join('\n')}</p>
-                  </div>
-                );
-              }
-              return <p key={i}>{para}</p>;
-            })}
+          <div className="project-detail-content-column">
+            {project.overview && (
+              <div className="project-overview">
+                {project.overview.split('\n\n').map((block, i) => (
+                  <OverviewBlock key={i} block={block} />
+                ))}
+              </div>
+            )}
+
+            <div className="project-detail-bullets">
+              <h4 className="project-overview-heading">Key Highlights</h4>
+              <ul className="bullet-list">
+                {project.bullets.map((b, i) => <li key={i}>{b}</li>)}
+              </ul>
+            </div>
           </div>
-        )}
-
-        <div className="project-detail-bullets">
-          <h4 className="project-overview-heading">Key Highlights</h4>
-          <ul className="bullet-list">
-            {project.bullets.map((b, i) => <li key={i}>{b}</li>)}
-          </ul>
         </div>
       </div>
     </div>

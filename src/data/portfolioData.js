@@ -119,10 +119,24 @@ The game features multiple custom maps each with different board shapes and terr
     tech: ["MediaPipe", "Python", "Arduino Nano", "90g Micro Servo"],
     date: "Sep. 2025 - Present",
     isDiscovery: true,
-    overview: `This project is a real-time finger-tracking system built with Python, OpenCV, and MediaPipe. The goal was to track index finger motion from a live webcam feed and use that data to drive hardware in real time. OpenCV handled video capture and frame processing, while MediaPipe provided the hand-tracking model that detects 21 landmarks on the hand. Instead of only using the landmark positions for visualization, I used them as actual input data: by selecting the joints of the index finger and treating the landmark coordinates as vectors, I calculated the bend angle of the finger in real time. That let me turn a computer vision output into a measurable control signal. I also added optional serial communication with pyserial so the calculated angle could be sent over USB to an Arduino Nano at 9600 baud, where it could be used to control a 90g micro servo. To make development easier, I built a test mode that let me run the software even when no Arduino was connected. This project gave me a much better understanding of how MediaPipe can serve as the front end of a larger system: it is not just drawing hand skeletons, but producing structured landmark data that can feed directly into physical hardware and interactive systems.
+    overview: `**Discovery Project Idea**
+This project ended up being completely different from my original Discovery Project idea. Over time, I shifted toward a system that felt more personal and more technically interesting: a real-time finger-tracking pipeline that could eventually connect computer vision to music-related hand analysis. The final project uses Python, OpenCV, and MediaPipe to detect a hand from a live webcam feed, visualize the hand skeleton, and calculate the bend angle of the index finger in real time. That angle can then be sent through a USB connection to an Arduino Nano, which can drive a 90g micro servo. In other words, the project takes visual hand motion, converts it into numerical data, and then uses that data to control hardware. I liked this idea because it combined software, signal processing, and physical prototyping in one system.
 
-**3D Printing and Invention Studio Process**
-The hardware side of the project taught me just as much as the software. I used Georgia Tech's Invention Studio to prototype the gripper and connector pieces, and that process involved a lot more iteration than I expected. The gripper itself had to be 3D printed multiple times so I could refine the geometry and make sure it actually moved the way I wanted once attached to the servo. I also had to learn how to wire and control the Arduino Nano and micro servo correctly, including power, signal routing, and stable communication between the computer vision pipeline and the physical device. One of the most involved parts of the build was resin printing the silicone connectors. Because the material and print job would cost around $30, I first talked through the plan with two Master PIs at the Invention Studio to make sure the design was worth attempting and that I understood the process before using the material. After getting their feedback, I ran the print, then cleaned the finished part in the sonication bath to remove uncured resin. After washing, the part still needed to be cured so it would fully harden and reach usable mechanical properties. That whole workflow - asking for expert advice, preparing the print, washing it, and curing it - made the project feel much more like real engineering fabrication rather than just coding. It also showed me how much iteration, cost awareness, and consultation go into turning a concept into a working physical prototype.`,
+**Project Progress**
+The project developed in clear stages throughout the semester. By February 10, I had built the main computer-vision pipeline and gotten the hand tracking working well enough to detect landmarks and calculate finger bend data in real time. After that, I moved into the hardware stage by getting the Arduino and servo working as the output side of the system. Once the software-to-hardware connection was more stable, I started prototyping the physical mechanism and 3D printed the gripper parts that would connect the motion output to a usable device. Each stage depended on the previous one, so the semester felt like a gradual transition from proof-of-concept software into a more complete electromechanical prototype.
+
+**Project Successes and Failures**
+The biggest successes came from getting the major subsystems to work together. MediaPipe was especially useful because it gave me consistent hand landmark data that I could turn into a real-time control signal instead of just a visual demo. At the same time, the project included a lot of challenges. I had to learn how to wire and control a micro servo with an Arduino Nano, which meant figuring out power, wiring, and serial communication details that were new to me. Physical prototyping was also harder than I first expected, because 3D printed parts rarely worked perfectly on the first try. One of the most time-consuming parts was experimenting with resin printing the silicone connectors in Georgia Tech's Invention Studio. Since the material cost was around $30, I first discussed the process with two Master PIs before moving forward. After printing, I had to wash the part in the sonication bath and then cure it before it was usable. That whole process showed me that hardware iteration can be slow, expensive, and detail-heavy compared to software.
+
+**ECE Skills Gained**
+- 3D printing and iterative physical prototyping for gripper parts and connector components
+- Connected systems design, especially communication between a Python computer-vision application and an Arduino
+- C++ microcontroller programming for Arduino-based control of the servo hardware
+- Arduino wiring, including power, signal connections, and hardware debugging
+- OpenCV for real-time webcam processing and integration with the MediaPipe hand-tracking pipeline
+
+**Final Thoughts**
+Overall, this project made me more interested in the intersection of embedded systems, physical computing, and intelligent sensing. It was one of the first times I worked on something that connected computer vision, microcontrollers, and fabrication in a single workflow, and that made the project feel much closer to real engineering than a purely software assignment. It also showed me how much persistence matters when a project involves both code and hardware. I would like to continue developing this idea, especially by improving the physical mechanism and expanding the vision system so it can analyze more hand posture details for beginning violinists.`,
     bullets: [
       "Built a real-time finger-tracking pipeline with Python, OpenCV, and MediaPipe using live webcam hand landmark detection",
       "Calculated index finger bend angle in real time and sent the tracked value over USB serial to an Arduino Nano at 9600 baud",
@@ -149,6 +163,17 @@ The hardware side of the project taught me just as much as the software. I used 
         src: "/projects/discovery/media/IMG_7592.jpg",
         alt: "Real-Time Finger Tracking System photo IMG 7592",
         caption: "Project photo: IMG_7592",
+      },
+      {
+        type: "image",
+        src: "/projects/discovery/media/arduino-servo-code.svg",
+        alt: "Arduino servo control code screenshot",
+        caption: "Arduino servo control code",
+      },
+      {
+        type: "video",
+        src: "/projects/discovery/media/IMG_7520.mov",
+        caption: "Project video: IMG_7520",
       },
       {
         type: "video",
