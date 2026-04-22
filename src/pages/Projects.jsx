@@ -30,6 +30,45 @@ function DemoMedia({ projectId, demoType, demoSrc }) {
   );
 }
 
+function ProjectMediaGallery({ projectTitle, media = [] }) {
+  if (!media.length) {
+    return null;
+  }
+
+  return (
+    <section className="project-media-section">
+      <h4 className="project-overview-heading">Project Media</h4>
+      <div className="project-media-grid">
+        {media.map((item) => (
+          <figure key={item.src} className="project-media-card">
+            {item.type === 'video' ? (
+              <video controls className="project-media-video">
+                <source src={item.src} />
+                Your browser does not support the video tag.
+              </video>
+            ) : (
+              <a
+                href={item.src}
+                target="_blank"
+                rel="noreferrer"
+                className="project-media-link"
+                aria-label={`Open ${projectTitle} media`}
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt || `${projectTitle} media`}
+                  className="project-media-image"
+                />
+              </a>
+            )}
+            {item.caption && <figcaption className="project-media-caption">{item.caption}</figcaption>}
+          </figure>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function ProjectDetail({ project, onClose }) {
   return (
     <div className="project-detail-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-label={project.title}>
@@ -45,6 +84,7 @@ function ProjectDetail({ project, onClose }) {
         </div>
 
         <DemoMedia projectId={project.id} demoType={project.demoType} demoSrc={project.demoSrc} />
+        <ProjectMediaGallery projectTitle={project.title} media={project.media} />
 
         {project.overview && (
           <div className="project-overview">

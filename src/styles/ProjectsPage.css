@@ -106,6 +106,42 @@
   margin: 16px 0;
 }
 
+.project-media-section {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.project-media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.project-media-card {
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.project-media-link {
+  display: block;
+}
+
+.project-media-image,
+.project-media-video {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background: rgba(18, 24, 27, 0.04);
+}
+
+.project-media-caption {
+  font-size: 0.88rem;
+  color: var(--text-soft);
+}
+
 .project-overview p {
   color: var(--text-muted);
   line-height: 1.78;
