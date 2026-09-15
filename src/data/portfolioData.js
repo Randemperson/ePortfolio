@@ -92,6 +92,81 @@ export const education = [
 
 export const projects = [
   {
+    id: "movies-store",
+    title: "Movies Store",
+    tech: ["Python", "Django", "MySQL", "Bootstrap", "PythonAnywhere"],
+    date: "Sep. 2026 - Present",
+    isDiscovery: false,
+    isFeatured: true,
+    course: "CS 2340 - Objects and Design",
+    liveUrl: "https://at10507.pythonanywhere.com/",
+    overview: `Movies Store is a Django web application I am building for my CS 2340 (Objects and Design) class at Georgia Tech, deployed live at at10507.pythonanywhere.com. It is a full movie storefront: visitors browse and search a catalog, add titles to a cart, check out, and review the movies they buy.
+
+**Course Context**
+CS 2340 is the object-oriented design course, so the emphasis is on structuring an application cleanly rather than just making it work. The project is split into four Django apps - home, movies, cart, and accounts - each owning its own models, views, URLs, and templates, with shared page chrome living in a single base template that every page extends.
+
+**What It Does**
+- Catalog browsing with case-insensitive search across movie titles
+- A session-backed shopping cart that works before a visitor ever creates an account
+- Checkout that turns the session cart into an Order plus one Item row per title, then shows each user their own order history
+- Django auth signup, login, and logout, with login-required guards on reviews, checkout, and orders
+- Reviews users can create, edit, and delete, with ownership checks so nobody can touch someone else's review
+
+**Review Reporting and Moderation**
+The feature I designed on top of the base storefront is community moderation of reviews. A Report model records who flagged which review and why, with a database-level unique constraint so the same user cannot report a review twice. Once a review collects REPORT_THRESHOLD distinct reports (currently 3), it is marked hidden and drops off the movie page automatically. That threshold is a single named constant, so moderation gets stricter or looser by changing one value instead of rewriting the view.
+
+Users cannot report their own reviews, a review someone has already flagged shows a Reported badge instead of the form, and every outcome comes back through Django's messages framework. Admins get a moderation console on top of that: review rows show a live report count, individual reports appear inline on the review they belong to, and bulk hide and unhide actions let a human override the automatic decision.
+
+**Deployment**
+The app runs on PythonAnywhere against MySQL through PyMySQL. Getting it deployable meant pulling the secret key, debug flag, allowed hosts, and database credentials out of settings.py and into environment variables, so the same codebase runs locally and in production without edits.`,
+    bullets: [
+      "Built and deployed a Django movie storefront for CS 2340, live on PythonAnywhere with catalog search, a session-based cart, checkout, and per-user order history",
+      "Designed a review reporting system with a Report model, a one-report-per-user-per-review database constraint, and a single REPORT_THRESHOLD constant that auto-hides a review after 3 distinct reports",
+      "Added a Django admin moderation console with live report counts, reports shown inline on each review, and bulk hide/unhide actions to override automatic decisions",
+      "Moved the secret key, debug flag, allowed hosts, and MySQL credentials into environment variables so one codebase runs both locally and on PythonAnywhere",
+    ],
+    demoType: "image",
+    demoSrc: "/projects/moviesstore/media/home-page.png",
+    media: [
+      {
+        type: "image",
+        src: "/projects/moviesstore/media/home-page.png",
+        alt: "Movies Store home page with navigation, hero banner, and footer",
+        caption: "Live home page at at10507.pythonanywhere.com",
+      },
+      {
+        type: "image",
+        src: "/projects/moviesstore/media/review-moderation-code.svg",
+        alt: "Django Report model and report_review view source code",
+        caption: "Report model and report_review view: three distinct reports hide a review",
+      },
+      {
+        type: "image",
+        src: "/projects/moviesstore/media/about-page.png",
+        alt: "Movies Store about page",
+        caption: "About page rendered from the shared base template",
+      },
+      {
+        type: "image",
+        src: "/projects/moviesstore/media/catalog-jurassic-park.jpg",
+        alt: "Jurassic Park catalog entry artwork",
+        caption: "Catalog artwork uploaded through the Movie image field",
+      },
+      {
+        type: "image",
+        src: "/projects/moviesstore/media/catalog-spider-man.jpg",
+        alt: "Spider-Man catalog entry artwork",
+        caption: "Catalog artwork uploaded through the Movie image field",
+      },
+      {
+        type: "image",
+        src: "/projects/moviesstore/media/store-logo.png",
+        alt: "Movies Store logo",
+        caption: "Store logo served from Django static files",
+      },
+    ],
+  },
+  {
     id: "chess",
     title: "C.H.E.S.S",
     tech: ["C#", "Unity", "Git"],

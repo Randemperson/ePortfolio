@@ -96,6 +96,30 @@ function OverviewBlock({ block }) {
   return <p>{block}</p>;
 }
 
+function ProjectCard({ project, onSelect, className = '' }) {
+  return (
+    <button className={`project-card card project-card-btn ${className}`.trim()} onClick={() => onSelect(project)}>
+      <div className="card-header">
+        <div>
+          <h3 className="card-title">{project.title}</h3>
+          {project.isDiscovery && <span className="discovery-badge">⭐ Discovery Project</span>}
+          {project.course && <span className="course-badge">{project.course}</span>}
+          {project.liveUrl && <span className="live-badge">● Live site</span>}
+          <div className="tech-tags">
+            {project.tech.map((t) => <span key={t} className="tech-tag">{t}</span>)}
+          </div>
+        </div>
+        <span className="card-date">{project.date}</span>
+      </div>
+      <DemoMedia projectId={project.id} demoType={project.demoType} demoSrc={project.demoSrc} />
+      <ul className="bullet-list">
+        {project.bullets.map((b, i) => <li key={i}>{b}</li>)}
+      </ul>
+      <span className="project-read-more">Read full overview →</span>
+    </button>
+  );
+}
+
 function ProjectDetail({ project, onClose }) {
   return (
     <div className="project-detail-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-label={project.title}>
@@ -104,10 +128,16 @@ function ProjectDetail({ project, onClose }) {
         <div className="project-detail-header">
           <h2 className="project-detail-title">{project.title}</h2>
           {project.isDiscovery && <span className="discovery-badge">⭐ Discovery Project</span>}
+          {project.course && <span className="course-badge">{project.course}</span>}
           <div className="tech-tags">
             {project.tech.map((t) => <span key={t} className="tech-tag">{t}</span>)}
           </div>
           <span className="card-date">{project.date}</span>
+          {project.liveUrl && (
+            <a className="project-live-link" href={project.liveUrl} target="_blank" rel="noreferrer">
+              Visit the live site ↗
+            </a>
+          )}
         </div>
 
         <div className="project-detail-body">
@@ -141,8 +171,9 @@ function ProjectDetail({ project, onClose }) {
 export default function ProjectsPage() {
   const [selected, setSelected] = useState(null);
 
-  const discoveryProjects = projects.filter((p) => p.isDiscovery);
-  const otherProjects = projects.filter((p) => !p.isDiscovery);
+  const featuredProjects = projects.filter((p) => p.isFeatured);
+  const discoveryProjects = projects.filter((p) => p.isDiscovery && !p.isFeatured);
+  const otherProjects = projects.filter((p) => !p.isDiscovery && !p.isFeatured);
 
   return (
     <div className="page-wrapper">
@@ -152,6 +183,21 @@ export default function ProjectsPage() {
       </div>
 
       <div className="page-content">
+        {/* Featured / current coursework */}
+        {featuredProjects.length > 0 && (
+          <section className="section" id="featured">
+            <h2 className="section-title">Featured {featuredProjects.length > 1 ? 'Projects' : 'Project'}</h2>
+            <p className="projects-intro-text">
+              What I am building right now for class — shipped to a live server, not just a local demo.
+            </p>
+            <div className="projects-grid">
+              {featuredProjects.map((p) => (
+                <ProjectCard key={p.id} project={p} onSelect={setSelected} className="featured-card" />
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Discovery Project(s) */}
         {discoveryProjects.length > 0 && (
           <section className="section" id="discovery">
@@ -162,23 +208,7 @@ export default function ProjectsPage() {
             </p>
             <div className="projects-grid">
               {discoveryProjects.map((p) => (
-                <button key={p.id} className="project-card card project-card-btn discovery-card" onClick={() => setSelected(p)}>
-                  <div className="card-header">
-                    <div>
-                      <h3 className="card-title">{p.title}</h3>
-                      <span className="discovery-badge">⭐ Discovery Project</span>
-                      <div className="tech-tags">
-                        {p.tech.map((t) => <span key={t} className="tech-tag">{t}</span>)}
-                      </div>
-                    </div>
-                    <span className="card-date">{p.date}</span>
-                  </div>
-                  <DemoMedia projectId={p.id} demoType={p.demoType} demoSrc={p.demoSrc} />
-                  <ul className="bullet-list">
-                    {p.bullets.map((b, i) => <li key={i}>{b}</li>)}
-                  </ul>
-                  <span className="project-read-more">Read full overview →</span>
-                </button>
+                <ProjectCard key={p.id} project={p} onSelect={setSelected} className="discovery-card" />
               ))}
             </div>
           </section>
@@ -190,22 +220,7 @@ export default function ProjectsPage() {
             <h2 className="section-title">Other Projects</h2>
             <div className="projects-grid">
               {otherProjects.map((p) => (
-                <button key={p.id} className="project-card card project-card-btn" onClick={() => setSelected(p)}>
-                  <div className="card-header">
-                    <div>
-                      <h3 className="card-title">{p.title}</h3>
-                      <div className="tech-tags">
-                        {p.tech.map((t) => <span key={t} className="tech-tag">{t}</span>)}
-                      </div>
-                    </div>
-                    <span className="card-date">{p.date}</span>
-                  </div>
-                  <DemoMedia projectId={p.id} demoType={p.demoType} demoSrc={p.demoSrc} />
-                  <ul className="bullet-list">
-                    {p.bullets.map((b, i) => <li key={i}>{b}</li>)}
-                  </ul>
-                  <span className="project-read-more">Read full overview →</span>
-                </button>
+                <ProjectCard key={p.id} project={p} onSelect={setSelected} />
               ))}
             </div>
           </section>

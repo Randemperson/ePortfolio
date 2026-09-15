@@ -35,6 +35,57 @@
   background: linear-gradient(135deg, rgba(255, 252, 246, 0.98), rgba(243, 228, 191, 0.44));
 }
 
+.featured-card {
+  background: linear-gradient(135deg, rgba(255, 252, 246, 0.98), rgba(15, 118, 110, 0.12));
+  border-color: rgba(15, 118, 110, 0.28);
+}
+
+.course-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-right: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 118, 110, 0.28);
+  background: rgba(255, 252, 246, 0.9);
+  color: var(--accent-strong);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.project-live-link {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fffaf0;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 200ms ease, transform 200ms ease;
+}
+
+.project-live-link:hover,
+.project-live-link:focus-visible {
+  background: var(--accent-strong);
+  transform: translateY(-1px);
+}
+
 .discovery-badge {
   display: inline-flex;
   align-items: center;
