@@ -262,30 +262,6 @@
   flex-shrink: 0;
 }
 
-.demo-placeholder {
-  min-height: 170px;
-  display: grid;
-  place-items: center;
-  gap: 6px;
-  text-align: center;
-  border-radius: var(--radius-md);
-  background: linear-gradient(135deg, rgba(15, 118, 110, 0.08), rgba(201, 114, 27, 0.08));
-  border: 1px dashed rgba(15, 118, 110, 0.24);
-}
-
-.demo-placeholder-icon {
-  font-size: 2rem;
-}
-
-.demo-placeholder-text {
-  font-weight: 700;
-  color: var(--text);
-}
-
-.demo-placeholder-hint {
-  color: var(--text-soft);
-  font-size: 0.85rem;
-}
 
 .demo-container,
 .demo-image,

@@ -3,8 +3,12 @@ import { projects } from '../data/portfolioData';
 import '../styles/Page.css';
 import '../styles/ProjectsPage.css';
 
-function DemoMedia({ projectId, demoType, demoSrc }) {
-  if (demoType === 'video' && demoSrc) {
+function DemoMedia({ title, demoType, demoSrc }) {
+  if (!demoSrc) {
+    return null;
+  }
+
+  if (demoType === 'video') {
     return (
       <div className="demo-container">
         <video controls className="demo-video">
@@ -14,18 +18,10 @@ function DemoMedia({ projectId, demoType, demoSrc }) {
       </div>
     );
   }
-  if (demoType === 'image' && demoSrc) {
-    return (
-      <div className="demo-container">
-        <img src={demoSrc} alt={`${projectId} demo`} className="demo-image" />
-      </div>
-    );
-  }
+
   return (
-    <div className="demo-placeholder" aria-label="Demo placeholder">
-      <span className="demo-placeholder-icon">🎬</span>
-      <p className="demo-placeholder-text">Image / Video Demo</p>
-      <p className="demo-placeholder-hint">Replace demoType &amp; demoSrc in portfolioData.js</p>
+    <div className="demo-container">
+      <img src={demoSrc} alt={`${title} demo`} className="demo-image" />
     </div>
   );
 }
@@ -104,6 +100,7 @@ function ProjectCard({ project, onSelect, className = '' }) {
           <h3 className="card-title">{project.title}</h3>
           {project.isDiscovery && <span className="discovery-badge">⭐ Discovery Project</span>}
           {project.course && <span className="course-badge">{project.course}</span>}
+          {project.award && <span className="award-badge">🏆 {project.award}</span>}
           {project.liveUrl && <span className="live-badge">● Live site</span>}
           <div className="tech-tags">
             {project.tech.map((t) => <span key={t} className="tech-tag">{t}</span>)}
@@ -111,7 +108,7 @@ function ProjectCard({ project, onSelect, className = '' }) {
         </div>
         <span className="card-date">{project.date}</span>
       </div>
-      <DemoMedia projectId={project.id} demoType={project.demoType} demoSrc={project.demoSrc} />
+      <DemoMedia title={project.title} demoType={project.demoType} demoSrc={project.demoSrc} />
       <ul className="bullet-list">
         {project.bullets.map((b, i) => <li key={i}>{b}</li>)}
       </ul>
@@ -129,6 +126,7 @@ function ProjectDetail({ project, onClose }) {
           <h2 className="project-detail-title">{project.title}</h2>
           {project.isDiscovery && <span className="discovery-badge">⭐ Discovery Project</span>}
           {project.course && <span className="course-badge">{project.course}</span>}
+          {project.award && <span className="award-badge">🏆 {project.award}</span>}
           <div className="tech-tags">
             {project.tech.map((t) => <span key={t} className="tech-tag">{t}</span>)}
           </div>
@@ -142,7 +140,7 @@ function ProjectDetail({ project, onClose }) {
 
         <div className="project-detail-body">
           <aside className="project-detail-media-column">
-            <DemoMedia projectId={project.id} demoType={project.demoType} demoSrc={project.demoSrc} />
+            <DemoMedia title={project.title} demoType={project.demoType} demoSrc={project.demoSrc} />
             <ProjectMediaGallery projectTitle={project.title} media={project.media} />
           </aside>
 
@@ -179,7 +177,7 @@ export default function ProjectsPage() {
     <div className="page-wrapper">
       <div className="page-hero projects-hero">
         <h1 className="page-hero-title">Technical Projects</h1>
-        <p className="page-hero-subtitle">A growing portfolio of work — click any project for the full story</p>
+        <p className="page-hero-subtitle">Research tools, hardware prototypes, and software I have built — click any project for the details</p>
       </div>
 
       <div className="page-content">

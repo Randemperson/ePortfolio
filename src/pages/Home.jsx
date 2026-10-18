@@ -4,10 +4,10 @@ import { personalInfo, summary } from '../data/portfolioData';
 import '../styles/Home.css';
 
 const quickLinks = [
-  { to: '/about', label: 'About Me', detail: 'Background, leadership, and technical narrative' },
+  { to: '/about', label: 'About Me', detail: 'Background, research, and how I got here' },
   { to: '/resume', label: 'Resume', detail: 'Experience, coursework, and PDF download' },
-  { to: '/career-goals', label: 'Career Goals', detail: 'Roadmap into ML, vision, and next steps' },
-  { to: '/projects', label: 'Projects', detail: 'Hands-on builds across embedded systems and software' },
+  { to: '/career-goals', label: 'Career Goals', detail: 'Roadmap into autonomy, vision, and next steps' },
+  { to: '/projects', label: 'Projects', detail: 'Autonomy tooling, AR, hardware, and web apps' },
 ];
 
 export default function Home() {
@@ -89,9 +89,9 @@ export default function Home() {
         <div className="home-nav-inner">
           <div className="home-section-copy">
             <div className="section-kicker">Explore</div>
-            <h2 className="home-display-heading">Move through the portfolio like a guided story.</h2>
+            <h2 className="home-display-heading">Jump straight to what you came for.</h2>
             <p className="home-intro-summary">
-              Each page now acts like a chapter, with smoother transitions and a more cinematic presentation.
+              The research and projects I have built, the full resume, and where I am headed next.
             </p>
           </div>
 

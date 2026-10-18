@@ -53,6 +53,20 @@
   font-weight: 700;
 }
 
+.award-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  margin-right: 6px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(201, 114, 27, 0.14);
+  color: #8b5314;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
 .live-badge {
   display: inline-flex;
   align-items: center;

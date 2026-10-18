@@ -1,10 +1,10 @@
 export const summary = {
   headline: "Welcome - I'm Alfred Tang",
-  tagline: "Computer Engineering student at Georgia Tech passionate about systems, software, and solving hard problems.",
+  tagline: "Computer Engineering student at Georgia Tech working on autonomous driving research, computer vision, and the software that connects to real hardware.",
   intro: [
-    "I'm a first-year Computer Engineering student at Georgia Institute of Technology (GPA: 3.88), building experience across embedded systems, game development, and machine learning.",
-    "I thrive at the intersection of hardware and software - from fabricating custom PCBs to shipping Unity games with novel tools.",
-    "Outside the lab, I lead teams, mentor peers, and bring the same operational mindset that grew a family restaurant's revenue by 70%.",
+    "I'm a Computer Engineering student at Georgia Tech (GPA: 3.92, graduating Spring 2028) and an undergraduate research assistant at IVALab under Prof. Patricio Vela.",
+    "My research is autonomous driving: benchmarking lane-change planners, adding safety filters that keep trajectories physically feasible, and prototyping behavior prediction for surrounding vehicles.",
+    "Outside the lab I build end to end - an AR game that won ImmerseGT, a vision-controlled robotic gripper, Unity editor tooling, and a Django storefront running in production.",
   ],
 };
 
@@ -13,30 +13,32 @@ export const biography = {
   paragraphs: [
     "Growing up, I was always the kid who took things apart to see how they worked - and occasionally put them back together. That curiosity became a formal pursuit when I enrolled in Computer Engineering at Georgia Tech, where I'm learning to bridge the worlds of hardware and software.",
     "My journey into tech started in high school where I captained my school's Coding Club and competed in Lockheed Martin's CodeQuest, coaching five three-person teams through mock competitions. I was also a key part of my school's Science Olympiad team, helping recruit members and contribute to our first state qualification in roughly seven years.",
-    "At Georgia Tech I've dived straight into hands-on projects: I co-developed a Unity chess strategy game with custom pieces and an editor toolchain built on ScriptableObjects; I designed and programmed an 8x8 LED matrix maze game driven by a Raspberry Pi and a custom PCB I fabricated in the makerspace; and I built a machine-learning pipeline in Python to identify at-risk students in educational data.",
-    "Beyond technical work, I bring leadership and business perspective from managing a family restaurant - navigating COVID-era operational pivots, mentoring a team of five, and watching revenue climb 70% on the other side. That experience taught me that technical solutions are only as good as the people and processes behind them.",
-    "I am passionate about embedded systems, computer vision, and the intersection of real-world hardware with intelligent software. I'm looking for research opportunities, internships, and teams where I can keep pushing that boundary.",
+    "Most of my time now goes to autonomous driving research. At IVALab, under Prof. Patricio Vela, I built a seeded evaluation harness that benchmarks 8 driving planners on crash, merge, and runtime metrics, added a CBF-QP safety filter that keeps lane-change trajectories physically feasible, and ported an offline MATLAB gap-based planner into a real-time Python controller for HighwayEnv. I also prototyped acceleration-aware behavior prediction for surrounding vehicles, which cut crash rate 22% across 500 paired episodes.",
+    "I also work with the Autonomous and Connected Transport Lab VIP, where I trained a PPO reinforcement learning agent for driving in HighwayEnv and fine-tuned transformer language models with Hugging Face Transformers and PyTorch for text comprehension.",
+    "I build plenty outside of research. My team took 1st place in Spatial Design at ImmerseGT with Brain3D, an AR game for Snap Spectacles; I built a computer-vision-controlled robotic gripper that turns MediaPipe hand tracking into servo commands; I wrote the Unity editor tooling behind C.H.E.S.S., a strategy game with 60+ custom pieces; and I shipped a Django movie storefront to production for CS 2340.",
+    "Beyond technical work, I bring leadership and business perspective from four years helping run a family restaurant - navigating COVID-era operational pivots, mentoring a team of five, and watching revenue climb 70% on the other side. That experience taught me that technical solutions are only as good as the people and processes behind them.",
+    "I am passionate about autonomous systems, computer vision, and the point where real hardware meets intelligent software. I'm looking for internships and teams where I can keep pushing that boundary.",
   ],
 };
 
 export const careerGoals = {
   headline: "Career Goals",
   longTerm:
-    "My long-term goal is to build AI systems that can actually see and understand the world - working on computer vision and ML infrastructure at the scale that companies like Google, Meta, or OpenAI operate at. I want to be the engineer who ships the model, not just studies it.",
+    "My long-term goal is to build AI systems that perceive and act in the real world - autonomous vehicles, computer vision, and the ML infrastructure underneath them. I want to be the engineer who ships the system, not just studies it.",
   steps: [
     {
       phase: "Short-term (1-2 years)",
       actions: [
-        "Build a strong foundation in ML through coursework and self-study - linear algebra, probability, deep learning fundamentals - so I can contribute meaningfully, not just run existing code.",
-        "Ship at least one serious personal project in computer vision or ML (object detection, image segmentation, or a generative model) with a real write-up and clean code.",
-        "Land a research position or internship where I'm working alongside engineers on real AI/ML problems.",
-        "Get comfortable with the full ML stack: PyTorch or JAX, experiment tracking, evaluation pipelines, and deployment basics.",
+        "Go deep on the math under my research - optimization, control, probability, and deep learning - so I can design methods instead of only tuning them.",
+        "Keep pushing the IVALab work toward results that hold up: stronger planner benchmarks, safety filters, and behavior prediction evaluated honestly.",
+        "Ship at least one serious personal project in computer vision or autonomy with a real write-up and clean code.",
+        "Get comfortable with the full ML stack: PyTorch, experiment tracking, evaluation pipelines, and deployment basics.",
       ],
     },
     {
       phase: "Mid-term (2-3 years)",
       actions: [
-        "Secure an internship at a company doing meaningful AI work - ideally in computer vision, multimodal models, or ML infrastructure.",
+        "Secure an internship at a company doing serious autonomy or AI work - self-driving, robotics, or ML infrastructure.",
         "Evaluate whether an MS makes sense: if there's a research question I'm burning to answer, I'll pursue it - otherwise, strong industry experience matters more.",
         "Build a portfolio of projects and contributions that speak for themselves, not just a GPA.",
         "Engage with the broader ML community through papers, open source, or writing about what I'm learning.",
@@ -57,7 +59,7 @@ export const careerGoals = {
 
 export const resumeInfo = {
   downloadPath: "/resume.pdf",
-  lastUpdated: "May 2025",
+  lastUpdated: "October 2026",
 };
 
 export const personalInfo = {
@@ -77,15 +79,15 @@ export const personalInfo = {
 export const education = [
   {
     school: "Georgia Institute Of Technology",
-    degree: "Bachelor in Computer Engineering",
-    gpa: "3.88",
-    date: "Expected Summer 2028",
+    degree: "Bachelor of Science in Computer Engineering",
+    gpa: "3.92",
+    date: "Expected Spring 2028",
     location: "Atlanta, GA",
     coursework: [
+      "Intro to AI",
       "Data Structures and Algorithms",
-      "Object Oriented Programming",
-      "Differential Equations",
-      "Physics",
+      "Design and Analysis of Algorithms",
+      "Object-Oriented Programming",
     ],
   },
 ];
@@ -167,32 +169,66 @@ The app runs on PythonAnywhere against MySQL through PyMySQL. Getting it deploya
     ],
   },
   {
-    id: "chess",
-    title: "C.H.E.S.S",
-    tech: ["C#", "Unity", "Git"],
-    date: "Aug. 2025 - Present",
+    id: "brain3d",
+    title: "Brain3D",
+    tech: ["TypeScript", "Snap Lens Studio", "Snap Spectacles"],
+    date: "Apr. 2026",
     isDiscovery: false,
-    overview: `C.H.E.S.S (Custom Hardware-Extended Strategy System) is a Unity-based chess strategy game that reimagines classical chess with custom pieces, unique maps, and a fully extensible editor toolchain. The project began as a collaborative team effort to explore what chess could look like if freed from its traditional constraints.
+    award: "ImmerseGT - 1st Place, Spatial Design",
+    overview: `Brain3D is an augmented reality game prototype for Snap Spectacles, built at the ImmerseGT hackathon and awarded 1st Place in the Spatial Design track.
 
-The centerpiece of my contribution was a Unity Editor tool built on ScriptableObjects, allowing designers to create new piece types without touching code. Each piece definition stores movement rules, attack patterns, and three key statistics (Power, Mobility, and Utility) that players can inspect mid-game through a right-click GUI panel I engineered. This system currently supports 30+ unique piece types, with the architecture designed to scale to hundreds.
+**The Build**
+The game runs on Snap Spectacles through Snap Lens Studio. Hand tracking drives the input, surface placement anchors the board to a real table or floor, and the pieces move under real-time physics rather than scripted animation. I scripted 7 colored tetromino objects with compound colliders on a procedurally generated 5x5 playfield.
+
+**Learning an SDK Under a Deadline**
+I had never used Snap Lens Studio before the event. Most of the time went into learning a spatial-computing SDK from scratch while building on top of it - physics, rendering, SpectaclesInteractionKit, and SpectaclesUIKit - with a working demo due by the end of the hackathon.
+
+**Why It Stuck With Me**
+Designing for a headset is a different problem from designing for a screen. Pieces have to sit where a person expects them in real space, respond to hands instead of a mouse, and stay readable while the player moves around them. That is what the Spatial Design track was judging, and it is the part of the project I would most like to keep working on.`,
+    bullets: [
+      "Built an interactive AR game prototype for Snap Spectacles featuring hand tracking, surface placement, and real-time physics-based gameplay",
+      "Independently learned Snap Lens Studio, a spatial-computing SDK, within the hackathon timeframe; implemented features using physics, rendering, SpectaclesInteractionKit, and SpectaclesUIKit APIs",
+      "Scripted 7 colored tetromino objects with compound colliders for a procedurally generated 5x5 AR playfield",
+      "Took 1st Place in Spatial Design at ImmerseGT",
+    ],
+    demoType: "image",
+    demoSrc: "/projects/brain3d/media/brain3d-gameplay.jpg",
+    media: [
+      {
+        type: "image",
+        src: "/projects/brain3d/media/brain3d-gameplay.jpg",
+        alt: "Colored tetromino blocks stacked above a 5x5 grid playfield, seen through Snap Spectacles in a hallway",
+        caption: "In-headset view: tetrominoes falling onto the procedurally generated 5x5 playfield",
+      },
+    ],
+  },
+  {
+    id: "chess",
+    title: "C.H.E.S.S.",
+    tech: ["C#", "Unity", "Git"],
+    date: "Aug. 2025 - May 2026",
+    isDiscovery: false,
+    overview: `C.H.E.S.S. (Chess However Everything is Super Strange) is a Unity-based chess strategy game that reimagines classical chess with custom pieces, unique maps, and a fully extensible editor toolchain. The project began as a collaborative team effort to explore what chess could look like if freed from its traditional constraints.
+
+The centerpiece of my contribution was a Unity Editor tool built on ScriptableObjects, allowing designers to create new piece types without touching code. Each piece definition stores movement rules, attack patterns, and three key statistics (Power, Mobility, and Utility) that players can inspect mid-game through a right-click GUI panel I engineered. This system supports 60+ unique piece types, letting the team define pieces as data and drive a dynamic GUI without code changes.
 
 On the engineering side, I wrote approximately 350 lines of C# to implement the statistics overlay system, integrating smoothly with Unity's existing event model. The project followed a Git-based workflow, and I worked through 5+ merge conflicts alongside teammates - navigating both the technical and communication challenges that come with shared codebases.
 
 The game features multiple custom maps each with different board shapes and terrain rules, encouraging players to adapt their strategy to the environment. Future work includes an AI opponent using minimax with alpha-beta pruning, online multiplayer via Unity Relay, and a piece creation wizard for non-technical users.`,
     bullets: [
-      "Contributed to the development of a Unity Based Chess strategy game featuring custom pieces and maps",
-      "Developed a Unity Editor tool using ScriptableObjects and a custom asset pipeline for creating new pieces",
-      "Engineered a right-click activated GUI system, contributing 350 lines of C# code to enhance player experience by displaying 3 key statistics on each of the 30+ unique new chess pieces",
+      "Developed a Unity chess strategy game with custom piece behaviors and map layouts in a team Git workflow",
+      "Built Unity Editor tooling with ScriptableObjects and a custom asset pipeline, letting the team define 60+ pieces as data and drive a dynamic GUI without code changes",
+      "Engineered a right-click activated GUI system, contributing 350 lines of C# to display 3 key statistics on each custom piece",
       "Collaborated with teammates to resolve 5+ merge conflicts and troubleshoot high-impact bugs",
     ],
     demoType: null,
     demoSrc: null,
   },
   {
-    id: "led-maze",
-    title: "Real-Time Finger Tracking System",
-    tech: ["MediaPipe", "Python", "Arduino Nano", "90g Micro Servo"],
-    date: "Sep. 2025 - Present",
+    id: "cv-gripper",
+    title: "CV-Controlled Robotic Gripper",
+    tech: ["Python", "C++", "MediaPipe", "Arduino Nano", "CAD"],
+    date: "Feb. 2026 - Apr. 2026",
     isDiscovery: true,
     overview: `**Discovery Project Idea**
 This project ended up being completely different from my original Discovery Project idea. Over time, I shifted toward a system that felt more personal and more technically interesting: a real-time finger-tracking pipeline that could eventually connect computer vision to music-related hand analysis. The final project uses Python, OpenCV, and MediaPipe to detect a hand from a live webcam feed, visualize the hand skeleton, and calculate the bend angle of the index finger in real time. That angle can then be sent through a USB connection to an Arduino Nano, which can drive a 90g micro servo. In other words, the project takes visual hand motion, converts it into numerical data, and then uses that data to control hardware. I liked this idea because it combined software, signal processing, and physical prototyping in one system.
@@ -213,10 +249,10 @@ The biggest successes came from getting the major subsystems to work together. M
 **Final Thoughts**
 Overall, this project made me more interested in the intersection of embedded systems, physical computing, and intelligent sensing. It was one of the first times I worked on something that connected computer vision, microcontrollers, and fabrication in a single workflow, and that made the project feel much closer to real engineering than a purely software assignment. It also showed me how much persistence matters when a project involves both code and hardware. I would like to continue developing this idea, especially by improving the physical mechanism and expanding the vision system so it can analyze more hand posture details for beginning violinists.`,
     bullets: [
-      "Built a real-time finger-tracking pipeline with Python, OpenCV, and MediaPipe using live webcam hand landmark detection",
-      "Calculated index finger bend angle in real time and sent the tracked value over USB serial to an Arduino Nano at 9600 baud",
-      "Added a hardware-free test mode so the software could be developed and debugged without the Arduino connected",
-      "Iterated on a 3D-printed gripper, a 90g micro servo setup, and resin-printed silicone components through repeated prototyping",
+      "Developed a computer-vision-controlled robotic gripper integrating MediaPipe hand tracking, Arduino servo control, and a custom mechanical assembly",
+      "Processed continuous ~30 FPS MediaPipe hand landmark streams to estimate finger angles and translate gestures into low-latency actuator commands",
+      "Streamed the tracked angle over USB serial to an Arduino Nano at 9600 baud, with a hardware-free test mode so the vision side could be built and debugged without the board attached",
+      "Modified and fabricated silicone-joint gripper components from existing CAD designs, iterating on flexibility and mechanical tolerances for reliable grasping",
     ],
     demoType: "image",
     demoSrc: "/projects/discovery/media/IMG_7604.jpg",
@@ -224,41 +260,41 @@ Overall, this project made me more interested in the intersection of embedded sy
       {
         type: "image",
         src: "/projects/discovery/media/IMG_7604.jpg",
-        alt: "Real-Time Finger Tracking System photo IMG 7604",
-        caption: "Project photo: IMG_7604",
-      },
-      {
-        type: "image",
-        src: "/projects/discovery/media/IMG_7601.jpg",
-        alt: "Real-Time Finger Tracking System photo IMG 7601",
-        caption: "Project photo: IMG_7601",
+        alt: "Assembled gripper finger and servo housing wired to an Arduino Nano on a breadboard",
+        caption: "Assembled finger and servo housing, wired to the Arduino Nano",
       },
       {
         type: "image",
         src: "/projects/discovery/media/IMG_7592.jpg",
-        alt: "Real-Time Finger Tracking System photo IMG 7592",
-        caption: "Project photo: IMG_7592",
+        alt: "A single 3D-printed gripper segment held between two fingers",
+        caption: "Checking tolerances on a printed finger segment before assembly",
+      },
+      {
+        type: "image",
+        src: "/projects/discovery/media/IMG_7601.jpg",
+        alt: "Resin parts curing under UV light in a Form Cure station",
+        caption: "Curing the resin-printed joint parts at the Invention Studio",
       },
       {
         type: "image",
         src: "/projects/discovery/media/arduino-servo-code.svg",
         alt: "Arduino servo control code screenshot",
-        caption: "Arduino servo control code",
+        caption: "Arduino firmware: read the serial angle, constrain it, drive the servo",
       },
       {
         type: "video",
         src: "/projects/discovery/media/IMG_7520.mov",
-        caption: "Project video: IMG_7520",
-      },
-      {
-        type: "video",
-        src: "/projects/discovery/media/IMG_7594.mov",
-        caption: "Project video: IMG_7594",
+        caption: "Live MediaPipe hand tracking with the finger-state readout at ~31 FPS",
       },
       {
         type: "video",
         src: "/projects/discovery/media/IMG_7603.mov",
-        caption: "Project video: IMG_7603",
+        caption: "Tracker running on the bench during gripper testing",
+      },
+      {
+        type: "video",
+        src: "/projects/discovery/media/IMG_7594.mov",
+        caption: "Washing a resin print in the isopropyl bath before curing",
       },
     ],
   },
@@ -295,36 +331,59 @@ This project reinforced that accuracy is a misleading metric for imbalanced clas
 
 export const experience = [
   {
-    title: "Restaurant General Manager",
+    title: "Undergraduate Research Assistant",
+    company: "IVALab (Prof. Patricio Vela), Georgia Tech",
+    date: "Jun. 2026 - Present",
+    location: "Atlanta, GA",
+    bullets: [
+      "Built a seeded evaluation harness benchmarking 8 autonomous driving planners and tracking crash, merge, and runtime metrics; parallelized batch runs across 8 workers with ProcessPoolExecutor for 6.7x faster execution (5 min to 45 s)",
+      "Added a CBF-QP safety filter keeping lane-change trajectories physically feasible and enabling continuous merges, while porting an offline MATLAB gap-based planner to a real-time closed-loop Python controller for HighwayEnv; runs a 12 s space-time pipeline in under 4 ms per decision, about 7x faster than an MPC baseline",
+      "Prototyped acceleration-aware behavior prediction for surrounding vehicles, cutting crash rate 22% and prediction error 55-74% with 8% more merges per episode across 500 paired episodes (p < 0.0001)",
+      "Built a shared JSON scenario format so the MATLAB and Python planners run identical test cases, exposing and fixing a bug in the Python port that dropped valid merge options below the theoretical n+1 bound",
+    ],
+  },
+  {
+    title: "Student Researcher",
+    company: "Autonomous and Connected Transport Lab VIP, Georgia Tech",
+    date: "Dec. 2025 - Present",
+    location: "Atlanta, GA",
+    bullets: [
+      "Built a PPO reinforcement learning agent for autonomous driving in HighwayEnv with Stable-Baselines3, doubling reward from 9 to 19 over 20k timesteps; used for CARLA integration and policy generation",
+      "Fine-tuned transformer language models with Hugging Face Transformers and PyTorch for text comprehension; optimized prompting and preprocessing pipelines, improving ROUGE scores by about 90% over baseline",
+    ],
+  },
+  {
+    title: "AI Trainer - Generalist",
+    company: "Handshake AI Fellowship",
+    date: "Nov. 2025 - May 2026",
+    location: "Remote",
+    bullets: [
+      "Annotated and labeled datasets for AI model training, including image classification, video entity recognition, and instance segmentation tasks",
+      "Generated synthetic training scenarios and edge cases to improve model robustness and performance",
+      "Maintained 1.8/2 quality accuracy standards across 5-9 tasks weekly for consistent computer vision development",
+    ],
+  },
+  {
+    title: "Restaurant Assistant Manager",
     company: "Saigon Cafe",
-    date: "June 2021 - Present",
+    date: "Jun. 2021 - Aug. 2025",
     location: "Woodstock, GA",
     bullets: [
+      "Mentored and coordinated 4-5 employees through post-pandemic scaling and the return to full dine-in service",
       "Analyzed market challenges during lockdown and implemented new operational workflows for delivery services, maintaining business continuity",
-      "Post COVID, co-led and helped mentor a team of 4-5 employees, optimizing shift workflow and contributing to a gradual increase of ~70% in revenue",
+      "Optimized shift workflow with the team, contributing to a gradual increase of ~70% in revenue",
       "Ensured accuracy and coordinated meal delivery with 10-20 concurrent orders during rush hour",
     ],
   },
   {
     title: "Academic Tutor - Mathematics (SAT Prep)",
     company: "Schoolhouse.World",
-    date: "Aug. 2023 - April 2024",
+    date: "Aug. 2023 - Apr. 2024",
     location: "Online",
     bullets: [
       "Facilitated student mastery of SAT mathematics by clarifying concepts and guiding problem-solving using official exam materials",
       "Explored information retention methods such as Kahoot and group connection activities",
       "Listened to student feedback and criticism; achieved top 20% helpful reviews of tutors on website",
-    ],
-  },
-  {
-    title: "AI Trainer - Generalist",
-    company: "Handshake AI Fellowship",
-    date: "Nov. 2025 - Present",
-    location: "Remote",
-    bullets: [
-      "Annotated and labeled datasets for AI model training, including image classification, video entity recognition, and instance segmentation tasks",
-      "Generated synthetic training scenarios and edge cases to improve model robustness and performance",
-      "Maintained 1.8/2 quality accuracy standards across 5-9 tasks weekly for consistent computer vision development",
     ],
   },
 ];
@@ -351,12 +410,29 @@ export const responsibilities = [
 ];
 
 export const skills = {
-  Languages: ["Java", "C#", "MATLAB", "Python", "HTML/CSS"],
-  "Frameworks & Libraries": ["JUnit", "JavaFX", "NumPy", "EntityFramework"],
-  "Developer Tools": ["Git", "VS Code", "IntelliJ", "KiCAD", "Unity"],
+  Languages: ["Python", "C++", "C", "C#", "Java", "JavaScript/TypeScript", "MATLAB"],
+  "Frameworks & Libraries": [
+    "PyTorch",
+    "Hugging Face Transformers",
+    "Stable-Baselines3",
+    "pandas",
+    "NumPy",
+    "Pytest",
+  ],
+  "Developer Tools": [
+    "Git",
+    "Linux",
+    "Unity",
+    "Arduino",
+    "Jupyter",
+    "Google Colab",
+    "Claude Code",
+    "GitHub Actions",
+  ],
 };
 
 export const achievements = [
-  { title: "Appalachian Entrepreneurship Academy - 3rd Place", year: "2024" },
+  { title: "ImmerseGT Hackathon - 1st Place, Spatial Design", year: "2026" },
   { title: "Presidential Scholars Candidate", year: "2025" },
+  { title: "Appalachian Entrepreneurship Academy - 3rd Place", year: "2024" },
 ];
