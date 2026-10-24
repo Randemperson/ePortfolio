@@ -17,6 +17,18 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;700;800&display=swap"
     />
+    <script>
+      // Theme before first paint, so there is no flash: ?theme= (testing), else the saved
+      // choice, else the system setting.
+      (() => {
+        let t = new URLSearchParams(location.search).get('theme');
+        try {
+          if (t !== 'light' && t !== 'dark') t = localStorage.getItem('theme');
+        } catch {}
+        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
     <link rel="stylesheet" href="assets/css/site.css" />
     <script type="module" src="assets/js/projects.js"></script>
   </head>
@@ -32,6 +44,9 @@
           <a href="./#about">About</a>
           <a href="./#contact">Contact</a>
         </nav>
+        <button class="chip theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode">
+          <span class="to-dark">Dark</span><span class="to-light">Light</span>
+        </button>
         <a class="btn btn--small" href="assets/Alfred_Tang_Resume.pdf" download>Resume ↓</a>
       </div>
     </header>

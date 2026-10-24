@@ -2,6 +2,7 @@
 // glyph bar charts, and copy-to-clipboard.
 
 import { letter, getRamp, getRampName, setRamp, measureCell, easeOut, reduceMotion } from './glyph.js';
+import { initTheme } from './theme.js';
 
 export function letterHeadings(root = document) {
   for (const el of root.querySelectorAll('.lettered')) {
@@ -144,6 +145,7 @@ export function copyButtons(root = document) {
 }
 
 export function initCommon() {
+  initTheme();
   buttonFills();
   rampChips();
   letterHeadings();

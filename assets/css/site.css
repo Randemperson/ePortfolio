@@ -15,6 +15,8 @@
   --accent: #ffb547;
   --on-accent: #0d0a06;
   --accent-hi: #ffdca6;
+  --duo: #ffb547; /* the color a hovered photo is multiplied onto before its own colors return */
+  --photo-invert: 0; /* 1 on light grounds: dense (dark) glyphs land on a photo's shadows */
 
   --font: 'Martian Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
   --fs: clamp(12.5px, 0.32vw + 10.4px, 15px);
@@ -29,6 +31,47 @@
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
   color-scheme: dark;
+}
+
+/* ------------------------------------------------------------------ light mode
+   White paper, blue-black ink, amber titles and highlighter. The head script sets
+   data-theme from a saved choice or the system setting before first paint; the media
+   query only matters if scripts are off. */
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --ground: #ffffff;
+  --rule: #e4e7ee;
+  --rule-strong: #a3abbd;
+  --ink: #172036;
+  --ink-hi: #172036;
+  --ink-dim: #56607a;
+  --glyph: #172036;
+  --art: #ffb547;
+  --accent: #ffb547;
+  --on-accent: #172036;
+  --accent-hi: #ffd08a;
+  --duo: #ffb547;
+  --photo-invert: 1;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+  color-scheme: light;
+  --ground: #ffffff;
+  --rule: #e4e7ee;
+  --rule-strong: #a3abbd;
+  --ink: #172036;
+  --ink-hi: #172036;
+  --ink-dim: #56607a;
+  --glyph: #172036;
+  --art: #ffb547;
+  --accent: #ffb547;
+  --on-accent: #172036;
+  --accent-hi: #ffd08a;
+  --duo: #ffb547;
+  --photo-invert: 1;
+  }
 }
 
 @view-transition {
@@ -1052,7 +1095,7 @@ button {
 .card-photo {
   position: absolute;
   inset: 0;
-  background: var(--accent);
+  background: var(--duo);
   isolation: isolate;
   clip-path: inset(0 100% 0 0);
   transition: clip-path 200ms var(--ease-out);
@@ -1291,4 +1334,119 @@ button {
 .glyph,
 .glyph-art {
   transform: translateZ(0);
+}
+
+/* ------------------------------------------------------------------ theme toggle */
+
+.theme-toggle {
+  font-size: var(--fs-small);
+}
+
+:root:not([data-theme='dark']) .theme-toggle .to-light,
+:root[data-theme='dark'] .theme-toggle .to-dark {
+  display: none;
+}
+
+/* The circular reveal replaces the default crossfade only while the theme flips; page
+   navigations keep theirs. The header joins the root snapshot so it is revealed too. */
+.theme-switching .top {
+  view-transition-name: none;
+}
+
+.theme-switching::view-transition-old(root),
+.theme-switching::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* ------------------------------------------------------------------ light mode details */
+
+/* Amber can't carry text on white, so the lede's key phrase gets it as a highlighter. */
+:root[data-theme='light'] .lede strong {
+  box-shadow: inset 0 -0.45em 0 rgba(255, 181, 71, 0.55);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Photos skip the amber duotone on paper: the glyph picture fades and focuses straight
+   into the full-color photo, and drops back fast. */
+:root[data-theme='light'] .card-photo {
+  clip-path: inset(0 0 0 0);
+  background: var(--ground);
+  opacity: 0;
+  filter: blur(4px);
+  transition:
+    opacity 180ms ease,
+    filter 180ms ease;
+}
+
+:root[data-theme='light'] .card-photo > img:not(.photo-color) {
+  visibility: hidden;
+}
+
+:root[data-theme='light'] .card-photo .photo-color {
+  opacity: 1;
+  filter: none;
+  transition: none;
+}
+
+:root[data-theme='light'] .card:focus-within .card-photo,
+:root[data-theme='light'] .card[data-reveal] .card-photo,
+:root[data-theme='light'] .photo-media[data-reveal] .card-photo,
+:root[data-theme='light'] .photo-media:focus-within .card-photo,
+:root[data-theme='light'] .photo-link:focus-visible .card-photo {
+  opacity: 1;
+  filter: blur(0);
+  transition:
+    opacity 450ms var(--ease-out),
+    filter 450ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :root[data-theme='light'] .card:hover .card-photo,
+  :root[data-theme='light'] .photo-media:hover .card-photo {
+    opacity: 1;
+    filter: blur(0);
+    transition:
+      opacity 450ms var(--ease-out),
+      filter 450ms var(--ease-out);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme='light'] .card-photo {
+    filter: none !important;
+    transition-duration: 200ms !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .top .theme-toggle {
+    margin-left: auto;
+  }
+
+  .top .btn--small {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .top .wrap {
+    column-gap: 1ch;
+  }
+}
+
+/* The smallest phones: tighten the header so name, toggle, and resume share one row. */
+@media (max-width: 340px) {
+  .top .mark {
+    letter-spacing: 0.02em;
+  }
+
+  .top .btn--small {
+    --btn-pad: 0.35ch;
+  }
+
+  .top .theme-toggle {
+    padding-inline: 0.25ch;
+  }
 }

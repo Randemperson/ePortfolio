@@ -1,7 +1,8 @@
 // A project photo drawn as text: the image is cover-fitted into the scene, sampled to
 // luminance, and auto-levelled so dark phone shots still use the whole density ramp.
 
-export function createPhoto({ src, focus = [0.5, 0.5], gamma = 0.9 }) {
+export function createPhoto({ src, focus = [0.5, 0.5], gamma = 0.9, invert = false }) {
+  let inverted = invert;
   const img = new Image();
   img.decoding = 'async';
   let lo = 0;
@@ -44,6 +45,14 @@ export function createPhoto({ src, focus = [0.5, 0.5], gamma = 0.9 }) {
     ready,
     live: false,
     ss: 4,
-    transfer: (l) => Math.pow(Math.min(1, Math.max(0, (l - lo) / (hi - lo))), gamma),
+    // On a light ground the ink is dark, so dense glyphs must land on the photo's shadows.
+    transfer: (l) => {
+      const v = Math.pow(Math.min(1, Math.max(0, (l - lo) / (hi - lo))), gamma);
+      return inverted ? 1 - v : v;
+    },
+    // Light and dark grounds need opposite mappings; the theme switch flips it.
+    setInvert(v) {
+      inverted = v;
+    },
   };
 }

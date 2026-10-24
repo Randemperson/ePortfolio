@@ -56,8 +56,14 @@ export function mountMedia(root = document) {
     if (slot.dataset.photo) {
       const [fx, fy] = (slot.dataset.focus || '0.5 0.5').split(' ').map(Number);
       slot.style.setProperty('--focus', `${fx * 100}% ${fy * 100}%`);
-      const scene = createPhoto({ src: slot.dataset.photo, focus: [fx, fy] });
+      const invert = getComputedStyle(slot).getPropertyValue('--photo-invert').trim() === '1';
+      const scene = createPhoto({ src: slot.dataset.photo, focus: [fx, fy], invert });
       const view = mountScene(pre, scene, { rows });
+      // Re-sample when the theme flips: dark ink on white wants the photo inverted.
+      document.addEventListener('theme-change', () => {
+        scene.setInvert(getComputedStyle(slot).getPropertyValue('--photo-invert').trim() === '1');
+        view.render();
+      });
       scene.ready.then(() => {
         view.render();
         develop(view, pre);
