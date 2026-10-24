@@ -1,0 +1,6 @@
+# Development files: kept in the repo, left off the deployed site.
+.impeccable/
+scripts/
+PRODUCT.md
+DESIGN.md
+README.md

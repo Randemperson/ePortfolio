@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Projects · Alfred Tang</title>
+    <meta
+      name="description"
+      content="Project write-ups by Alfred Tang: a space-time merge planner, Brain3D (1st place, ImmerseGT Spatial Design), a CV-controlled robotic gripper, the Movies Store Django app, the C.H.E.S.S. Unity strategy game, and an ML classification workflow."
+    />
+    <meta name="theme-color" content="#0d0a06" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="assets/css/site.css" />
+    <script type="module" src="assets/js/projects.js"></script>
+  </head>
+  <body id="top">
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="top">
+      <div class="wrap">
+        <a class="mark" href="./" aria-label="Alfred Tang, home">Alfred Tang</a>
+        <nav class="nav" aria-label="Primary">
+          <a href="./#research">Research</a>
+          <a href="projects.html" aria-current="page">Projects</a>
+          <a href="./#about">About</a>
+          <a href="./#contact">Contact</a>
+        </nav>
+        <a class="btn btn--small" href="assets/Alfred_Tang_Resume.pdf" download>Resume ↓</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="page-head">
+        <div class="wrap">
+          <div class="section-head">
+            <h1 class="lettered" data-rows="14"><span class="lettered-text">Projects</span></h1>
+            <p class="section-intro">
+              Six builds, each with a scene that runs the idea in text, and photos where there are some. <strong>The scenes are illustrations
+              written for this page,</strong> not the project code; the numbers in the write-ups are the real
+              results.
+            </p>
+          </div>
+          <div class="toc-row">
+            <nav class="toc" aria-label="Projects on this page">
+              <a href="#planner">Merge planner</a>
+              <a href="#brain3d">Brain3D</a>
+              <a href="#gripper">Robotic gripper</a>
+              <a href="#movies">Movies Store</a>
+              <a href="#chess">C.H.E.S.S.</a>
+              <a href="#ml">ML workflow</a>
+            </nav>
+            <span role="group" aria-label="Glyph ramp" class="controls">
+              <button class="chip" type="button" data-ramp="classic" aria-pressed="true">.:=#@</button>
+              <button class="chip" type="button" data-ramp="dots" aria-pressed="false">·:•</button>
+              <button class="chip" type="button" data-ramp="fine" aria-pressed="false">fine</button>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <article class="project" id="planner" aria-labelledby="planner-h">
+          <div class="project-text">
+            <h2 class="lettered" id="planner-h" data-lines="MERGE|PLANNER" data-rows="12">
+              <span class="lettered-text">Space-time merge planner</span>
+            </h2>
+            <dl class="project-meta">
+              <dt>What</dt>
+              <dd>Real-time gap-based merge planning for autonomous highway driving</dd>
+              <dt>Where</dt>
+              <dd>IVALab, Georgia Tech, with Prof. Patricio Vela</dd>
+              <dt>When</dt>
+              <dd>Jun 2026 – present</dd>
+              <dt>Stack</dt>
+              <dd>Python, MATLAB, HighwayEnv, ProcessPoolExecutor</dd>
+            </dl>
+            <ul>
+              <li>
+                <span>Ported an offline MATLAB gap-based planner to a <strong>real-time, closed-loop Python
+                controller</strong> for HighwayEnv. It plans over a 12 s space-time window in
+                <strong>under 4 ms per decision</strong>, about 7× faster than an MPC baseline.</span>
+              </li>
+              <li>
+                <span>Added a <strong>CBF-QP safety filter</strong> that keeps lane-change trajectories physically
+                feasible, so the car can merge continuously instead of stopping to wait.</span>
+              </li>
+              <li>
+                <span>Prototyped acceleration-aware prediction of surrounding vehicles: <strong>crash rate −22%</strong>,
+                prediction error −55% to −74%, and 8% more merges per episode across 500 paired episodes
+                (p &lt; 0.0001).</span>
+              </li>
+              <li>
+                <span>Built a seeded harness that benchmarks 8 planners on crash, merge, and runtime metrics, and
+                parallelized it across 8 workers: <strong>5 min down to 45 s</strong>.</span>
+              </li>
+              <li>
+                <span>Wrote a shared JSON scenario format so the MATLAB and Python planners run identical cases,
+                which exposed and fixed a port bug that dropped valid merge options below the n+1 bound.</span>
+              </li>
+            </ul>
+          </div>
+          <figure class="fig" data-scene="spacetime">
+            <div class="fig-stage"><pre class="glyph"></pre></div>
+            <figcaption>
+              <span><b>Fig. 2</b> Space-time view. Bands are cars in the target lane, the fan is every candidate
+                trajectory. Safe ones survive, the most comfortable is chosen, then it replans.</span>
+              <span class="controls"><button class="chip" type="button" data-act="pause">Pause</button></span>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="project" id="brain3d" aria-labelledby="brain3d-h">
+          <div class="project-text">
+            <h2 class="lettered" id="brain3d-h" data-lines="BRAIN3D" data-rows="12">
+              <span class="lettered-text">Brain3D</span>
+            </h2>
+            <dl class="project-meta">
+              <dt>What</dt>
+              <dd>Interactive AR game prototype for Snap Spectacles</dd>
+              <dt>Result</dt>
+              <dd><strong>1st Place, Spatial Design</strong>, ImmerseGT Hackathon</dd>
+              <dt>When</dt>
+              <dd>Apr 2026</dd>
+              <dt>Stack</dt>
+              <dd>TypeScript, Snap Lens Studio, SpectaclesInteractionKit, SpectaclesUIKit</dd>
+            </dl>
+            <ul>
+              <li>
+                <span>Built an AR game with <strong>hand tracking, surface placement, and real-time physics</strong>
+                gameplay for Snap Spectacles.</span>
+              </li>
+              <li>
+                <span>Learned Lens Studio, a spatial-computing SDK, <strong>inside the hackathon window</strong>, and
+                shipped features on its physics, rendering, SpectaclesInteractionKit, and SpectaclesUIKit APIs.</span>
+              </li>
+              <li>
+                <span>Scripted <strong>7 colored tetromino objects</strong> with compound colliders on a procedurally
+                generated <strong>5×5 AR playfield</strong>.</span>
+              </li>
+            </ul>
+            <div class="photos" style="--cols: 1">
+              <figure>
+                <a class="photo-link" href="assets/img/brain3d-gameplay.jpg" target="_blank" rel="noopener">
+                  <div class="photo-media" data-photo="assets/img/brain3d-gameplay.jpg" data-ratio="1.6" data-focus="0.5 0.45">
+                    <pre class="glyph"></pre>
+                    <div class="card-photo"><img src="assets/img/brain3d-gameplay.jpg" width="1200" height="772" loading="lazy" decoding="async" alt="In-headset view through Snap Spectacles: colored tetromino blocks stacked above a 5×5 grid playfield in a hallway" /></div>
+                  </div>
+                </a>
+                <figcaption>In-headset view: tetrominoes falling onto the generated 5×5 playfield.</figcaption>
+              </figure>
+            </div>
+          </div>
+          <figure class="fig" data-scene="tetris">
+            <div class="fig-stage"><pre class="glyph"></pre></div>
+            <figcaption>
+              <span><b>Fig. 3</b> Seven tetrominoes on a 5×5 playfield. Each piece type gets its own glyph density
+                in place of a color. <b>Drag to turn the board.</b></span>
+              <span class="controls"><button class="chip" type="button" data-act="pause">Pause</button></span>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="project" id="gripper" aria-labelledby="gripper-h">
+          <div class="project-text">
+            <h2 class="lettered" id="gripper-h" data-lines="GRIPPER" data-rows="12">
+              <span class="lettered-text">CV-controlled robotic gripper</span>
+            </h2>
+            <dl class="project-meta">
+              <dt>What</dt>
+              <dd>A gripper that copies your hand, from a camera</dd>
+              <dt>When</dt>
+              <dd>Feb – Apr 2026</dd>
+              <dt>Stack</dt>
+              <dd>C++, Python, Arduino Nano, MediaPipe, CAD</dd>
+            </dl>
+            <ul>
+              <li>
+                <span>Integrated <strong>MediaPipe hand tracking, Arduino servo control</strong>, and a custom
+                mechanical assembly into one computer-vision-controlled gripper.</span>
+              </li>
+              <li>
+                <span>Processed a continuous <strong>~30 FPS</strong> stream of hand landmarks to estimate finger
+                angles and turn gestures into <strong>low-latency actuator commands</strong> for real-time
+                control.</span>
+              </li>
+              <li>
+                <span>Modified and fabricated <strong>silicone-joint gripper parts</strong> from existing CAD designs,
+                iterating on flexibility and tolerances until it grasped reliably.</span>
+              </li>
+            </ul>
+            <div class="photos" style="--cols: 3">
+              <figure>
+                <a class="photo-link" href="assets/img/gripper-assembled.jpg" target="_blank" rel="noopener">
+                  <div class="photo-media" data-photo="assets/img/gripper-assembled.jpg" data-ratio="0.75" data-focus="0.5 0.45">
+                    <pre class="glyph"></pre>
+                    <div class="card-photo"><img src="assets/img/gripper-assembled.jpg" width="1000" height="1333" loading="lazy" decoding="async" alt="Assembled gripper finger and servo housing wired to an Arduino Nano on a breadboard" /></div>
+                  </div>
+                </a>
+                <figcaption>Finger and servo housing, wired to the Nano.</figcaption>
+              </figure>
+              <figure>
+                <a class="photo-link" href="assets/img/gripper-segment.jpg" target="_blank" rel="noopener">
+                  <div class="photo-media" data-photo="assets/img/gripper-segment.jpg" data-ratio="0.75" data-focus="0.5 0.5">
+                    <pre class="glyph"></pre>
+                    <div class="card-photo"><img src="assets/img/gripper-segment.jpg" width="1000" height="1333" loading="lazy" decoding="async" alt="A single 3D-printed gripper segment held between two fingers" /></div>
+                  </div>
+                </a>
+                <figcaption>Checking a printed segment's tolerances.</figcaption>
+              </figure>
+              <figure>
+                <a class="photo-link" href="assets/img/gripper-curing.jpg" target="_blank" rel="noopener">
+                  <div class="photo-media" data-photo="assets/img/gripper-curing.jpg" data-ratio="0.75" data-focus="0.5 0.4">
+                    <pre class="glyph"></pre>
+                    <div class="card-photo"><img src="assets/img/gripper-curing.jpg" width="1000" height="1333" loading="lazy" decoding="async" alt="Resin parts curing under UV light in a Form Cure station" /></div>
+                  </div>
+                </a>
+                <figcaption>Curing the resin joints at the Invention Studio.</figcaption>
+              </figure>
+            </div>
+          </div>
+          <figure class="fig" data-scene="gripper">
+            <div class="fig-stage"><pre class="glyph"></pre></div>
+            <figcaption>
+              <span><b>Fig. 4</b> Landmarks in, servo angle out. The curl-to-angle mapping here is illustrative.
+                <b>Point or tap lower in the scene to close the hand, higher to open it.</b></span>
+              <span class="controls"><button class="chip" type="button" data-act="pause">Pause</button></span>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="project" id="movies" aria-labelledby="movies-h">
+          <div class="project-text">
+            <h2 class="lettered" id="movies-h" data-lines="MOVIES|STORE" data-rows="12">
+              <span class="lettered-text">Movies Store</span>
+            </h2>
+            <dl class="project-meta">
+              <dt>What</dt>
+              <dd>A Django movie storefront: browse, cart, checkout, reviews</dd>
+              <dt>Course</dt>
+              <dd>CS 2340, Objects and Design, Georgia Tech</dd>
+              <dt>When</dt>
+              <dd>Sep 2026 – present</dd>
+              <dt>Stack</dt>
+              <dd>Python, Django, MySQL, Bootstrap, PythonAnywhere</dd>
+              <dt>Live</dt>
+              <dd><a href="https://at10507.pythonanywhere.com/" target="_blank" rel="noopener">at10507.pythonanywhere.com</a></dd>
+            </dl>
+            <ul>
+              <li>
+                <span>Built and deployed a Django storefront, <strong>live on PythonAnywhere</strong>, with catalog
+                search, a session-based cart, checkout, and per-user order history.</span>
+              </li>
+              <li>
+                <span>Designed <strong>review reporting</strong>: a Report model with a one-report-per-user-per-review
+                database constraint, and one REPORT_THRESHOLD constant that <strong>hides a review after 3 distinct
+                reports</strong>.</span>
+              </li>
+              <li>
+                <span>Added a Django admin <strong>moderation console</strong> with live report counts, reports shown
+                inline on each review, and bulk hide/unhide to override the automatic call.</span>
+              </li>
+              <li>
+                <span>Moved the secret key, debug flag, allowed hosts, and MySQL credentials into
+                <strong>environment variables</strong>, so one codebase runs locally and in production.</span>
+              </li>
+            </ul>
+            <div class="photos" style="--cols: 1">
+              <figure>
+                <a class="photo-link" href="assets/img/movies-about.jpg" target="_blank" rel="noopener">
+                  <div class="photo-media" data-photo="assets/img/movies-about.jpg" data-ratio="1.65" data-focus="0.5 0.3">
+                    <pre class="glyph"></pre>
+                    <div class="card-photo"><img src="assets/img/movies-about.jpg" width="1440" height="872" loading="lazy" decoding="async" alt="Movies Store about page" /></div>
+                  </div>
+                </a>
+                <figcaption>About page, rendered from the shared base template.</figcaption>
+              </figure>
+            </div>
+          </div>
+          <figure class="fig">
+            <a class="photo-link" href="https://at10507.pythonanywhere.com/" target="_blank" rel="noopener" aria-label="Open the live Movies Store in a new tab">
+                  <div class="photo-media" data-photo="assets/img/movies-home.jpg" data-ratio="2.28" data-focus="0.5 0.5">
+                    <pre class="glyph"></pre>
+                    <div class="card-photo"><img src="assets/img/movies-home.jpg" width="1440" height="630" loading="lazy" decoding="async" alt="Movies Store home page with navigation, hero banner, and footer" /></div>
+                  </div>
+                </a>
+            <figcaption>
+              <span><b>Fig. 5</b> The live home page, drawn in text. <b>Point at it for the screenshot; select it to
+                open the live site.</b></span>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="project" id="chess" aria-labelledby="chess-h">
+          <div class="project-text">
+            <h2 class="lettered" id="chess-h" data-lines="C.H.E.S.S." data-rows="12">
+              <span class="lettered-text">C.H.E.S.S. (Chess However Everything is Super Strange)</span>
+            </h2>
+            <dl class="project-meta">
+              <dt>What</dt>
+              <dd>Chess However Everything is Super Strange: a Unity strategy game</dd>
+              <dt>When</dt>
+              <dd>Aug 2025 – May 2026</dd>
+              <dt>Stack</dt>
+              <dd>C#, Unity, Git</dd>
+            </dl>
+            <ul>
+              <li>
+                <span>Developed a chess strategy game with <strong>custom piece behaviors and map layouts</strong>,
+                built in a team Git workflow.</span>
+              </li>
+              <li>
+                <span>Built Unity Editor tooling on ScriptableObjects and a custom asset pipeline so the team could
+                define <strong>60+ pieces as data</strong> and drive a dynamic GUI <strong>without code
+                changes</strong>.</span>
+              </li>
+              <li>
+                <span>Engineered a right-click stats panel, <strong>about 350 lines of C#</strong>, that shows each
+                custom piece's Power, Mobility, and Utility mid-game.</span>
+              </li>
+            </ul>
+            <pre class="datacard" aria-label="Illustrative piece definition"><b>PieceDefinition</b>  (ScriptableObject, illustrative shape)
+  movement : rules for where it may go
+  attack   : pattern it captures with
+  stats    : Power · Mobility · Utility
+<b>-></b> right-click a piece in game to read its stats</pre>
+          </div>
+          <figure class="fig" data-scene="chess">
+            <div class="fig-stage"><pre class="glyph"></pre></div>
+            <figcaption>
+              <span><b>Fig. 6</b> A piece defined only by its data. S lights its legal squares, then jumps.
+                <b>Tap or click a lit square to move it yourself.</b></span>
+              <span class="controls"><button class="chip" type="button" data-act="pause">Pause</button></span>
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="project" id="ml" aria-labelledby="ml-h">
+          <div class="project-text">
+            <h2 class="lettered" id="ml-h" data-lines="ML|WORKFLOW" data-rows="12">
+              <span class="lettered-text">ML classification workflow</span>
+            </h2>
+            <dl class="project-meta">
+              <dt>What</dt>
+              <dd>Flagging at-risk students from behavioral and demographic data</dd>
+              <dt>When</dt>
+              <dd>Nov 2025 – Jan 2026</dd>
+              <dt>Stack</dt>
+              <dd>Python, scikit-learn, pandas, NumPy, joblib</dd>
+            </dl>
+            <ul>
+              <li>
+                <span>Built a scikit-learn <strong>Pipeline</strong> over ~500 student records: median imputation,
+                scaling, and one-hot encoding chained so cross-validation can't leak data.</span>
+              </li>
+              <li>
+                <span>Compared Logistic Regression, <strong>Random Forest</strong>, and Gradient Boosting with
+                stratified 5-fold cross-validation.</span>
+              </li>
+              <li>
+                <span>Only ~20% of students were at-risk, so the first models passed 90% accuracy by
+                <strong>never flagging anyone</strong>. Class-weighted training and a decision threshold lowered from
+                <strong>0.5 to ~0.35</strong> fixed it: ~70% accuracy with much better recall on at-risk
+                students.</span>
+              </li>
+              <li>
+                <span>Serialized the final pipeline with joblib and documented why its threshold differs from the
+                default.</span>
+              </li>
+            </ul>
+          </div>
+          <figure class="fig" data-scene="forest">
+            <div class="fig-stage"><pre class="glyph"></pre></div>
+            <figcaption>
+              <span><b>Fig. 7</b> Random forest regression on synthetic data. Each faint step is one tree fit on a
+                bootstrap sample; the bright line is their average, P(at-risk) by attendance. Lowering the threshold
+                widens what gets flagged.</span>
+              <span class="controls"><button class="chip" type="button" data-act="pause">Pause</button></span>
+            </figcaption>
+          </figure>
+        </article>
+
+        <section class="section next" aria-labelledby="next-h">
+          <h2 class="sr-only" id="next-h">Next</h2>
+          <div class="actions">
+            <a class="btn btn--primary" href="assets/Alfred_Tang_Resume.pdf" download>Download resume ↓</a>
+            <a class="btn" href="mailto:atang302@gatech.edu">Email me</a>
+            <a class="btn" href="./#research">Read the research</a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <span>© 2026 Alfred Tang</span>
+        <span>Set in Martian Mono. Every scene is drawn as text.</span>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+  </body>
+</html>

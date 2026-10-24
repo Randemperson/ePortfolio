@@ -1,0 +1,1294 @@
+/* One phosphor, one face, one grid. */
+
+:root {
+  /* Amber phosphor on a near-black tube. */
+  --ground: #0d0a06;
+  --rule: #3d2c15;
+  --rule-strong: #6b4d22;
+  --ink: #ffb547;
+  --ink-hi: #ffdca6;
+  --ink-dim: #b5873f;
+  /* Roles: what glyph scenes and glyph-art are drawn in, and what fills an emphasized
+     cell (buttons, pressed chips, selection, the photo duotone layer). */
+  --glyph: #ffb547;
+  --art: #ffb547;
+  --accent: #ffb547;
+  --on-accent: #0d0a06;
+  --accent-hi: #ffdca6;
+
+  --font: 'Martian Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  --fs: clamp(12.5px, 0.32vw + 10.4px, 15px);
+  --fs-small: clamp(11px, 0.2vw + 9.6px, 12.5px);
+  --fs-scene: clamp(9px, 0.24vw + 7.6px, 11.5px);
+  --fs-art: clamp(5px, 0.32vw + 3.2px, 8.5px);
+  --lh: 1.65;
+  --line: calc(var(--fs) * var(--lh));
+  --gutter: clamp(16px, 4vw, 64px);
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  color-scheme: dark;
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--ground);
+  -webkit-tap-highlight-color: transparent;
+  scrollbar-color: var(--rule-strong) var(--ground);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--fs);
+  line-height: var(--lh);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  caret-color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--rule-strong);
+  text-underline-offset: 0.3em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a:hover {
+    text-decoration-color: var(--ink);
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink-hi);
+  outline-offset: 3px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+a,
+button {
+  touch-action: manipulation;
+}
+
+.sr-only,
+.is-lettered .lettered-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip {
+  position: absolute;
+  left: var(--gutter);
+  top: -100px;
+  z-index: 10;
+  background: var(--accent);
+  color: var(--on-accent);
+  padding: 0.4em 1ch;
+}
+
+.skip:focus {
+  top: 8px;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1680px;
+  margin-inline: auto;
+  /* viewport-fit=cover lets the page run under a notch; keep text clear of it. */
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+
+/* ------------------------------------------------------------------ glyph surfaces */
+
+.glyph,
+.glyph-art {
+  display: block;
+  margin: 0;
+  font-family: var(--font);
+  white-space: pre;
+  overflow: hidden;
+  user-select: text;
+  font-variant-ligatures: none;
+  font-kerning: none;
+}
+
+.glyph {
+  font-size: var(--fs-scene);
+  line-height: 1;
+  color: var(--glyph);
+}
+
+.glyph-art {
+  font-size: var(--fs-art);
+  line-height: 1;
+  font-weight: 700;
+  color: var(--art);
+}
+
+.lettered {
+  font-size: inherit;
+  font-weight: 700;
+  line-height: inherit;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ------------------------------------------------------------------ header */
+
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--ground);
+  border-bottom: 1px solid var(--rule);
+  view-transition-name: site-header;
+}
+
+.top .wrap {
+  display: flex;
+  align-items: center;
+  gap: 3ch;
+  min-height: calc(var(--line) * 2);
+}
+
+.mark {
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.nav {
+  display: flex;
+  gap: 3ch;
+  margin-left: auto;
+}
+
+.nav a {
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-dim);
+  padding: 0.15em 0.5ch;
+  margin: -0.15em -0.5ch;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.nav a[aria-current='page'] {
+  color: var(--ink);
+}
+
+.nav a[aria-current='page']::before {
+  content: '>';
+  margin-right: 0.5ch;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav a:hover {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+}
+
+.nav a:active {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+/* ------------------------------------------------------------------ buttons */
+
+.btn {
+  --btn-pad: 1ch;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5em var(--btn-pad);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  white-space: nowrap;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  transition: transform 160ms var(--ease-out);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn::before,
+.btn-fill::before {
+  content: '[';
+  margin-right: var(--btn-pad);
+}
+
+.btn::after,
+.btn-fill::after {
+  content: ']';
+  margin-left: var(--btn-pad);
+}
+
+/* Inverse copy of the label, clipped from the right; a hover wipes it across. */
+.btn-fill {
+  position: absolute;
+  inset: -1px;
+  display: flex;
+  align-items: center;
+  padding: inherit;
+  padding-inline: calc(var(--btn-pad) + 1px);
+  background: var(--accent);
+  color: var(--on-accent);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 150ms var(--ease-out);
+  pointer-events: none;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.btn--primary .btn-fill {
+  background: var(--accent-hi);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover .btn-fill {
+    clip-path: inset(0 0 0 0);
+    transition-duration: 200ms;
+  }
+}
+
+.btn--small {
+  min-height: 0;
+  padding-block: 0.15em;
+}
+
+.chip {
+  user-select: none;
+  -webkit-user-select: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding-inline: 0.5ch;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: background-color 120ms ease, color 120ms ease, transform 160ms var(--ease-out);
+}
+
+.chip::before {
+  content: '[';
+  margin-right: 0.5ch;
+}
+
+.chip::after {
+  content: ']';
+  margin-left: 0.5ch;
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.chip:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .chip:hover:not([aria-pressed='true']) {
+    color: var(--ink);
+  }
+}
+
+/* ------------------------------------------------------------------ figures */
+
+.fig {
+  border-block: 1px solid var(--rule);
+  position: relative;
+}
+
+.fig-stage {
+  position: relative;
+  touch-action: manipulation;
+}
+
+/* Brain3D turns on a horizontal drag; vertical swipes still scroll the page. */
+.fig[data-scene='tetris'] .fig-stage {
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.fig figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5em 3ch;
+  padding-block: 0.75em;
+  border-top: 1px solid var(--rule);
+  font-size: var(--fs-small);
+  color: var(--ink-dim);
+}
+
+.fig figcaption b {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.fig figcaption b:first-child {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Contained figures get a full 1px frame; the full-bleed hero keeps hairlines only. */
+.project .fig {
+  border: 1px solid var(--rule);
+}
+
+.project .fig figcaption {
+  padding-inline: 1.5ch;
+}
+
+.fig .controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25em 1.5ch;
+  margin-left: auto;
+}
+
+.readout {
+  white-space: pre-wrap;
+  color: var(--ink);
+}
+
+/* ------------------------------------------------------------------ hero */
+
+.hero {
+  padding-top: calc(var(--line) * 2);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: calc(var(--line) * 1.5) 5ch;
+  align-items: end;
+}
+
+.hero-name {
+  margin: 0;
+}
+
+.hero-copy {
+  display: grid;
+  gap: var(--line);
+  padding-bottom: 0.5em;
+}
+
+.lede {
+  max-width: 52ch;
+}
+
+.lede strong {
+  font-weight: 700;
+  color: var(--ink-hi);
+}
+
+.status {
+  color: var(--ink-dim);
+}
+
+.status::before {
+  content: '@';
+  margin-right: 1ch;
+  color: var(--ink);
+  font-weight: 700;
+  animation: blink 1.2s steps(1, end) 4;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1ch 2ch;
+}
+
+.hero .fig {
+  margin-top: calc(var(--line) * 2);
+}
+
+/* ------------------------------------------------------------------ sections */
+
+.section {
+  padding-top: calc(var(--line) * 6);
+  scroll-margin-top: calc(var(--line) * 2);
+}
+
+.section-head {
+  display: grid;
+  gap: var(--line);
+  margin-bottom: calc(var(--line) * 2.5);
+}
+
+.section-head .glyph-art {
+  max-width: 100%;
+}
+
+.section-intro {
+  max-width: 64ch;
+  color: var(--ink-dim);
+}
+
+.section-intro strong {
+  color: var(--ink);
+  font-weight: 400;
+}
+
+/* Research entries */
+
+.lab {
+  display: grid;
+  grid-template-columns: minmax(0, 18ch) minmax(0, 1fr);
+  gap: var(--line) 4ch;
+  padding-block: calc(var(--line) * 1.5);
+  border-top: 1px solid var(--rule);
+}
+
+.lab + .lab {
+  margin-top: calc(var(--line) * 1.5);
+}
+
+.lab-head {
+  display: grid;
+  gap: 0.25em;
+  align-content: start;
+}
+
+.lab-head h3 {
+  font-size: inherit;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.lab-head p {
+  color: var(--ink-dim);
+  font-size: var(--fs-small);
+}
+
+.findings {
+  display: grid;
+  gap: calc(var(--line) * 1.5);
+}
+
+.finding {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--line) 4ch;
+  padding-bottom: calc(var(--line) * 1.5);
+  border-bottom: 1px dashed var(--rule);
+}
+
+.finding:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.finding h4 {
+  font-size: inherit;
+  font-weight: 700;
+  margin-bottom: 0.4em;
+}
+
+.finding p {
+  color: var(--ink-dim);
+  max-width: 60ch;
+}
+
+.finding p strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* Glyph bar charts */
+
+.bars {
+  display: grid;
+  gap: 0.6em;
+  align-content: start;
+  font-size: var(--fs-small);
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: 14ch minmax(0, 1fr) 9ch;
+  gap: 1.5ch;
+  align-items: baseline;
+}
+
+.bar-label {
+  color: var(--ink-dim);
+}
+
+.bar-track {
+  white-space: pre;
+  overflow: hidden;
+  line-height: 1.2;
+  color: var(--glyph);
+}
+
+.bar-value {
+  text-align: right;
+  font-weight: 700;
+}
+
+.bars-note {
+  color: var(--ink-dim);
+  font-size: var(--fs-small);
+}
+
+/* About */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(var(--line) * 2) 4ch;
+}
+
+.about-grid h3 {
+  font-size: inherit;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding-bottom: 0.5em;
+  margin-bottom: 0.75em;
+  border-bottom: 1px solid var(--rule);
+}
+
+.about-grid p,
+.about-grid dd,
+.about-grid li {
+  color: var(--ink-dim);
+}
+
+.about-grid p + p {
+  margin-top: 0.75em;
+}
+
+.about-grid .em {
+  color: var(--ink);
+}
+
+.kit {
+  display: grid;
+  gap: 1em;
+}
+
+.kit dt {
+  color: var(--ink);
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Contact */
+
+.contact-list {
+  border-top: 1px solid var(--rule);
+  max-width: 980px;
+}
+
+.contact-list li {
+  display: grid;
+  grid-template-columns: 12ch minmax(0, 1fr) auto;
+  gap: 2ch;
+  align-items: center;
+  padding-block: 0.9em;
+  border-bottom: 1px solid var(--rule);
+}
+
+.contact-list .k {
+  color: var(--ink-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: var(--fs-small);
+}
+
+.contact-list a {
+  overflow-wrap: anywhere;
+}
+
+.copy-label {
+  display: inline-block;
+  transition: filter 200ms ease, opacity 200ms ease;
+}
+
+.copy-label.is-swapping {
+  filter: blur(2px);
+  opacity: 0.4;
+}
+
+.foot {
+  margin-top: calc(var(--line) * 6);
+  border-top: 1px solid var(--rule);
+}
+
+.foot .wrap {
+  padding-bottom: calc(var(--line) * 1.5 + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5em 3ch;
+  padding-top: calc(var(--line) * 1.5);
+  font-size: var(--fs-small);
+  color: var(--ink-dim);
+}
+
+/* ------------------------------------------------------------------ projects page */
+
+.page-head {
+  padding-top: calc(var(--line) * 2);
+}
+
+.toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em 3ch;
+  margin-top: var(--line);
+  font-size: var(--fs-small);
+}
+
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: calc(var(--line) * 1.5) 5ch;
+  padding-top: calc(var(--line) * 5);
+  scroll-margin-top: calc(var(--line) * 2);
+  align-items: start;
+}
+
+.project-text {
+  display: grid;
+  gap: var(--line);
+  align-content: start;
+}
+
+.project-text h2 {
+  font-size: inherit;
+}
+
+.project-meta {
+  display: grid;
+  grid-template-columns: 10ch minmax(0, 1fr);
+  gap: 0.3em 2ch;
+  font-size: var(--fs-small);
+  border-block: 1px solid var(--rule);
+  padding-block: 0.75em;
+}
+
+.project-meta dt {
+  color: var(--ink-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.project-text ul {
+  display: grid;
+  gap: 0.75em;
+}
+
+.project-text li {
+  display: grid;
+  grid-template-columns: 2ch minmax(0, 1fr);
+  color: var(--ink-dim);
+}
+
+.project-text li::before {
+  content: '*';
+  color: var(--ink);
+}
+
+.project-text li strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.project .fig {
+  position: sticky;
+  top: calc(var(--line) * 3);
+}
+
+.datacard {
+  font-size: var(--fs-small);
+  white-space: pre;
+  overflow-x: auto;
+  padding: 1em 2ch;
+  border: 1px dashed var(--rule-strong);
+  color: var(--ink-dim);
+  line-height: 1.5;
+}
+
+.datacard b {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------------ responsive */
+
+@media (max-width: 1080px) {
+  .hero-grid,
+  .project {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project .fig {
+    position: relative;
+    top: auto;
+  }
+
+  .about-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .finding {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .top .wrap {
+    flex-wrap: wrap;
+    gap: 0 2ch;
+    padding-block: 0.4em;
+  }
+
+  .top .btn--small {
+    margin-left: auto;
+  }
+
+  .nav {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    gap: 1ch;
+    justify-content: space-between;
+    padding-top: 0.4em;
+    margin-top: 0.4em;
+    border-top: 1px solid var(--rule);
+  }
+
+  .nav a {
+    padding-block: 0.6em;
+  }
+
+  .lab {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .bar {
+    grid-template-columns: 11ch minmax(0, 1fr) 8ch;
+    gap: 1ch;
+  }
+
+  .contact-list li {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .contact-list .k {
+    grid-column: 1 / -1;
+  }
+
+  .fig .controls {
+    margin-left: 0;
+  }
+
+  /* Pull Fig. 1 up into the first screen on phones. */
+  .hero {
+    padding-top: var(--line);
+  }
+
+  .hero-grid {
+    gap: var(--line);
+  }
+
+  .hero-copy {
+    gap: calc(var(--line) * 0.75);
+  }
+
+  .hero .fig {
+    margin-top: var(--line);
+  }
+
+  .actions {
+    gap: 1ch 1.5ch;
+  }
+
+  .btn {
+    --btn-pad: 0.6ch;
+  }
+
+  .section {
+    padding-top: calc(var(--line) * 4);
+  }
+
+  /* The header wraps to two rows here; keep anchor targets clear of it. */
+  .section,
+  .project {
+    scroll-margin-top: calc(var(--line) * 4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status::before {
+    animation: none;
+  }
+
+  .btn,
+  .chip {
+    transition: none;
+  }
+
+  .btn:active,
+  .chip:active {
+    transform: none;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 220ms;
+  animation-timing-function: var(--ease-out);
+}
+
+@media print {
+  :root {
+    --ground: #fff;
+    --ink: #000;
+    --ink-hi: #000;
+    --ink-dim: #333;
+    --rule: #bbb;
+    --rule-strong: #888;
+    --glyph: #000;
+    --art: #000;
+    --accent: #e6e6e6;
+    --on-accent: #000;
+    --accent-hi: #e6e6e6;
+  }
+
+  .top,
+  .fig,
+  .card-media,
+  .foot {
+    display: none;
+  }
+}
+
+/* Projects page extras */
+
+.toc-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--line) 3ch;
+  padding-block: 0.75em;
+  border-block: 1px solid var(--rule);
+}
+
+.toc-row .toc {
+  margin-top: 0;
+}
+
+.toc-row .controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25em 1.5ch;
+  font-size: var(--fs-small);
+}
+
+.project-text h2.lettered .glyph-art {
+  font-size: clamp(3.5px, 0.2vw + 2px, 5px);
+}
+
+.next .actions {
+  padding-top: calc(var(--line) * 2);
+  border-top: 1px solid var(--rule);
+}
+
+/* In-page jumps travel instead of teleporting, unless motion is reduced. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ------------------------------------------------------------------ project cards */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(var(--line) * 1.5) 3ch;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--rule);
+  background: var(--ground);
+  transition: border-color 150ms ease;
+}
+
+.card:focus-within {
+  border-color: var(--ink);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    border-color: var(--ink);
+  }
+}
+
+.card-media,
+.photo-media {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-media {
+  aspect-ratio: 16 / 10;
+  border-bottom: 1px solid var(--rule);
+}
+
+.card-media .glyph {
+  font-size: clamp(7.5px, 0.2vw + 5.6px, 9px);
+}
+
+.card-media[data-photo] .glyph,
+.photo-media .glyph {
+  font-size: clamp(4.5px, 0.25vw + 2.6px, 6.5px);
+}
+
+/* The real photo, as one ink: grayscale multiplied onto amber, so black stays the
+   ground and white becomes phosphor. Clipped from the right until revealed. */
+.card-photo {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  isolation: isolate;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 200ms var(--ease-out);
+}
+
+.card-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--focus, 50% 50%);
+  filter: grayscale(1) contrast(1.3) brightness(1.08);
+  mix-blend-mode: multiply;
+}
+
+.card:focus-within .card-photo,
+.card[data-reveal] .card-photo,
+.photo-media[data-reveal] .card-photo,
+.photo-media:focus-within .card-photo {
+  clip-path: inset(0 0 0 0);
+  transition-duration: 320ms;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .card-photo,
+  .photo-media:hover .card-photo {
+    clip-path: inset(0 0 0 0);
+    transition-duration: 320ms;
+  }
+}
+
+/* The same photo in its own colors, layered over the duotone. Once the wipe lands it
+   fades in while its saturation returns, so the picture warms from amber into full
+   color. Leaving drops it straight back, fast and with no delay. */
+.card-photo .photo-color {
+  position: absolute;
+  inset: 0;
+  filter: saturate(0.2) sepia(0.5);
+  mix-blend-mode: normal;
+  opacity: 0;
+  transition:
+    opacity 150ms ease,
+    filter 150ms ease;
+}
+
+.card:focus-within .photo-color,
+.card[data-reveal] .photo-color,
+.photo-media[data-reveal] .photo-color,
+.photo-media:focus-within .photo-color,
+.photo-link:focus-visible .photo-color {
+  opacity: 1;
+  filter: none;
+  transition:
+    opacity 650ms ease 260ms,
+    filter 900ms ease 260ms;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .photo-color,
+  .photo-media:hover .photo-color {
+    opacity: 1;
+    filter: none;
+    transition:
+      opacity 650ms ease 260ms,
+      filter 900ms ease 260ms;
+  }
+}
+
+.card-body {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto auto;
+  gap: 0.6em;
+  flex: 1;
+  padding: 1em 1.5ch 1.1em;
+}
+
+.card-title {
+  font-size: inherit;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.card-title a {
+  text-decoration: none;
+}
+
+/* The whole card opens the write-up; the live-site link sits above that layer. */
+.card-title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.card-meta {
+  font-size: var(--fs-small);
+  color: var(--ink-dim);
+}
+
+.card-meta b {
+  color: var(--ink);
+}
+
+.card-desc {
+  color: var(--ink-dim);
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2em 1.5ch;
+  font-size: var(--fs-small);
+  color: var(--ink-dim);
+}
+
+.card-tags li::before {
+  content: '[';
+  margin-right: 0.5ch;
+}
+
+.card-tags li::after {
+  content: ']';
+  margin-left: 0.5ch;
+}
+
+.card-links {
+  display: flex;
+  justify-content: space-between;
+  gap: 2ch;
+  padding-top: 0.6em;
+  border-top: 1px dashed var(--rule);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.card-live {
+  position: relative;
+  z-index: 2;
+}
+
+.card-cta {
+  transition: color 150ms ease;
+  color: var(--ink-dim);
+}
+
+.card:focus-within .card-cta {
+  color: var(--ink);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .card-cta {
+    color: var(--ink);
+  }
+}
+
+.card:has(.card-title a:focus-visible) {
+  outline: 2px solid var(--ink-hi);
+  outline-offset: 3px;
+}
+
+.card-title a:focus-visible {
+  outline: none;
+}
+
+@media (max-width: 1080px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-photo {
+    transition: none;
+  }
+
+  /* No wipe, no delay: just a short fade into color. */
+  .card .photo-color,
+  .photo-media .photo-color {
+    transition-duration: 200ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+/* Write-up photo strips on the projects page */
+
+.photos {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr));
+  gap: 1ch;
+  margin-top: var(--line);
+}
+
+.photos figure {
+  border: 1px solid var(--rule);
+}
+
+.photos figcaption {
+  padding: 0.6em 1ch;
+  border-top: 1px solid var(--rule);
+  font-size: var(--fs-small);
+  color: var(--ink-dim);
+}
+
+@media (max-width: 640px) {
+  .photos {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.photo-link {
+  display: block;
+  text-decoration: none;
+}
+
+.photo-link:focus-visible {
+  outline-offset: 2px;
+}
+
+.photo-link:focus-visible .card-photo,
+.photo-link:focus-visible .photo-media .card-photo {
+  clip-path: inset(0 0 0 0);
+}
+
+/* Glyph fields are pictures made of type. Giving them their own compositing layer makes
+   Chrome on Windows smooth them in grayscale instead of ClearType's colored subpixels,
+   which would put red and green fringes into a one-ink image. */
+.glyph,
+.glyph-art {
+  transform: translateZ(0);
+}

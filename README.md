@@ -1,61 +1,26 @@
-# Alfred Tang – ePortfolio
+# Alfred Tang · ePortfolio
 
-Personal ePortfolio website built with **React + Vite**.
+A static site: `index.html` (landing) and `projects.html`, with no build step. Every scene on the page is drawn as text by a small renderer in `assets/js/glyph.js`, and the simulations in `assets/js/scenes/` are written for the page.
 
-## Getting Started
+## Run locally
 
-```bash
-npm install
-npm run dev
-```
-
-Open [http://localhost:5173](http://localhost:5173) in your browser.
-
-## Build for Production
+ES modules need a server; opening the file directly won't work. Use the bundled dev server, which tells the browser not to cache, so edits show up on a normal reload:
 
 ```bash
-npm run build
-npm run preview
+python scripts/serve.py
 ```
 
-## Adding Project Media
+Then open http://localhost:5173. (Plain `python -m http.server` works too, but needs Ctrl+Shift+R to see CSS and JS changes.)
 
-Project content lives in `src/data/portfolioData.js`. Each project can set a lead image or
-video shown on its card, plus a gallery shown in the detail view:
+## Deploy
 
-```js
-demoType: 'image',                                   // or 'video'
-demoSrc: '/projects/moviesstore/media/home-page.png', // path relative to /public
-media: [
-  { type: 'image', src: '/projects/.../shot.png', alt: 'What it shows', caption: 'Caption' },
-  { type: 'video', src: '/projects/.../clip.mov', caption: 'Caption' },
-],
-```
+**Vercel:** every push to `main` deploys. `vercel.json` sets the "Other" preset, skips the install and build steps, serves the repo root, and redirects the old React routes (`/about`, `/projects`, `/resume`, `/career-goals`) to their places on this site.
 
-Put the files under `public/projects/<project>/media/`. A project with no `demoSrc`
-simply renders without a lead image.
+**GitHub Pages:** push to GitHub, then go to Settings → Pages → Deploy from a branch → `main` / root.
 
-## Structure
+## Edit content
 
-```
-src/
-├── components/            ← sections reused by the About page
-│   ├── Navbar.jsx
-│   ├── Education.jsx
-│   ├── Experience.jsx
-│   ├── Responsibilities.jsx
-│   ├── Skills.jsx
-│   └── Achievements.jsx
-├── pages/
-│   ├── Home.jsx
-│   ├── About.jsx
-│   ├── Resume.jsx
-│   ├── CareerGoals.jsx
-│   └── Projects.jsx       ← project cards, media gallery, detail modal
-├── data/
-│   └── portfolioData.js   ← all resume and project content lives here
-├── styles/
-├── App.jsx
-├── App.css
-└── index.css
-```
+- Copy and numbers live in `index.html` and `projects.html`. Every number comes from the resume.
+- The downloadable resume is `assets/Alfred_Tang_Resume.pdf`. Replace the file to update it.
+- Project photos live in `assets/img`. A card or write-up shows one through `data-photo="assets/img/…"` on its media slot, where the photo is drawn in text first and revealed as an amber duotone on hover. Keep images around 1000–1440px wide.
+- Colors and type sizes are tokens at the top of `assets/css/site.css`.

@@ -1,14 +1,415 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alfred Tang – ePortfolio</title>
-    <meta name="description" content="ePortfolio of Alfred Tang, Computer Engineering student at Georgia Tech" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Alfred Tang · Autonomy &amp; Robotics, Georgia Tech</title>
+    <meta
+      name="description"
+      content="Alfred Tang, Computer Engineering at Georgia Tech. Undergraduate researcher building motion planners, behavior prediction, and safety filters for autonomous driving."
+    />
+    <meta name="theme-color" content="#0d0a06" />
+    <meta name="color-scheme" content="dark" />
+    <meta property="og:title" content="Alfred Tang · Autonomy & Robotics" />
+    <meta
+      property="og:description"
+      content="Planners that merge autonomous cars into highway traffic in under 4 ms per decision. Computer Engineering, Georgia Tech."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="assets/css/site.css" />
+    <script type="module" src="assets/js/home.js"></script>
   </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+  <body id="top">
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="top">
+      <div class="wrap">
+        <a class="mark" href="./" aria-label="Alfred Tang, home">Alfred Tang</a>
+        <nav class="nav" aria-label="Primary">
+          <a href="#research">Research</a>
+          <a href="projects.html">Projects</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <a class="btn btn--small" href="assets/Alfred_Tang_Resume.pdf" download>Resume ↓</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="name">
+        <div class="wrap">
+          <div class="hero-grid">
+            <h1 class="hero-name lettered" id="name" data-lines="ALFRED|TANG">
+              <span class="lettered-text">Alfred Tang</span>
+            </h1>
+            <div class="hero-copy">
+              <p class="lede">
+                Computer Engineering at Georgia Tech, class of 2028. I build planners that merge autonomous cars
+                into highway traffic in <strong>under 4 ms per decision</strong>, plus the occasional robotic gripper
+                or AR game.
+              </p>
+              <p class="status">Open to internships: autonomy, robotics, ML.</p>
+              <div class="actions">
+                <a class="btn btn--primary" href="assets/Alfred_Tang_Resume.pdf" download>Download resume ↓</a>
+                <a class="btn" href="mailto:atang302@gatech.edu">Email me</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <figure class="fig fig--hero">
+          <div class="fig-stage"><pre class="glyph" id="highway"></pre></div>
+          <figcaption class="wrap">
+            <span><b>Fig. 1</b> On-ramp merge. The ego car (@) predicts each gap with acceleration-aware
+              extrapolation, plans a smooth merge path in station-lateral-time (dots), commits only if that path
+              clears the predicted traffic, and steers along it. In the lane it holds a control-barrier headway
+              (dashed box). Illustrative, written for this page. <b>Tap or click a car to brake it.</b></span>
+            <span class="readout" id="hw-readout" aria-hidden="true"></span>
+            <span class="controls">
+              <button class="chip" type="button" data-act="brake">Brake-check</button>
+              <button class="chip" type="button" data-act="pause" aria-pressed="false">Pause</button>
+              <span role="group" aria-label="Glyph ramp" class="ramp-group">
+                <button class="chip" type="button" data-ramp="classic" aria-pressed="true">.:=#@</button>
+                <button class="chip" type="button" data-ramp="dots" aria-pressed="false">·:•</button>
+                <button class="chip" type="button" data-ramp="fine" aria-pressed="false">fine</button>
+              </span>
+            </span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="section" id="research" aria-labelledby="research-h">
+        <div class="wrap">
+          <div class="section-head">
+            <h2 class="lettered" id="research-h"><span class="lettered-text">Research</span></h2>
+            <p class="section-intro">
+              Two labs at Georgia Tech, one question: <strong>how does an autonomous car merge without
+              hitting anyone, fast enough to run in the loop?</strong> Every number below comes from the work.
+            </p>
+          </div>
+
+          <article class="lab">
+            <header class="lab-head">
+              <h3>IVALab</h3>
+              <p>Undergraduate Research Assistant</p>
+              <p>Prof. Patricio Vela</p>
+              <p>Jun 2026 – present</p>
+            </header>
+            <ul class="findings">
+              <li class="finding">
+                <div>
+                  <h4>Planner benchmark harness</h4>
+                  <p>
+                    A seeded evaluation harness that benchmarks <strong>8 autonomous-driving planners</strong> on
+                    crash, merge, and runtime metrics. Batch runs fan out across 8 workers with
+                    ProcessPoolExecutor.
+                  </p>
+                </div>
+                <div class="bars" aria-label="Batch evaluation time: 5 minutes serial, 45 seconds on 8 workers, 6.7 times faster">
+                  <div class="bar" data-value="300" data-max="300">
+                    <span class="bar-label">serial</span><span class="bar-track"></span><span class="bar-value">5:00</span>
+                  </div>
+                  <div class="bar" data-value="45" data-max="300" data-hi>
+                    <span class="bar-label">8 workers</span><span class="bar-track"></span><span class="bar-value">0:45</span>
+                  </div>
+                  <p class="bars-note">Batch wall-clock time. <b>6.7× faster.</b></p>
+                </div>
+              </li>
+              <li class="finding">
+                <div>
+                  <h4>Real-time gap planner + CBF-QP safety filter</h4>
+                  <p>
+                    Ported an offline MATLAB gap-based planner to a closed-loop Python controller for HighwayEnv, and
+                    added a CBF-QP safety filter that keeps lane-change trajectories physically feasible so merges stay
+                    continuous. It runs a <strong>12 s space-time pipeline in under 4 ms per decision</strong>.
+                  </p>
+                </div>
+                <div class="bars" aria-label="Time per planning decision: MPC baseline about 7 times longer than the gap planner, which runs under 4 milliseconds">
+                  <div class="bar" data-value="7" data-max="7">
+                    <span class="bar-label">MPC</span><span class="bar-track"></span><span class="bar-value">~7×</span>
+                  </div>
+                  <div class="bar" data-value="1" data-max="7" data-hi>
+                    <span class="bar-label">gap planner</span><span class="bar-track"></span><span class="bar-value">&lt;4 ms</span>
+                  </div>
+                  <p class="bars-note">Time per decision, relative. <b>About 7× faster than MPC.</b></p>
+                </div>
+              </li>
+              <li class="finding">
+                <div>
+                  <h4>Acceleration-aware behavior prediction</h4>
+                  <p>
+                    Prototyped acceleration-aware behavior prediction for surrounding vehicles, measured across
+                    <strong>500 paired episodes (p &lt; 0.0001)</strong>.
+                  </p>
+                </div>
+                <div class="bars" aria-label="Crash rate down 22 percent, prediction error down 55 to 74 percent, merges per episode up 8 percent">
+                  <div class="bar" data-value="78" data-max="108" data-hi>
+                    <span class="bar-label">crash rate</span><span class="bar-track"></span><span class="bar-value">−22%</span>
+                  </div>
+                  <div class="bar" data-value="26" data-range="45" data-max="108" data-hi>
+                    <span class="bar-label">pred. error</span><span class="bar-track"></span><span class="bar-value">−55–74%</span>
+                  </div>
+                  <div class="bar" data-value="108" data-max="108" data-hi>
+                    <span class="bar-label">merges/ep.</span><span class="bar-track"></span><span class="bar-value">+8%</span>
+                  </div>
+                  <p class="bars-note">Relative to the baseline at 100.</p>
+                </div>
+              </li>
+              <li class="finding">
+                <div>
+                  <h4>One scenario format for two languages</h4>
+                  <p>
+                    A shared JSON scenario format lets the MATLAB and Python planners run identical test cases. Running
+                    them side by side exposed a bug in the Python port that <strong>dropped valid merge options below
+                    the theoretical n+1 bound</strong>, which I fixed.
+                  </p>
+                </div>
+                <pre class="datacard" aria-label="Example scenario file shape"><b>scenario.json</b>   <span>(shape, illustrative)</span>
+{
+  "seed": …,
+  "lanes": …,
+  "ego":      { "x": …, "v": … },
+  "vehicles": [ { "lane": …, "x": …, "v": …, "a": … } ]
+}
+MATLAB --+
+          +--> same cases --> diff --> <b>n+1 bound bug</b>
+Python --+</pre>
+              </li>
+            </ul>
+          </article>
+
+          <article class="lab">
+            <header class="lab-head">
+              <h3>ACT Lab VIP</h3>
+              <p>Student Researcher</p>
+              <p>Autonomous and Connected Transport</p>
+              <p>Dec 2025 – present</p>
+            </header>
+            <ul class="findings">
+              <li class="finding">
+                <div>
+                  <h4>PPO driving agent</h4>
+                  <p>
+                    Trained a PPO reinforcement-learning agent for highway driving in HighwayEnv with
+                    Stable-Baselines3. The policy feeds the lab's CARLA integration and policy generation.
+                  </p>
+                </div>
+                <div class="bars" aria-label="Episode reward rose from 9 to 19 over 20 thousand timesteps">
+                  <div class="bar" data-value="9" data-max="19">
+                    <span class="bar-label">step 0</span><span class="bar-track"></span><span class="bar-value">9</span>
+                  </div>
+                  <div class="bar" data-value="19" data-max="19" data-hi>
+                    <span class="bar-label">step 20k</span><span class="bar-track"></span><span class="bar-value">19</span>
+                  </div>
+                  <p class="bars-note">Episode reward. <b>Doubled in 20k timesteps.</b></p>
+                </div>
+              </li>
+              <li class="finding">
+                <div>
+                  <h4>Transformer fine-tuning</h4>
+                  <p>
+                    Fine-tuned transformer language models for text comprehension with Hugging Face Transformers and
+                    PyTorch, and tuned the prompting and preprocessing pipelines around them.
+                  </p>
+                </div>
+                <div class="bars" aria-label="ROUGE score about 90 percent above baseline">
+                  <div class="bar" data-value="100" data-max="190">
+                    <span class="bar-label">baseline</span><span class="bar-track"></span><span class="bar-value">1.0×</span>
+                  </div>
+                  <div class="bar" data-value="190" data-max="190" data-hi>
+                    <span class="bar-label">fine-tuned</span><span class="bar-track"></span><span class="bar-value">~1.9×</span>
+                  </div>
+                  <p class="bars-note">ROUGE, relative. <b>About +90%.</b></p>
+                </div>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="projects" aria-labelledby="projects-h">
+        <div class="wrap">
+          <div class="section-head">
+            <h2 class="lettered" id="projects-h"><span class="lettered-text">Projects</span></h2>
+            <p class="section-intro">
+              Six builds from research, hackathons, and classes. Photos are drawn in text until you point at one;
+              every card opens its write-up.
+            </p>
+          </div>
+          <ul class="cards" role="list">
+            <li class="card">
+              <div class="card-media" data-scene="spacetime"><pre class="glyph"></pre></div>
+              <div class="card-body">
+                <h3 class="card-title"><a href="projects.html#planner">Space-time merge planner</a></h3>
+                <p class="card-meta">IVALab research · 2026</p>
+                <p class="card-desc">Gap-based merge planning for autonomous highway driving, under 4 ms per decision, with a CBF-QP safety filter.</p>
+                <ul class="card-tags" role="list"><li>Python</li><li>MATLAB</li><li>HighwayEnv</li></ul>
+                <p class="card-links"><span class="card-cta" aria-hidden="true">Write-up -&gt;</span></p>
+              </div>
+            </li>
+            <li class="card">
+              <div class="card-media" data-photo="assets/img/brain3d-gameplay.jpg" data-focus="0.5 0.45">
+                <pre class="glyph"></pre>
+                <div class="card-photo"><img src="assets/img/brain3d-gameplay.jpg" width="1200" height="772" loading="lazy" decoding="async" alt="In-headset view through Snap Spectacles: colored tetromino blocks stacked above a 5×5 grid playfield in a hallway" /></div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title"><a href="projects.html#brain3d">Brain3D</a></h3>
+                <p class="card-meta"><b>1st Place, Spatial Design</b> · ImmerseGT · Apr 2026</p>
+                <p class="card-desc">AR tetromino game for Snap Spectacles with hand tracking, surface placement, and real-time physics.</p>
+                <ul class="card-tags" role="list"><li>TypeScript</li><li>Lens Studio</li><li>Spectacles</li></ul>
+                <p class="card-links"><span class="card-cta" aria-hidden="true">Write-up -&gt;</span></p>
+              </div>
+            </li>
+            <li class="card">
+              <div class="card-media" data-photo="assets/img/gripper-assembled.jpg" data-focus="0.5 0.42">
+                <pre class="glyph"></pre>
+                <div class="card-photo"><img src="assets/img/gripper-assembled.jpg" width="1000" height="1333" loading="lazy" decoding="async" alt="Assembled gripper finger and servo housing wired to an Arduino Nano on a breadboard" /></div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title"><a href="projects.html#gripper">CV-controlled robotic gripper</a></h3>
+                <p class="card-meta">Feb – Apr 2026</p>
+                <p class="card-desc">MediaPipe hand tracking at ~30 FPS drives an Arduino servo and a silicone-joint printed gripper.</p>
+                <ul class="card-tags" role="list"><li>Python</li><li>C++</li><li>MediaPipe</li><li>Arduino</li></ul>
+                <p class="card-links"><span class="card-cta" aria-hidden="true">Write-up -&gt;</span></p>
+              </div>
+            </li>
+            <li class="card">
+              <div class="card-media" data-photo="assets/img/movies-home.jpg" data-focus="0.5 0.3">
+                <pre class="glyph"></pre>
+                <div class="card-photo"><img src="assets/img/movies-home.jpg" width="1440" height="630" loading="lazy" decoding="async" alt="Movies Store home page with navigation, hero banner, and footer" /></div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title"><a href="projects.html#movies">Movies Store</a></h3>
+                <p class="card-meta">CS 2340, Objects and Design · Sep 2026 – present</p>
+                <p class="card-desc">Django movie storefront, live on PythonAnywhere: search, cart, checkout, and review moderation that hides a review after 3 reports.</p>
+                <ul class="card-tags" role="list"><li>Python</li><li>Django</li><li>MySQL</li></ul>
+                <p class="card-links">
+                  <span class="card-cta" aria-hidden="true">Write-up -&gt;</span>
+                  <a class="card-live" href="https://at10507.pythonanywhere.com/" target="_blank" rel="noopener">Live site -&gt;<span class="sr-only"> (Movies Store, opens in a new tab)</span></a>
+                </p>
+              </div>
+            </li>
+            <li class="card">
+              <div class="card-media" data-scene="chess"><pre class="glyph"></pre></div>
+              <div class="card-body">
+                <h3 class="card-title"><a href="projects.html#chess">C.H.E.S.S.</a></h3>
+                <p class="card-meta">Team project · Aug 2025 – May 2026</p>
+                <p class="card-desc">Chess However Everything is Super Strange: Unity strategy chess where editor tooling defines 60+ pieces as data.</p>
+                <ul class="card-tags" role="list"><li>C#</li><li>Unity</li><li>Git</li></ul>
+                <p class="card-links"><span class="card-cta" aria-hidden="true">Write-up -&gt;</span></p>
+              </div>
+            </li>
+            <li class="card">
+              <div class="card-media" data-scene="forest"><pre class="glyph"></pre></div>
+              <div class="card-body">
+                <h3 class="card-title"><a href="projects.html#ml">ML classification workflow</a></h3>
+                <p class="card-meta">Nov 2025 – Jan 2026</p>
+                <p class="card-desc">scikit-learn pipeline that flags at-risk students; class weighting and a 0.35 threshold lift minority-class recall.</p>
+                <ul class="card-tags" role="list"><li>Python</li><li>scikit-learn</li><li>pandas</li></ul>
+                <p class="card-links"><span class="card-cta" aria-hidden="true">Write-up -&gt;</span></p>
+              </div>
+            </li>
+          </ul>
+          <a class="more" href="projects.html">All project write-ups -&gt;</a>
+        </div>
+      </section>
+
+      <section class="section" id="about" aria-labelledby="about-h">
+        <div class="wrap">
+          <div class="section-head">
+            <h2 class="lettered" id="about-h"><span class="lettered-text">About</span></h2>
+          </div>
+          <div class="about-grid">
+            <div>
+              <h3>Education</h3>
+              <p class="em">Georgia Institute of Technology</p>
+              <p>B.S. Computer Engineering, expected Spring 2028. <span class="em">GPA 3.92.</span></p>
+              <p>
+                Coursework: Intro to AI, Data Structures and Algorithms, Design and Analysis of Algorithms,
+                Object-Oriented Programming, Programming for Hardware/Software Systems.
+              </p>
+            </div>
+            <div>
+              <h3>Before the lab</h3>
+              <p class="em">Restaurant Assistant Manager, Saigon Cafe</p>
+              <p>Woodstock, GA · Jun 2021 – Aug 2025</p>
+              <p>
+                Four years running a floor. I mentored and coordinated 4–5 employees through post-pandemic scaling and
+                the return to full dine-in service.
+              </p>
+            </div>
+            <div>
+              <h3>Toolkit</h3>
+              <dl class="kit">
+                <div>
+                  <dt>Languages</dt>
+                  <dd>Python, C++, C, C#, Java, JavaScript/TypeScript, MATLAB</dd>
+                </div>
+                <div>
+                  <dt>Frameworks &amp; libraries</dt>
+                  <dd>PyTorch, Hugging Face Transformers, Stable-Baselines3, pandas, NumPy, Pytest</dd>
+                </div>
+                <div>
+                  <dt>Tools</dt>
+                  <dd>Git, Linux, Unity, Arduino, Jupyter, Google Colab, Claude Code, GitHub Actions</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact" aria-labelledby="contact-h">
+        <div class="wrap">
+          <div class="section-head">
+            <h2 class="lettered" id="contact-h"><span class="lettered-text">Contact</span></h2>
+            <p class="section-intro">
+              Hiring for autonomy, robotics, or ML? <strong>Email is fastest.</strong> The resume has everything on
+              one page.
+            </p>
+          </div>
+          <ul class="contact-list">
+            <li>
+              <span class="k">Email</span>
+              <a href="mailto:atang302@gatech.edu">atang302@gatech.edu</a>
+              <button class="chip" type="button" data-copy="atang302@gatech.edu">
+                <span class="copy-label">Copy</span>
+              </button>
+            </li>
+            <li>
+              <span class="k">LinkedIn</span>
+              <a href="https://www.linkedin.com/in/alfred-tang-19a467319/" rel="me noopener" target="_blank">linkedin.com/in/alfred-tang</a>
+              <span></span>
+            </li>
+            <li>
+              <span class="k">GitHub</span>
+              <a href="https://github.com/Randemperson" rel="me noopener" target="_blank">github.com/Randemperson</a>
+              <span></span>
+            </li>
+            <li>
+              <span class="k">Resume</span>
+              <a href="assets/Alfred_Tang_Resume.pdf" download>Alfred_Tang_Resume.pdf</a>
+              <span class="k">PDF · 147 KB</span>
+            </li>
+          </ul>
+          <p class="sr-only" role="status" id="copy-status"></p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <span>© 2026 Alfred Tang</span>
+        <span>Set in Martian Mono. Every scene is drawn as text<span id="gridsize"></span>.</span>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </footer>
   </body>
 </html>

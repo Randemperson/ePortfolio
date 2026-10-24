@@ -1,0 +1,107 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "oversized-h1",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/canon.html"
+        ],
+        "createdAt": "2026-10-21T17:06:27.969Z",
+        "reason": "agent: canon.html is the decision-round sketch of the category-standard portfolio, deliberately rendered as the default"
+      },
+      {
+        "rule": "overused-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/canon.html"
+        ],
+        "createdAt": "2026-10-21T17:06:28.138Z",
+        "reason": "agent: canon.html deliberately depicts the category default (Inter) as the standing-exit card"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-21T23:12:17.589Z",
+        "reason": "agent: computed styles show 9-37px padding beside every hairline row divider (figcaption pt 9.36px, .finding pb 37px, .proj-list a 15px); static detector misses the cascade"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "projects.html"
+        ],
+        "createdAt": "2026-10-21T23:12:17.812Z",
+        "reason": "agent: computed styles show 9-37px padding beside every hairline row divider (figcaption pt 9.36px, .finding pb 37px, .proj-list a 15px); static detector misses the cascade"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/assigned.html"
+        ],
+        "createdAt": "2026-10-22T01:12:12.147Z",
+        "reason": "agent: unchosen decision-round sketch; its fonts depict a rejected direction and never ship"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/pick.html"
+        ],
+        "createdAt": "2026-10-22T01:12:12.352Z",
+        "reason": "agent: unchosen decision-round sketch; its fonts depict a rejected direction and never ship"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/canon.html"
+        ],
+        "createdAt": "2026-10-22T01:12:12.550Z",
+        "reason": "agent: unchosen decision-round sketch; its fonts depict a rejected direction and never ship"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgb(0, 0, 0)",
+        "createdAt": "2026-10-22T22:52:32.286Z",
+        "reason": "agent: @media print token overrides in site.css (#000/#333/#888/#bbb/#fff) so printed pages are black on white; never on screen"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgb(136, 136, 136)",
+        "createdAt": "2026-10-22T22:52:32.458Z",
+        "reason": "agent: @media print token overrides in site.css (#000/#333/#888/#bbb/#fff) so printed pages are black on white; never on screen"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgb(187, 187, 187)",
+        "createdAt": "2026-10-22T22:52:32.655Z",
+        "reason": "agent: @media print token overrides in site.css (#000/#333/#888/#bbb/#fff) so printed pages are black on white; never on screen"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgb(255, 255, 255)",
+        "createdAt": "2026-10-22T22:52:32.821Z",
+        "reason": "agent: @media print token overrides in site.css (#000/#333/#888/#bbb/#fff) so printed pages are black on white; never on screen"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgb(51, 51, 51)",
+        "createdAt": "2026-10-22T22:52:32.980Z",
+        "reason": "agent: @media print token overrides in site.css (#000/#333/#888/#bbb/#fff) so printed pages are black on white; never on screen"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgb(230, 230, 230)",
+        "createdAt": "2026-10-24T20:49:49.895Z",
+        "reason": "agent: @media print accent override (#e6e6e6) so printed fills stay light; never on screen"
+      }
+    ]
+  }
+}

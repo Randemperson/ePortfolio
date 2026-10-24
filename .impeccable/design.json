@@ -1,0 +1,445 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-24T12:00:00Z",
+  "title": "Design System: Alfred Tang ePortfolio",
+  "extensions": {
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "Phosphor Amber",
+        "canonical": "#ffb547",
+        "cssVar": "--accent",
+        "tonalRamp": [
+          "#130900",
+          "#341f00",
+          "#583800",
+          "#805300",
+          "#a96f00",
+          "#d58d01",
+          "#ffb547",
+          "#ffebd2"
+        ],
+        "duotone": {
+          "recipe": "img { filter: grayscale(1) contrast(1.3) brightness(1.08); mix-blend-mode: multiply; } over a layer { background: var(--accent); isolation: isolate; }",
+          "purpose": "The only way a real photo is shown before the held color phase: black stays black, white becomes the amber accent."
+        }
+      },
+      "accent-hi": {
+        "role": "primary",
+        "displayName": "Hot Amber",
+        "canonical": "#ffdca6",
+        "cssVar": "--accent-hi",
+        "tonalRamp": [
+          "#120900",
+          "#322000",
+          "#563a00",
+          "#765823",
+          "#977744",
+          "#ba9965",
+          "#e1be89",
+          "#ffdca6"
+        ]
+      },
+      "on-accent": {
+        "role": "neutral",
+        "displayName": "Fill Text",
+        "canonical": "#0d0a06",
+        "cssVar": "--on-accent",
+        "tonalRamp": [
+          "#0d0a06",
+          "#27231e",
+          "#433f39",
+          "#615d57",
+          "#817d76",
+          "#a29e97",
+          "#c8c3bc",
+          "#f2eee7"
+        ]
+      },
+      "glyph": {
+        "role": "primary",
+        "displayName": "Glyph Amber",
+        "canonical": "#ffb547",
+        "cssVar": "--glyph",
+        "tonalRamp": [
+          "#130900",
+          "#341f00",
+          "#583800",
+          "#805300",
+          "#a96f00",
+          "#d58d01",
+          "#ffb547",
+          "#ffebd2"
+        ]
+      },
+      "art": {
+        "role": "neutral",
+        "displayName": "Amber Lettering",
+        "canonical": "#ffb547",
+        "cssVar": "--art",
+        "tonalRamp": [
+          "#130900",
+          "#341f00",
+          "#583800",
+          "#805300",
+          "#a96f00",
+          "#d58d01",
+          "#ffb547",
+          "#ffebd2"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Amber Phosphor",
+        "canonical": "#ffb547",
+        "cssVar": "--ink",
+        "tonalRamp": [
+          "#130900",
+          "#341f00",
+          "#583800",
+          "#805300",
+          "#a96f00",
+          "#d58d01",
+          "#ffb547",
+          "#ffebd2"
+        ]
+      },
+      "ink-hi": {
+        "role": "neutral",
+        "displayName": "Hot Phosphor",
+        "canonical": "#ffdca6",
+        "cssVar": "--ink-hi",
+        "tonalRamp": [
+          "#120900",
+          "#322000",
+          "#563a00",
+          "#765823",
+          "#977744",
+          "#ba9965",
+          "#e1be89",
+          "#ffdca6"
+        ]
+      },
+      "ink-dim": {
+        "role": "neutral",
+        "displayName": "Dim Phosphor",
+        "canonical": "#b5873f",
+        "cssVar": "--ink-dim",
+        "tonalRamp": [
+          "#130900",
+          "#332000",
+          "#573900",
+          "#7d5400",
+          "#a1742a",
+          "#b5873f",
+          "#ebbb73",
+          "#ffebd0"
+        ]
+      },
+      "ground": {
+        "role": "neutral",
+        "displayName": "Warm Near-Black",
+        "canonical": "#0d0a06",
+        "cssVar": "--ground",
+        "tonalRamp": [
+          "#0d0a06",
+          "#27231e",
+          "#433f39",
+          "#615d57",
+          "#817d76",
+          "#a29e97",
+          "#c8c3bc",
+          "#f2eee7"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Dark Amber Rule",
+        "canonical": "#3d2c15",
+        "cssVar": "--rule",
+        "tonalRamp": [
+          "#130900",
+          "#3d2c15",
+          "#4e3c25",
+          "#6d5a42",
+          "#8d7a61",
+          "#af9b81",
+          "#d6c0a5",
+          "#ffebd2"
+        ]
+      },
+      "rule-strong": {
+        "role": "neutral",
+        "displayName": "Bright Amber Rule",
+        "canonical": "#6b4d22",
+        "cssVar": "--rule-strong",
+        "tonalRamp": [
+          "#130900",
+          "#341f00",
+          "#56390b",
+          "#6b4d22",
+          "#97774c",
+          "#b9986c",
+          "#e0be91",
+          "#ffebd2"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Glyph-art Display",
+        "purpose": "Name and section/project headings, sampled from Martian Mono 800 letterforms and rendered as dense character fields (cssVar --fs-art). Real text stays visually hidden."
+      },
+      "scene": {
+        "displayName": "Scene Grid",
+        "purpose": "Character grid of live glyph figures (cssVar --fs-scene); ligatures and kerning off."
+      },
+      "scene-card": {
+        "displayName": "Card Scene Grid",
+        "purpose": "Smaller cell for live glyph scenes inside a project card media slot."
+      },
+      "scene-photo": {
+        "displayName": "Photo Grid",
+        "purpose": "Finest cell for glyph photos (cards and photo strips), sampled through the shared renderer with 2nd-98th percentile auto-levels and gamma 0.9."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Lab names, column heads, list names, wordmark, button labels: body size, 700, uppercase, tracked."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All prose (cssVar --fs, --lh); tabular numerals; 52-64ch measure."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Captions, metadata keys, chips, bar-chart labels, footer (cssVar --fs-small)."
+      }
+    },
+    "glyphRamps": [
+      {
+        "name": "classic",
+        "value": " .:-=+*#%@",
+        "purpose": "Default density ramp; densest glyph is the highlight."
+      },
+      {
+        "name": "dots",
+        "value": " .·:•",
+        "purpose": "Alternate soft ramp, user-selectable."
+      },
+      {
+        "name": "fine",
+        "value": " .'`^\",:;Il!i><~+_-?][}{1)(|/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$",
+        "purpose": "Alternate high-resolution ramp, user-selectable."
+      }
+    ],
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Button wipe, press scale, page view transition."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "purpose": "Declared for symmetric moves."
+      },
+      {
+        "name": "button-wipe",
+        "value": "clip-path 200ms in / 150ms out",
+        "purpose": "Inverse label wipes across a button on hover (fine pointers)."
+      },
+      {
+        "name": "press",
+        "value": "scale(0.97) over 160ms",
+        "purpose": "Active feedback on buttons and chips."
+      },
+      {
+        "name": "state-swap",
+        "value": "background-color, color 120ms ease",
+        "purpose": "Nav, chip, and list-row inversion."
+      },
+      {
+        "name": "develop",
+        "value": "~1000ms per-cell ramp climb, once on view",
+        "purpose": "Glyph-art headings and figures resolve up the ramp."
+      },
+      {
+        "name": "bar-grow",
+        "value": "900ms, 90ms stagger",
+        "purpose": "Glyph bar charts grow when half visible."
+      },
+      {
+        "name": "scene-rate",
+        "value": "30fps, paused offscreen and when hidden",
+        "purpose": "Live glyph scenes."
+      },
+      {
+        "name": "view-transition",
+        "value": "220ms ease-out",
+        "purpose": "Cross-page navigation; header persists."
+      },
+      {
+        "name": "photo-reveal",
+        "value": "clip-path inset(0 100% 0 0) -> inset(0); 320ms in / 200ms out, ease-out; instant under reduced motion",
+        "purpose": "One-ink duotone photo wipes in from the left over its glyph photo on hover (fine pointers), focus-within, or on touch while crossing the middle of the viewport (IntersectionObserver rootMargin -38% top and bottom)."
+      },
+      {
+        "name": "card-frame",
+        "value": "border-color 150ms ease",
+        "purpose": "Project card frame steps from rule to ink on hover or focus-within; WRITE-UP cue brightens dim to ink alongside."
+      },
+      {
+        "name": "slot-develop",
+        "value": "900ms develop, 90ms stagger, once at 25% visible",
+        "purpose": "Card and photo media slots develop up the ramp as they enter view."
+      },
+      {
+        "name": "photo-color-phase",
+        "property": "opacity, filter",
+        "from": "opacity 0; filter: saturate(0.2) sepia(0.5)",
+        "to": "opacity 1; filter: none",
+        "in": "650ms opacity / 900ms filter, ease, 260ms delay (after the wipe lands)",
+        "out": "150ms ease, no delay",
+        "reducedMotion": "200ms fade, no delay",
+        "note": "Full-color aria-hidden twin of the duotone image; the held reveal is the only place a photo shows its own colors."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "stack",
+        "value": "1080px",
+        "purpose": "Two-column grids stack; write-up scene unsticks; About and project cards drop to two columns."
+      },
+      {
+        "name": "phone",
+        "value": "760px"
+      },
+      {
+        "name": "cards-1",
+        "value": "640px",
+        "purpose": "Project cards and photo strips go to one column."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Bracketed solid-accent cell in an ink frame for the single main action (resume download); hover wipes to accent-hi.",
+      "html": "<a class=\"ds-btn ds-btn--primary\" href=\"#\">Download resume ↓<span class=\"ds-btn-fill\" aria-hidden=\"true\">Download resume ↓</span></a>",
+      "css": ".ds-btn { --pad: 1ch; position: relative; display: inline-flex; align-items: center; min-height: 44px; padding: 0.5em var(--pad); font-family: var(--font, 'Martian Mono', ui-monospace, monospace); font-size: var(--fs, 14px); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; text-decoration: none; white-space: nowrap; color: var(--ink, #ffb547); border: 1px solid var(--ink, #ffb547); border-radius: 0; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn::before, .ds-btn-fill::before { content: '['; margin-right: var(--pad); } .ds-btn::after, .ds-btn-fill::after { content: ']'; margin-left: var(--pad); } .ds-btn-fill { position: absolute; inset: -1px; display: flex; align-items: center; padding-inline: calc(var(--pad) + 1px); background: var(--accent, #ffb547); color: var(--on-accent, #0d0a06); clip-path: inset(0 100% 0 0); transition: clip-path 150ms cubic-bezier(0.23, 1, 0.32, 1); pointer-events: none; } .ds-btn--primary { background: var(--accent, #ffb547); color: var(--on-accent, #0d0a06); } .ds-btn--primary .ds-btn-fill { background: var(--accent-hi, #ffdca6); } .ds-btn:hover .ds-btn-fill { clip-path: inset(0 0 0 0); transition-duration: 200ms; } .ds-btn:active { transform: scale(0.97); } .ds-btn:focus-visible { outline: 2px solid var(--ink-hi, #ffdca6); outline-offset: 3px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Bracketed ink-framed cell for secondary actions (email); hover wipes to an accent fill.",
+      "html": "<a class=\"ds-btn-o\" href=\"#\">Email me<span class=\"ds-btn-o-fill\" aria-hidden=\"true\">Email me</span></a>",
+      "css": ".ds-btn-o { --pad: 1ch; position: relative; display: inline-flex; align-items: center; min-height: 44px; padding: 0.5em var(--pad); font-family: var(--font, 'Martian Mono', ui-monospace, monospace); font-size: var(--fs, 14px); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; text-decoration: none; white-space: nowrap; color: var(--ink, #ffb547); background: var(--ground, #0d0a06); border: 1px solid var(--ink, #ffb547); border-radius: 0; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn-o::before, .ds-btn-o-fill::before { content: '['; margin-right: var(--pad); } .ds-btn-o::after, .ds-btn-o-fill::after { content: ']'; margin-left: var(--pad); } .ds-btn-o-fill { position: absolute; inset: -1px; display: flex; align-items: center; padding-inline: calc(var(--pad) + 1px); background: var(--accent, #ffb547); color: var(--on-accent, #0d0a06); clip-path: inset(0 100% 0 0); transition: clip-path 150ms cubic-bezier(0.23, 1, 0.32, 1); pointer-events: none; } .ds-btn-o:hover .ds-btn-o-fill { clip-path: inset(0 0 0 0); transition-duration: 200ms; } .ds-btn-o:active { transform: scale(0.97); } .ds-btn-o:focus-visible { outline: 2px solid var(--ink-hi, #ffdca6); outline-offset: 3px; }"
+    },
+    {
+      "name": "Toggle Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Text-only bracketed toggle for scene controls and the glyph ramp switcher; pressed state fills with accent.",
+      "html": "<button class=\"ds-chip\" type=\"button\" aria-pressed=\"true\">.:=#@</button> <button class=\"ds-chip\" type=\"button\" aria-pressed=\"false\">fine</button>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; min-height: 32px; padding: 0 0.5ch; font-family: var(--font, 'Martian Mono', ui-monospace, monospace); font-size: var(--fs-small, 12px); text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-dim, #b5873f); background: none; border: 0; border-radius: 0; cursor: pointer; transition: background-color 120ms ease, color 120ms ease, transform 160ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-chip::before { content: '['; margin-right: 0.5ch; } .ds-chip::after { content: ']'; margin-left: 0.5ch; } .ds-chip[aria-pressed='true'] { background: var(--accent, #ffb547); color: var(--on-accent, #0d0a06); } .ds-chip:hover:not([aria-pressed='true']) { color: var(--ink, #ffb547); } .ds-chip:active { transform: scale(0.97); } .ds-chip:focus-visible { outline: 2px solid var(--ink-hi, #ffdca6); outline-offset: 3px; }"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Sticky ground-colored header with a bottom rule; dim uppercase links, current page marked with > and full ink; hover fills with accent.",
+      "html": "<header class=\"ds-top\"><a class=\"ds-mark\" href=\"#\">Alfred Tang</a><nav class=\"ds-nav\"><a href=\"#\">Research</a><a href=\"#\" aria-current=\"page\">Projects</a><a href=\"#\">About</a><a href=\"#\">Contact</a></nav></header>",
+      "css": ".ds-top { display: flex; align-items: center; gap: 3ch; min-height: 3.3em; padding-inline: 2ch; background: var(--ground, #0d0a06); border-bottom: 1px solid var(--rule, #3d2c15); font-family: var(--font, 'Martian Mono', ui-monospace, monospace); font-size: var(--fs, 14px); color: var(--ink, #ffb547); } .ds-mark { font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: inherit; } .ds-nav { display: flex; gap: 3ch; margin-left: auto; } .ds-nav a { text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-dim, #b5873f); padding: 0.15em 0.5ch; margin: -0.15em -0.5ch; transition: background-color 120ms ease, color 120ms ease; } .ds-nav a[aria-current='page'] { color: var(--ink, #ffb547); } .ds-nav a[aria-current='page']::before { content: '>'; margin-right: 0.5ch; } .ds-nav a:hover, .ds-nav a:active { background: var(--accent, #ffb547); color: var(--on-accent, #0d0a06); } .ds-nav a:focus-visible { outline: 2px solid var(--ink-hi, #ffdca6); outline-offset: 3px; }"
+    },
+    {
+      "name": "Glyph Figure",
+      "kind": "custom",
+      "description": "Signature live scene: a character grid between hairlines with a caps-led caption, readout, and controls.",
+      "html": "<figure class=\"ds-fig\"><pre class=\"ds-glyph\" aria-hidden=\"true\">      .:-=+*#%@@%#*+=-:.      \n   ---====[@]====---  &gt;&gt;   \n      .:-=+*#%@@%#*+=-:.      </pre><figcaption><span><b>Fig. 1</b> On-ramp merge. Illustrative.</span><span class=\"ds-ctl\"><button class=\"ds-c\" aria-pressed=\"false\">Pause</button></span></figcaption></figure>",
+      "css": ".ds-fig { margin: 0; border: 1px solid var(--rule, #3d2c15); background: var(--ground, #0d0a06); font-family: var(--font, 'Martian Mono', ui-monospace, monospace); color: var(--ink, #ffb547); } .ds-glyph { margin: 0; padding-block: 0.5em; font-family: inherit; font-size: var(--fs-scene, 11px); line-height: 1; white-space: pre; overflow: hidden; font-variant-ligatures: none; font-kerning: none; color: var(--glyph, #ffb547); } .ds-fig figcaption { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5em 3ch; padding: 0.75em 1.5ch; border-top: 1px solid var(--rule, #3d2c15); font-size: var(--fs-small, 12px); color: var(--ink-dim, #b5873f); } .ds-fig figcaption b { color: var(--ink, #ffb547); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; } .ds-ctl { margin-left: auto; } .ds-c { font: inherit; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-dim, #b5873f); background: none; border: 0; padding: 0 0.5ch; cursor: pointer; } .ds-c::before { content: '['; margin-right: 0.5ch; } .ds-c::after { content: ']'; margin-left: 0.5ch; } .ds-c:hover { color: var(--ink, #ffb547); } .ds-c:focus-visible { outline: 2px solid var(--ink-hi, #ffdca6); outline-offset: 3px; }"
+    },
+    {
+      "name": "Glyph Bar Chart",
+      "kind": "custom",
+      "description": "Measured results drawn as ramp glyphs: densest glyph for the highlight, a mid glyph for baselines.",
+      "html": "<div class=\"ds-bars\"><div class=\"ds-bar\"><span class=\"l\">serial</span><span class=\"t\" aria-hidden=\"true\">++++++++++++++++++++++++</span><span class=\"v\">5:00</span></div><div class=\"ds-bar\"><span class=\"l\">8 workers</span><span class=\"t\" aria-hidden=\"true\">@@@@.....................</span><span class=\"v\">0:45</span></div><p class=\"n\">Batch wall-clock time. <b>6.7× faster.</b></p></div>",
+      "css": ".ds-bars { display: grid; gap: 0.6em; font-family: var(--font, 'Martian Mono', ui-monospace, monospace); font-size: var(--fs-small, 12px); color: var(--ink, #ffb547); font-variant-numeric: tabular-nums; } .ds-bar { display: grid; grid-template-columns: 14ch minmax(0, 1fr) 9ch; gap: 1.5ch; align-items: baseline; } .ds-bar .l { color: var(--ink-dim, #b5873f); } .ds-bar .t { white-space: pre; overflow: hidden; line-height: 1.2; color: var(--glyph, #ffb547); } .ds-bar .v { text-align: right; font-weight: 700; } .ds-bars .n { margin: 0; color: var(--ink-dim, #b5873f); } .ds-bars .n b { color: var(--ink, #ffb547); }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Landing-page project index cell: 1px rule frame that steps to ink on hover or focus, a 16:10 media slot holding a glyph photo (revealed as a one-ink duotone) or a live glyph scene, then title, meta, description, bracketed tags, and a dashed-rule footer.",
+      "html": "<ul class=\"ds-cards\"><li class=\"ds-card\"><div class=\"ds-card-media\"><pre class=\"ds-card-glyph\" aria-hidden=\"true\">   .        .:-=+*#%@@%#*+=-:.       \n  .:.     .=*#%@@@@@@@@@%#*=.      \n .:-:.   :*%@@#*+==+*#@@@%*:   .   \n  .:.   .+%@#=:.    .:=#@@%+.      \n        .=#@%*=-:::-=*%@@#=.  .:.  \n          .=*#%%%%%%%#*=.     .    </pre></div><div class=\"ds-card-body\"><h3 class=\"ds-card-title\"><a href=\"#\">Brain3D</a></h3><p class=\"ds-card-meta\"><b>1st Place, Spatial Design</b> · ImmerseGT · Apr 2026</p><p class=\"ds-card-desc\">AR tetromino game for Snap Spectacles with hand tracking and real-time physics.</p><ul class=\"ds-card-tags\"><li>TypeScript</li><li>Lens Studio</li></ul><p class=\"ds-card-links\"><span class=\"ds-card-cta\" aria-hidden=\"true\">Write-up -&gt;</span><a class=\"ds-card-live\" href=\"#\">Live site -&gt;</a></p></div></li></ul>",
+      "css": ".ds-cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 30ch), 1fr)); gap: 2.5em 3ch; font-family: var(--font, 'Martian Mono', ui-monospace, monospace); font-size: var(--fs, 14px); line-height: 1.65; color: var(--ink, #ffb547); } .ds-card { position: relative; display: flex; flex-direction: column; border: 1px solid var(--rule, #3d2c15); border-radius: 0; background: var(--ground, #0d0a06); transition: border-color 150ms ease; } .ds-card:hover, .ds-card:focus-within { border-color: var(--ink, #ffb547); } .ds-card-media { position: relative; overflow: hidden; aspect-ratio: 16 / 10; border-bottom: 1px solid var(--rule, #3d2c15); } .ds-card-glyph { margin: 0; padding: 0.5em 1ch; font-family: inherit; font-size: clamp(7.5px, 0.2vw + 5.6px, 9px); line-height: 1; white-space: pre; overflow: hidden; font-variant-ligatures: none; font-kerning: none; color: var(--glyph, #ffb547); } .ds-card-photo { position: absolute; inset: 0; background: var(--accent, #ffb547); isolation: isolate; clip-path: inset(0 100% 0 0); transition: clip-path 200ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-card-photo img { display: block; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.3) brightness(1.08); mix-blend-mode: multiply; } .ds-card:hover .ds-card-photo, .ds-card:focus-within .ds-card-photo { clip-path: inset(0 0 0 0); transition-duration: 320ms; } .ds-card-body { display: grid; grid-template-rows: auto auto 1fr auto auto; gap: 0.6em; flex: 1; padding: 1em 1.5ch 1.1em; } .ds-card-body p, .ds-card-title { margin: 0; } .ds-card-title { font-size: inherit; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; } .ds-card-title a { color: inherit; text-decoration: none; } .ds-card-title a::after { content: ''; position: absolute; inset: 0; z-index: 1; } .ds-card-title a:focus-visible { outline: none; } .ds-card:has(.ds-card-title a:focus-visible) { outline: 2px solid var(--ink-hi, #ffdca6); outline-offset: 3px; } .ds-card-meta { font-size: var(--fs-small, 12px); color: var(--ink-dim, #b5873f); } .ds-card-meta b { color: var(--ink, #ffb547); } .ds-card-desc { color: var(--ink-dim, #b5873f); } .ds-card-tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.2em 1.5ch; font-size: var(--fs-small, 12px); color: var(--ink-dim, #b5873f); } .ds-card-tags li::before { content: '['; margin-right: 0.5ch; } .ds-card-tags li::after { content: ']'; margin-left: 0.5ch; } .ds-card-links { display: flex; justify-content: space-between; gap: 2ch; padding-top: 0.6em; border-top: 1px dashed var(--rule, #3d2c15); font-size: var(--fs-small, 12px); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; } .ds-card-cta { color: var(--ink-dim, #b5873f); transition: color 150ms ease; } .ds-card:hover .ds-card-cta, .ds-card:focus-within .ds-card-cta { color: var(--ink, #ffb547); } .ds-card-live { position: relative; z-index: 2; color: var(--ink, #ffb547); text-decoration-color: var(--rule-strong, #6b4d22); } .ds-card-live:focus-visible { outline: 2px solid var(--ink-hi, #ffdca6); outline-offset: 3px; } @media (prefers-reduced-motion: reduce) { .ds-card-photo { transition: none; } }"
+    },
+    {
+      "name": "Data Card",
+      "kind": "card",
+      "description": "Preformatted ASCII diagram in a dashed bright-rule frame; dim text with bold ink highlights.",
+      "html": "<pre class=\"ds-datacard\"><b>scenario.json</b>   (shape, illustrative)\n{ \"seed\": …, \"lanes\": … }\nMATLAB --+\n          +--&gt; same cases --&gt; diff --&gt; <b>n+1 bound bug</b>\nPython --+</pre>",
+      "css": ".ds-datacard { margin: 0; font-family: var(--font, 'Martian Mono', ui-monospace, monospace); font-size: var(--fs-small, 12px); line-height: 1.5; white-space: pre; overflow-x: auto; padding: 1em 2ch; border: 1px dashed var(--rule-strong, #6b4d22); border-radius: 0; color: var(--ink-dim, #b5873f); background: var(--ground, #0d0a06); } .ds-datacard b { color: var(--ink, #ffb547); font-weight: 700; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Phosphor Terminal Lab Bench",
+    "overview": "Everything on the page is set in one monospace face, on one character grid, in one amber ink over a warm near-black ground: text, glyphs, art, and fills are all the same amber, stepped by luminance (dim, ink, hot) and by inverse video. Pictures start as glyphs: every figure, from the highway merge to the random forest, is a live scene drawn to an offscreen canvas and written back as real, selectable characters chosen from a density ramp, and every project photograph is sampled through the same renderer. The real photo appears only on demand: first as a one-ink amber duotone, then, while it is held, warming into its own colors. Tone comes from glyph density, never from a second color. The densest glyph (`@`) is the highlight, which is why the ego car, the status mark, and the favicon all wear it.\n\nDisplay type is glyph-art: section names are sampled from heavy Martian Mono letterforms and re-rendered as dense character fields that \"develop\" up the ramp once when scrolled into view. Structure comes from 1px rules in a dark amber, caps captions, and bracketed controls that fill with solid amber. Density is high and editorial: wide two-column grids, long measured lines, numbers drawn as glyph bar charts beside their prose.\n\nThe system is flat, square, and single-hue. It has no glow, no gradients, no shadows, no rounded corners, and no second accent. Inverse video (an amber accent fill with near-black text) is the only emphasis a surface can take.",
+    "keyCharacteristics": [
+      "One amber ink over a warm near-black ground: text, glyphs, art, and fills share one amber, stepped by luminance (dim, ink, hot) and by inverse video (amber fill, near-black text).",
+      "One typeface (Martian Mono 400/700/800) on one character grid; tabular numerals everywhere.",
+      "Figures are live glyph scenes, aria-hidden, captioned, pausable.",
+      "Photographs arrive as glyphs, reveal as a one-ink duotone (black stays black, white becomes amber), then phase into their original color while held.",
+      "Headings are glyph-art lettering with a hidden real-text twin.",
+      "Controls are bracketed cells: `[ LABEL ]`; hover and pressed states are inverse video (an amber fill).",
+      "1px hairlines frame panels; dashed hairlines separate items inside a panel."
+    ],
+    "rules": [
+      {
+        "name": "The One Ink Rule",
+        "body": "Every color on screen is the one amber ink or the ground. Text, glyphs, lettering, and fills share one amber, stepped two ways: by luminance (ink-dim, ink, ink-hi) and by inverse video (an accent fill carrying on-accent text, wiping to accent-hi on hover). The roles (ink, glyph, art, accent) are separate tokens that currently share one value. A new state moves along those steps or fills its cell with accent, never adds a hue. A photo first appears as a duotone: the image is made grayscale (contrast 1.3, brightness 1.08) and multiplied onto an accent layer (#ffb547), so black stays black and white becomes amber. The one sanctioned exception is the held reveal, where a photograph is allowed its own colors: they are the reward for pointing at the work, so they never appear at rest, in chrome, or anywhere but inside a photo slot.",
+        "section": "colors"
+      },
+      {
+        "name": "The Density Is Tone Rule",
+        "body": "Inside a glyph scene, brightness is chosen glyph, not color. Scenes draw in white luminance on a black canvas and the renderer maps it onto the ramp; the text itself is always the glyph amber. Photos take the same path, auto-levelled from their 2nd to 98th luminance percentiles with gamma 0.9 before the ramp. Every glyph field sits on its own compositing layer (`transform: translateZ(0)`) so it is smoothed in grayscale; ClearType's colored subpixels would otherwise fringe a one-ink image with red and green.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Face Rule",
+        "body": "Martian Mono only. Weight, case, and luminance carry hierarchy; a new role never introduces a new family.",
+        "section": "typography"
+      },
+      {
+        "name": "The Real Text Rule",
+        "body": "Glyph-art headings keep the true heading text in the DOM (visually hidden) and render the art aria-hidden. Scenes are aria-hidden with a written caption.",
+        "section": "typography"
+      },
+      {
+        "name": "The Hairline Not Shadow Rule",
+        "body": "Anything that needs to read as a separate object gets a 1px rule or a full 1px frame in the rule color. Nothing floats.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** express every new state by stepping the amber's luminance (dim, ink, hot) or by filling the cell with accent and on-accent text.",
+      "**Do** draw new figures as glyph scenes through the shared renderer: luminance on canvas, characters on screen, aria-hidden, captioned with a figure number and \"illustrative\" when authored.",
+      "**Do** show a real photograph as a glyph photo first, revealing it as the one-ink duotone and letting its own colors return only while it is held.",
+      "**Do** give every moving scene a pause chip and respect reduced motion (start paused, no develop, no wipes).",
+      "**Do** set new headings as glyph-art lettering with the real text kept visually hidden.",
+      "**Do** wrap controls in brackets and keep them square with a 44px target for buttons.",
+      "**Do** space vertically in multiples of the body line and horizontally in `ch`.",
+      "**Do** separate objects with 1px rules: solid between panels and rows, dashed within a panel."
+    ],
+    "donts": [
+      "**Don't** add a second hue, a gradient, a glow, or a shadow.",
+      "**Don't** show a photograph in its own colors at rest, or let photo color leak into anything outside a photo slot.",
+      "**Don't** round corners on page elements.",
+      "**Don't** introduce a second typeface or a system display face; Martian Mono carries every role.",
+      "**Don't** let a decorative glyph run as text for assistive tech: scenes and glyph-art stay aria-hidden."
+    ]
+  }
+}
