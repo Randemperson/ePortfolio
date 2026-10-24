@@ -34,11 +34,12 @@
 }
 
 /* ------------------------------------------------------------------ light mode
-   White paper, blue-black ink, amber titles and highlighter. The head script sets
-   data-theme from a saved choice or the system setting before first paint; the media
-   query only matters if scripts are off. */
+   White paper, blue-black ink, amber titles and highlighter. Light is the default: the
+   head script sets data-theme before first paint (a saved choice, else light), and the
+   :not([data-theme]) selector keeps it light if scripts are off. Dark is opt-in. */
 
-:root[data-theme='light'] {
+:root[data-theme='light'],
+:root:not([data-theme]) {
   color-scheme: light;
   --ground: #ffffff;
   --rule: #e4e7ee;
@@ -53,25 +54,6 @@
   --accent-hi: #ffd08a;
   --duo: #ffb547;
   --photo-invert: 1;
-}
-
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme]) {
-  color-scheme: light;
-  --ground: #ffffff;
-  --rule: #e4e7ee;
-  --rule-strong: #a3abbd;
-  --ink: #172036;
-  --ink-hi: #172036;
-  --ink-dim: #56607a;
-  --glyph: #172036;
-  --art: #ffb547;
-  --accent: #ffb547;
-  --on-accent: #172036;
-  --accent-hi: #ffd08a;
-  --duo: #ffb547;
-  --photo-invert: 1;
-  }
 }
 
 @view-transition {
@@ -1070,8 +1052,7 @@ button {
   }
 }
 
-.card-media,
-.photo-media {
+.card-media {
   position: relative;
   overflow: hidden;
 }
@@ -1085,8 +1066,7 @@ button {
   font-size: clamp(7.5px, 0.2vw + 5.6px, 9px);
 }
 
-.card-media[data-photo] .glyph,
-.photo-media .glyph {
+.card-media[data-photo] .glyph {
   font-size: clamp(4.5px, 0.25vw + 2.6px, 6.5px);
 }
 
@@ -1112,16 +1092,13 @@ button {
 }
 
 .card:focus-within .card-photo,
-.card[data-reveal] .card-photo,
-.photo-media[data-reveal] .card-photo,
-.photo-media:focus-within .card-photo {
+.card[data-reveal] .card-photo {
   clip-path: inset(0 0 0 0);
   transition-duration: 320ms;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .card:hover .card-photo,
-  .photo-media:hover .card-photo {
+  .card:hover .card-photo {
     clip-path: inset(0 0 0 0);
     transition-duration: 320ms;
   }
@@ -1142,10 +1119,7 @@ button {
 }
 
 .card:focus-within .photo-color,
-.card[data-reveal] .photo-color,
-.photo-media[data-reveal] .photo-color,
-.photo-media:focus-within .photo-color,
-.photo-link:focus-visible .photo-color {
+.card[data-reveal] .photo-color {
   opacity: 1;
   filter: none;
   transition:
@@ -1154,8 +1128,7 @@ button {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .card:hover .photo-color,
-  .photo-media:hover .photo-color {
+  .card:hover .photo-color {
     opacity: 1;
     filter: none;
     transition:
@@ -1281,8 +1254,7 @@ button {
   }
 
   /* No wipe, no delay: just a short fade into color. */
-  .card .photo-color,
-  .photo-media .photo-color {
+  .card .photo-color {
     transition-duration: 200ms !important;
     transition-delay: 0ms !important;
   }
@@ -1323,9 +1295,12 @@ button {
   outline-offset: 2px;
 }
 
-.photo-link:focus-visible .card-photo,
-.photo-link:focus-visible .photo-media .card-photo {
-  clip-path: inset(0 0 0 0);
+/* Write-up photos are shown as they are: full color, no reveal. */
+.photo-plain {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 /* Glyph fields are pictures made of type. Giving them their own compositing layer makes
@@ -1357,6 +1332,25 @@ button {
 .theme-switching::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+}
+
+/* The incoming theme shows through a radial mask whose rim feathers out, so the edge of
+   the reveal is a soft wash instead of a line. theme.js grows the mask from the toggle. */
+.theme-switching::view-transition-new(root) {
+  -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-size: 0 0;
+}
+
+/* Browsers without View Transitions: a short color crossfade instead of a jump. */
+.theme-fade,
+.theme-fade * {
+  transition:
+    background-color 350ms ease,
+    color 350ms ease,
+    border-color 350ms ease !important;
 }
 
 /* ------------------------------------------------------------------ light mode details */
@@ -1391,10 +1385,7 @@ button {
 }
 
 :root[data-theme='light'] .card:focus-within .card-photo,
-:root[data-theme='light'] .card[data-reveal] .card-photo,
-:root[data-theme='light'] .photo-media[data-reveal] .card-photo,
-:root[data-theme='light'] .photo-media:focus-within .card-photo,
-:root[data-theme='light'] .photo-link:focus-visible .card-photo {
+:root[data-theme='light'] .card[data-reveal] .card-photo {
   opacity: 1;
   filter: blur(0);
   transition:
@@ -1403,8 +1394,7 @@ button {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  :root[data-theme='light'] .card:hover .card-photo,
-  :root[data-theme='light'] .photo-media:hover .card-photo {
+  :root[data-theme='light'] .card:hover .card-photo {
     opacity: 1;
     filter: blur(0);
     transition:

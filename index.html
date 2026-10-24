@@ -8,7 +8,7 @@
       name="description"
       content="Alfred Tang, Computer Engineering at Georgia Tech. Undergraduate researcher building motion planners, behavior prediction, and safety filters for autonomous driving."
     />
-    <meta name="theme-color" content="#0d0a06" />
+    <meta name="theme-color" content="#ffffff" />
     <meta name="color-scheme" content="dark" />
     <meta property="og:title" content="Alfred Tang · Autonomy & Robotics" />
     <meta
@@ -25,14 +25,13 @@
     />
     <script>
       // Theme before first paint, so there is no flash: ?theme= (testing), else the saved
-      // choice, else the system setting.
+      // choice, else light.
       (() => {
         let t = new URLSearchParams(location.search).get('theme');
         try {
           if (t !== 'light' && t !== 'dark') t = localStorage.getItem('theme');
         } catch {}
-        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        document.documentElement.dataset.theme = t;
+        document.documentElement.dataset.theme = t === 'dark' ? 'dark' : 'light';
       })();
     </script>
     <link rel="stylesheet" href="assets/css/site.css" />

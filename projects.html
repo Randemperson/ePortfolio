@@ -8,7 +8,7 @@
       name="description"
       content="Project write-ups by Alfred Tang: a space-time merge planner, Brain3D (1st place, ImmerseGT Spatial Design), a CV-controlled robotic gripper, the Movies Store Django app, the C.H.E.S.S. Unity strategy game, and an ML classification workflow."
     />
-    <meta name="theme-color" content="#0d0a06" />
+    <meta name="theme-color" content="#ffffff" />
     <meta name="color-scheme" content="dark" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,14 +19,13 @@
     />
     <script>
       // Theme before first paint, so there is no flash: ?theme= (testing), else the saved
-      // choice, else the system setting.
+      // choice, else light.
       (() => {
         let t = new URLSearchParams(location.search).get('theme');
         try {
           if (t !== 'light' && t !== 'dark') t = localStorage.getItem('theme');
         } catch {}
-        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        document.documentElement.dataset.theme = t;
+        document.documentElement.dataset.theme = t === 'dark' ? 'dark' : 'light';
       })();
     </script>
     <link rel="stylesheet" href="assets/css/site.css" />
@@ -163,10 +162,8 @@
             <div class="photos" style="--cols: 1">
               <figure>
                 <a class="photo-link" href="assets/img/brain3d-gameplay.jpg" target="_blank" rel="noopener">
-                  <div class="photo-media" data-photo="assets/img/brain3d-gameplay.jpg" data-ratio="1.6" data-focus="0.5 0.45">
-                    <pre class="glyph"></pre>
-                    <div class="card-photo"><img src="assets/img/brain3d-gameplay.jpg" width="1200" height="772" loading="lazy" decoding="async" alt="In-headset view through Snap Spectacles: colored tetromino blocks stacked above a 5×5 grid playfield in a hallway" /></div>
-                  </div>
+                  <img class="photo-plain" src="assets/img/brain3d-gameplay.jpg" width="1200" height="772" loading="lazy" decoding="async"
+                    style="aspect-ratio: 1.6; object-position: 50% 45%" alt="In-headset view through Snap Spectacles: colored tetromino blocks stacked above a 5×5 grid playfield in a hallway" />
                 </a>
                 <figcaption>In-headset view: tetrominoes falling onto the generated 5×5 playfield.</figcaption>
               </figure>
@@ -213,28 +210,22 @@
             <div class="photos" style="--cols: 3">
               <figure>
                 <a class="photo-link" href="assets/img/gripper-assembled.jpg" target="_blank" rel="noopener">
-                  <div class="photo-media" data-photo="assets/img/gripper-assembled.jpg" data-ratio="0.75" data-focus="0.5 0.45">
-                    <pre class="glyph"></pre>
-                    <div class="card-photo"><img src="assets/img/gripper-assembled.jpg" width="1000" height="1333" loading="lazy" decoding="async" alt="Assembled gripper finger and servo housing wired to an Arduino Nano on a breadboard" /></div>
-                  </div>
+                  <img class="photo-plain" src="assets/img/gripper-assembled.jpg" width="1000" height="1333" loading="lazy" decoding="async"
+                    style="aspect-ratio: 0.75; object-position: 50% 45%" alt="Assembled gripper finger and servo housing wired to an Arduino Nano on a breadboard" />
                 </a>
                 <figcaption>Finger and servo housing, wired to the Nano.</figcaption>
               </figure>
               <figure>
                 <a class="photo-link" href="assets/img/gripper-segment.jpg" target="_blank" rel="noopener">
-                  <div class="photo-media" data-photo="assets/img/gripper-segment.jpg" data-ratio="0.75" data-focus="0.5 0.5">
-                    <pre class="glyph"></pre>
-                    <div class="card-photo"><img src="assets/img/gripper-segment.jpg" width="1000" height="1333" loading="lazy" decoding="async" alt="A single 3D-printed gripper segment held between two fingers" /></div>
-                  </div>
+                  <img class="photo-plain" src="assets/img/gripper-segment.jpg" width="1000" height="1333" loading="lazy" decoding="async"
+                    style="aspect-ratio: 0.75; object-position: 50% 50%" alt="A single 3D-printed gripper segment held between two fingers" />
                 </a>
                 <figcaption>Checking a printed segment's tolerances.</figcaption>
               </figure>
               <figure>
                 <a class="photo-link" href="assets/img/gripper-curing.jpg" target="_blank" rel="noopener">
-                  <div class="photo-media" data-photo="assets/img/gripper-curing.jpg" data-ratio="0.75" data-focus="0.5 0.4">
-                    <pre class="glyph"></pre>
-                    <div class="card-photo"><img src="assets/img/gripper-curing.jpg" width="1000" height="1333" loading="lazy" decoding="async" alt="Resin parts curing under UV light in a Form Cure station" /></div>
-                  </div>
+                  <img class="photo-plain" src="assets/img/gripper-curing.jpg" width="1000" height="1333" loading="lazy" decoding="async"
+                    style="aspect-ratio: 0.75; object-position: 50% 40%" alt="Resin parts curing under UV light in a Form Cure station" />
                 </a>
                 <figcaption>Curing the resin joints at the Invention Studio.</figcaption>
               </figure>
@@ -289,10 +280,8 @@
             <div class="photos" style="--cols: 1">
               <figure>
                 <a class="photo-link" href="assets/img/movies-about.jpg" target="_blank" rel="noopener">
-                  <div class="photo-media" data-photo="assets/img/movies-about.jpg" data-ratio="1.65" data-focus="0.5 0.3">
-                    <pre class="glyph"></pre>
-                    <div class="card-photo"><img src="assets/img/movies-about.jpg" width="1440" height="872" loading="lazy" decoding="async" alt="Movies Store about page" /></div>
-                  </div>
+                  <img class="photo-plain" src="assets/img/movies-about.jpg" width="1440" height="872" loading="lazy" decoding="async"
+                    style="aspect-ratio: 1.65; object-position: 50% 30%" alt="Movies Store about page" />
                 </a>
                 <figcaption>About page, rendered from the shared base template.</figcaption>
               </figure>
@@ -300,14 +289,11 @@
           </div>
           <figure class="fig">
             <a class="photo-link" href="https://at10507.pythonanywhere.com/" target="_blank" rel="noopener" aria-label="Open the live Movies Store in a new tab">
-                  <div class="photo-media" data-photo="assets/img/movies-home.jpg" data-ratio="2.28" data-focus="0.5 0.5">
-                    <pre class="glyph"></pre>
-                    <div class="card-photo"><img src="assets/img/movies-home.jpg" width="1440" height="630" loading="lazy" decoding="async" alt="Movies Store home page with navigation, hero banner, and footer" /></div>
-                  </div>
+                  <img class="photo-plain" src="assets/img/movies-home.jpg" width="1440" height="630" loading="lazy" decoding="async"
+                    style="aspect-ratio: 2.28; object-position: 50% 50%" alt="Movies Store home page with navigation, hero banner, and footer" />
                 </a>
             <figcaption>
-              <span><b>Fig. 5</b> The live home page, drawn in text. <b>Point at it for the screenshot; select it to
-                open the live site.</b></span>
+              <span><b>Fig. 5</b> The live home page. <b>Select it to open the live site.</b></span>
             </figcaption>
           </figure>
         </article>

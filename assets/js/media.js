@@ -1,5 +1,5 @@
-// Media slots shared by the project cards and the write-ups: a photo drawn as text that
-// gives way to the real (amber duotone) photo, or a live glyph scene.
+// Media slots on the project cards: a photo drawn as text that gives way to the real photo
+// on hover, focus, or (on touch) mid-screen, or a live glyph scene.
 
 import { mountScene, reduceMotion } from './glyph.js';
 import { createPhoto } from './scenes/photo.js';
@@ -47,7 +47,7 @@ const touchIO = new IntersectionObserver(
 const canHover = matchMedia('(hover: hover) and (pointer: fine)');
 
 export function mountMedia(root = document) {
-  for (const slot of root.querySelectorAll('.card-media, .photo-media')) {
+  for (const slot of root.querySelectorAll('.card-media')) {
     const pre = slot.querySelector('.glyph');
     // Slots keep their own shape: 16:10 by default, or the ratio in data-ratio (w/h).
     const ratio = Number(slot.dataset.ratio) || 1.6;
