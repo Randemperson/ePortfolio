@@ -48,7 +48,7 @@
   --ink-hi: #172036;
   --ink-dim: #56607a;
   --glyph: #172036;
-  --art: #ffb547;
+  --art: #cc7a00; /* amber's own hue, deepened to 3.3:1 on white for the large titles */
   --accent: #ffb547;
   --on-accent: #172036;
   --accent-hi: #ffd08a;

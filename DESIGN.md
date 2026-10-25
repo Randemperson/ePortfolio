@@ -20,7 +20,7 @@ colors:
   light-ink-hi: "#172036"
   light-ink-dim: "#56607a"
   light-glyph: "#172036"
-  light-art: "#ffb547"
+  light-art: "#cc7a00"
   light-accent: "#ffb547"
   light-accent-hi: "#ffd08a"
   light-on-accent: "#172036"
@@ -189,7 +189,7 @@ White paper, blue-black ink, amber titles and highlighter. Same roles, same plac
 - **Paper White** (light-ground): the page, the sticky header, card and figure fills, and the browser theme-color.
 - **Blue-Black Ink** (light-ink, light-ink-hi, light-glyph): body text, titles, the focus ring, glyph scenes, glyph photos, and bar-chart tracks. 16.2:1 on white. The hot step collapses into ink on Paper: emphasis in prose comes from the highlighter, not a brighter ink.
 - **Slate Dim** (light-ink-dim): secondary text, nav links and chips at rest, captions, metadata. 6.3:1 on white.
-- **Amber Lettering** (light-art): glyph-art headings and the hero name stay amber. At 1.8:1 on white they read as pale; this is the user's explicit choice. The lettering is decorative (aria-hidden, the real heading text visually hidden), so no reading depends on it.
+- **Deep Amber Lettering** (light-art, #cc7a00): glyph-art headings and the hero name. It is amber's own hue (36°) deepened from #ffb547 so the large lettering reaches 3.3:1 on white, above the 3:1 large-text floor. The lettering is decorative (aria-hidden, the real heading text visually hidden), so no reading depends on it; buttons, pressed chips, and the highlighter keep the lighter #ffb547.
 - **Phosphor Amber** (light-accent) and **Warm Highlight** (light-accent-hi): the same fills as Screen (primary button, pressed chips, nav hover, selection, skip link), with the primary hover wipe on the lighter amber. Text on them is blue-black (light-on-accent): 9.2:1 on accent, 11.3:1 on accent-hi.
 - **Highlighter Amber** (light-highlighter): the hero lede's `<strong>` carries a translucent amber band across its lower 0.45em (an inset box-shadow, cloned across line breaks), because amber cannot carry text on white.
 - **Pale Rule** (light-rule) and **Slate Rule** (light-rule-strong): hairlines (1.2:1, decorative) and link underlines, data-card frames, the scrollbar thumb (2.3:1).

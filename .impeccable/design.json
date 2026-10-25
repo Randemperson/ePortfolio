@@ -289,7 +289,7 @@
       "light-art": {
         "role": "neutral",
         "displayName": "Amber Lettering",
-        "canonical": "#ffb547",
+        "canonical": "#cc7a00",
         "cssVar": "--art",
         "mode": "light",
         "tonalRamp": [
@@ -302,7 +302,7 @@
           "#febb5d",
           "#feebd4"
         ],
-        "contrast": "1.8:1 on white; decorative (aria-hidden, real heading text visually hidden); the user's explicit choice."
+        "contrast": "3.3:1 on white; decorative (aria-hidden, real heading text visually hidden); the user's explicit choice."
       },
       "light-accent": {
         "role": "primary",
@@ -607,7 +607,7 @@
           "ink-hi": "#ffdca6",
           "ink-dim": "#b5873f",
           "glyph": "#ffb547",
-          "art": "#ffb547",
+          "art": "#cc7a00",
           "accent": "#ffb547",
           "on-accent": "#0d0a06",
           "accent-hi": "#ffdca6",
@@ -628,7 +628,7 @@
           "ink-hi": "#172036",
           "ink-dim": "#56607a",
           "glyph": "#172036",
-          "art": "#ffb547",
+          "art": "#cc7a00",
           "accent": "#ffb547",
           "on-accent": "#172036",
           "accent-hi": "#ffd08a",
@@ -642,7 +642,7 @@
           "ink-dim on ground": "6.3:1",
           "on-accent on accent": "9.2:1",
           "on-accent on accent-hi": "11.3:1",
-          "art on ground": "1.8:1 (decorative lettering; user's explicit choice)",
+          "art on ground": "3.3:1 (decorative lettering; user's explicit choice)",
           "rule-strong on ground": "2.3:1",
           "rule on ground": "1.2:1 (decorative)"
         }
