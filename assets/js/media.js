@@ -85,3 +85,48 @@ export function mountMedia(root = document) {
     }
   }
 }
+
+// Fetch a clip as it nears the screen, so the first hover starts at once.
+const preloadIO = new IntersectionObserver(
+  (entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      preloadIO.unobserve(e.target);
+      e.target.preload = 'auto';
+    }
+  },
+  { rootMargin: '300px 0px' }
+);
+
+// Gameplay clips in the write-ups: a still frame that plays on a loop while hovered or
+// keyboard-focused; touch screens tap to toggle. With reduced motion a clip never starts on
+// its own and gets the browser's controls instead.
+export function mountClips(root = document) {
+  for (const video of root.querySelectorAll('video[data-hover-play]')) {
+    const frame = video.parentElement;
+    const hint = frame.querySelector('.video-hint');
+    if (reduceMotion.matches) {
+      video.controls = true;
+      hint?.remove();
+      continue;
+    }
+    if (hint && !canHover.matches) hint.textContent = 'Tap to play';
+    video.tabIndex = 0;
+    preloadIO.observe(video);
+
+    const play = () => {
+      frame.toggleAttribute('data-playing', true);
+      video.play().catch(() => frame.removeAttribute('data-playing'));
+    };
+    const stop = () => {
+      video.pause();
+      frame.removeAttribute('data-playing');
+    };
+    video.addEventListener('pointerenter', (e) => e.pointerType === 'mouse' && play());
+    video.addEventListener('pointerleave', (e) => e.pointerType === 'mouse' && stop());
+    // Only keyboard focus plays it; a mouse click focuses too, and that is the click's job.
+    video.addEventListener('focus', () => video.matches(':focus-visible') && play());
+    video.addEventListener('blur', stop);
+    video.addEventListener('click', () => (video.paused ? play() : stop()));
+  }
+}

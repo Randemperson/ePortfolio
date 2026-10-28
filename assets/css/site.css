@@ -1303,6 +1303,55 @@ button {
   object-fit: cover;
 }
 
+/* A gameplay clip in a write-up: a still frame until hovered, focused, or tapped. */
+.photos .photo-video {
+  grid-column: 1 / -1;
+}
+
+.video-frame {
+  position: relative;
+}
+
+.video-frame video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  cursor: pointer;
+}
+
+.video-frame video:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.video-hint {
+  position: absolute;
+  left: 1ch;
+  bottom: 0.8em;
+  padding: 0.25em 0.6ch;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+  transition: opacity 200ms var(--ease-out);
+}
+
+.video-hint::before {
+  content: '[ ';
+}
+
+.video-hint::after {
+  content: ' ]';
+}
+
+.video-frame[data-playing] .video-hint {
+  opacity: 0;
+}
+
 /* Glyph fields are pictures made of type. Giving them their own compositing layer makes
    Chrome on Windows smooth them in grayscale instead of ClearType's colored subpixels,
    which would put red and green fringes into a one-ink image. */

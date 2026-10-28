@@ -1,8 +1,9 @@
 import { mountScene, developOnView } from './glyph.js';
 import { initCommon, pauseChip } from './ui.js';
-import { SCENES } from './media.js';
+import { SCENES, mountClips } from './media.js';
 
 initCommon();
+mountClips();
 
 for (const fig of document.querySelectorAll('.fig[data-scene]')) {
   const scene = SCENES[fig.dataset.scene]();
