@@ -40,10 +40,59 @@ function develop(view, el) {
 // Touch screens have no hover: reveal a photo while it crosses the middle of the screen.
 const touchIO = new IntersectionObserver(
   (entries) => {
-    for (const e of entries) e.target.toggleAttribute('data-reveal', e.isIntersecting);
+    for (const e of entries) {
+      e.target.toggleAttribute('data-reveal', e.isIntersecting);
+      e.target._onReveal?.(e.isIntersecting);
+    }
   },
   { rootMargin: '-38% 0px -38% 0px' }
 );
+
+// Fetch a clip as it nears the screen, so the first reveal starts at once.
+const preloadIO = new IntersectionObserver(
+  (entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      preloadIO.unobserve(e.target);
+      e.target.preload = 'auto';
+    }
+  },
+  { rootMargin: '300px 0px' }
+);
+
+// A card whose photo is the first frame of a clip: the clip rides the photo's own color
+// layer, so it reveals exactly as the photo does and plays while revealed. Hiding it again
+// rewinds it, so the next reveal starts from the frame the photo shows.
+function attachClip(slot, host) {
+  const video = document.createElement('video');
+  video.className = 'photo-color card-video';
+  video.src = slot.dataset.video;
+  video.poster = slot.dataset.photo;
+  video.muted = true;
+  video.loop = true;
+  video.playsInline = true;
+  video.preload = 'none';
+  video.tabIndex = -1;
+  video.setAttribute('aria-hidden', 'true');
+  slot.querySelector('.card-photo').append(video);
+  preloadIO.observe(video);
+
+  let rewind;
+  const show = (on) => {
+    clearTimeout(rewind);
+    if (on) {
+      video.play().catch(() => {});
+      return;
+    }
+    video.pause();
+    rewind = setTimeout(() => (video.currentTime = 0), 200); // after the color layer fades
+  };
+  host.addEventListener('pointerenter', (e) => e.pointerType === 'mouse' && show(true));
+  host.addEventListener('pointerleave', (e) => e.pointerType === 'mouse' && show(false));
+  host.addEventListener('focusin', () => show(true));
+  host.addEventListener('focusout', (e) => !host.contains(e.relatedTarget) && show(false));
+  host._onReveal = show;
+}
 const canHover = matchMedia('(hover: hover) and (pointer: fine)');
 
 export function mountMedia(root = document) {
@@ -78,55 +127,11 @@ export function mountMedia(root = document) {
         duo.after(color);
       }
       const host = slot.closest('.card') || slot;
+      if (slot.dataset.video && !reduceMotion.matches && !slot.querySelector('.card-video')) attachClip(slot, host);
       if (!canHover.matches && !reduceMotion.matches) touchIO.observe(host);
     } else if (slot.dataset.scene && SCENES[slot.dataset.scene]) {
       const view = mountScene(pre, SCENES[slot.dataset.scene](), { rows });
       develop(view, pre);
     }
-  }
-}
-
-// Fetch a clip as it nears the screen, so the first hover starts at once.
-const preloadIO = new IntersectionObserver(
-  (entries) => {
-    for (const e of entries) {
-      if (!e.isIntersecting) continue;
-      preloadIO.unobserve(e.target);
-      e.target.preload = 'auto';
-    }
-  },
-  { rootMargin: '300px 0px' }
-);
-
-// Gameplay clips in the write-ups: a still frame that plays on a loop while hovered or
-// keyboard-focused; touch screens tap to toggle. With reduced motion a clip never starts on
-// its own and gets the browser's controls instead.
-export function mountClips(root = document) {
-  for (const video of root.querySelectorAll('video[data-hover-play]')) {
-    const frame = video.parentElement;
-    const hint = frame.querySelector('.video-hint');
-    if (reduceMotion.matches) {
-      video.controls = true;
-      hint?.remove();
-      continue;
-    }
-    if (hint && !canHover.matches) hint.textContent = 'Tap to play';
-    video.tabIndex = 0;
-    preloadIO.observe(video);
-
-    const play = () => {
-      frame.toggleAttribute('data-playing', true);
-      video.play().catch(() => frame.removeAttribute('data-playing'));
-    };
-    const stop = () => {
-      video.pause();
-      frame.removeAttribute('data-playing');
-    };
-    video.addEventListener('pointerenter', (e) => e.pointerType === 'mouse' && play());
-    video.addEventListener('pointerleave', (e) => e.pointerType === 'mouse' && stop());
-    // Only keyboard focus plays it; a mouse click focuses too, and that is the click's job.
-    video.addEventListener('focus', () => video.matches(':focus-visible') && play());
-    video.addEventListener('blur', stop);
-    video.addEventListener('click', () => (video.paused ? play() : stop()));
   }
 }

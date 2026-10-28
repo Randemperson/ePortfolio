@@ -333,12 +333,13 @@
 <b>-></b> right-click a piece in game to read its stats</pre>
             <div class="photos" style="--cols: 2">
               <figure class="photo-video">
-                <div class="video-frame">
-                  <video src="assets/video/chess-unicorn-capture.mp4" poster="assets/img/chess-unicorn-poster.jpg"
-                    width="1280" height="720" muted loop playsinline preload="none" data-hover-play
-                    aria-label="Gameplay clip: the pointer selects the white Unicorn, its reachable squares light up green and purple, and it captures the black Amazon"></video>
-                  <span class="video-hint" aria-hidden="true">Hover to play</span>
-                </div>
+                <button class="clip-open" type="button" data-player aria-haspopup="dialog"
+                  data-video="assets/video/chess-unicorn-capture.mp4"
+                  data-caption="The Unicorn lights its moves, then takes the Amazon.">
+                  <img src="assets/img/chess-unicorn-poster.jpg" width="1280" height="720" loading="lazy" decoding="async"
+                    alt="Play the 5-second gameplay clip: the pointer selects the white Unicorn, its reachable squares light up green and purple, and it captures the black Amazon" />
+                  <span class="clip-badge" aria-hidden="true">Play · 0:05</span>
+                </button>
                 <figcaption>The Unicorn lights its moves, then takes the Amazon.</figcaption>
               </figure>
               <figure>

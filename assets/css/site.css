@@ -1270,6 +1270,7 @@ button {
 }
 
 .photos figure {
+  min-width: 0; /* size cells by the grid, never by a full-resolution image inside */
   border: 1px solid var(--rule);
 }
 
@@ -1303,30 +1304,37 @@ button {
   object-fit: cover;
 }
 
-/* A gameplay clip in a write-up: a still frame until hovered, focused, or tapped. */
+/* A gameplay clip in a write-up: its poster, which opens the player (player.js). */
 .photos .photo-video {
   grid-column: 1 / -1;
 }
 
-.video-frame {
+.clip-open {
   position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: #000;
+  font: inherit;
+  cursor: pointer;
 }
 
-.video-frame video {
+.clip-open img {
   display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 16 / 9;
-  background: #000;
-  cursor: pointer;
+  object-fit: cover;
+  transition: filter 160ms ease;
 }
 
-.video-frame video:focus-visible {
+.clip-open:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
-.video-hint {
+.clip-badge {
   position: absolute;
   left: 1ch;
   bottom: 0.8em;
@@ -1336,20 +1344,90 @@ button {
   font-size: var(--fs-small);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  pointer-events: none;
-  transition: opacity 200ms var(--ease-out);
+  transition: transform 160ms var(--ease-out);
 }
 
-.video-hint::before {
-  content: '[ ';
+.clip-badge::before {
+  content: '[ ▶ ';
 }
 
-.video-hint::after {
+.clip-badge::after {
   content: ' ]';
 }
 
-.video-frame[data-playing] .video-hint {
+@media (hover: hover) and (pointer: fine) {
+  .clip-open:hover img {
+    filter: brightness(1.1);
+  }
+
+  .clip-open:hover .clip-badge {
+    transform: translateY(-2px);
+  }
+}
+
+.clip-open:active .clip-badge {
+  transform: scale(0.97);
+}
+
+/* The player itself: no box of its own, just the stage and a caption bar over a scrim, so
+   the only thing that moves on open is the picture growing out of its poster. */
+.player {
+  width: min(1100px, 94vw, calc((90vh - 4em) * 16 / 9));
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  overflow: visible;
+}
+
+.player::backdrop {
+  background: rgb(0 0 0 / 0.75);
   opacity: 0;
+  transition: opacity 240ms ease;
+}
+
+.player[data-open]::backdrop {
+  opacity: 1;
+}
+
+.player-stage {
+  transform-origin: 0 0;
+  border: 1px solid var(--rule-strong);
+  background: #000;
+}
+
+.player-stage video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+.player-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2ch;
+  padding: 0.2em 0.5ch 0.2em 1ch;
+  border: 1px solid var(--rule-strong);
+  border-top: 0;
+  background: var(--ground);
+  font-size: var(--fs-small);
+}
+
+.player-caption {
+  color: var(--ink-dim);
+}
+
+/* A card whose photo is a clip's first frame: the clip rides the photo's color layer. */
+.card-photo .card-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--focus, 50% 50%);
 }
 
 /* Glyph fields are pictures made of type. Giving them their own compositing layer makes
